@@ -1,0 +1,1 @@
+ALTER TABLE "score" ALTER COLUMN "age_at_submission" SET DATA TYPE double precision;

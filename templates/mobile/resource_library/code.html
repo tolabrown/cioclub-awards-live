@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Resource Library Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#16439c",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111621",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-[#111317] dark:text-white">
+<!-- Top Navigation Bar -->
+<div class="sticky top-0 z-50 bg-white dark:bg-background-dark border-b border-[#dcdfe5] dark:border-gray-800">
+<div class="flex items-center p-4 justify-between max-w-md mx-auto">
+<div class="text-[#111317] dark:text-white flex size-10 shrink-0 items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined">arrow_back_ios</span>
+</div>
+<h2 class="text-[#111317] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center font-display">Resource Library</h2>
+<div class="flex size-10 items-center justify-end">
+<button class="flex cursor-pointer items-center justify-center rounded-full h-10 w-10 bg-transparent text-[#111317] dark:text-white">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</div>
+<div class="max-w-md mx-auto pb-10">
+<!-- Section Header -->
+<div class="px-4 pt-6 pb-2">
+<h1 class="text-[#111317] dark:text-white text-[24px] font-bold leading-tight tracking-[-0.015em] font-display">Market Intelligence &amp; Reports</h1>
+<p class="text-[#646f87] dark:text-gray-400 text-sm mt-1">Exclusive insights for CIO &amp; C-Suite Club members</p>
+</div>
+<!-- Search Bar -->
+<div class="px-4 py-3">
+<label class="flex flex-col min-w-40 h-12 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full shadow-sm">
+<div class="text-[#646f87] flex border-none bg-white dark:bg-gray-800 items-center justify-center pl-4 rounded-l-xl">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111317] dark:text-white focus:outline-0 focus:ring-0 border-none bg-white dark:bg-gray-800 focus:border-none h-full placeholder:text-[#646f87] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search reports, analysis..." value=""/>
+</div>
+</label>
+</div>
+<!-- Category Tabs -->
+<div class="pb-3 overflow-x-auto no-scrollbar">
+<div class="flex border-b border-[#dcdfe5] dark:border-gray-800 px-4 gap-6 min-w-max">
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-primary text-primary pb-[13px] pt-4" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">All</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#646f87] dark:text-gray-400 pb-[13px] pt-4 hover:text-primary transition-colors" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">Market Reports</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#646f87] dark:text-gray-400 pb-[13px] pt-4 hover:text-primary transition-colors" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">Trend Forecasts</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#646f87] dark:text-gray-400 pb-[13px] pt-4 hover:text-primary transition-colors" href="#">
+<p class="text-sm font-bold leading-normal tracking-[0.015em]">White Papers</p>
+</a>
+</div>
+</div>
+<!-- Resource Cards Grid -->
+<div class="flex flex-col gap-4 p-4">
+<!-- Card 1 -->
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.05)] bg-white dark:bg-gray-800 border border-[#dcdfe5] dark:border-gray-700 overflow-hidden">
+<div class="relative w-full h-40 bg-center bg-no-repeat bg-cover" data-alt="Abstract blue tech background with data points" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDTakOO2k7EeEZq4ev-0YUCmZUC0wVRrEowpBQvMs_MzIEC0a9UPxGAzp5fjs8RMH1CHWU-Cp2p-9ZNqQnr8uuo1RmPvIJlxmleAgaGhMWg7qfwRVqow3XO08ONU40j1Cbv21cnFwVcSaOP8Qq4kB8lZfi1eagn2TfBXEDKq0M0LeA_5kTy9I6pDk3jWZ-GCpb_KdivxzKQ-R6b3cPcs7NL9icm704t_cZP-cS4OoAUOtK83MflMuRLca2hUuIEbWsGnWXvGM6Trw");'>
+<div class="absolute top-3 left-3 flex items-center bg-primary text-white px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase">
+<span class="material-symbols-outlined text-[14px] mr-1">star</span>
+                        Member Exclusive
+                    </div>
+<div class="absolute bottom-3 right-3 bg-white/90 dark:bg-gray-900/90 p-2 rounded-lg flex items-center shadow-md">
+<span class="material-symbols-outlined text-primary">description</span>
+</div>
+</div>
+<div class="flex w-full flex-col gap-3 p-4">
+<div class="space-y-1">
+<p class="text-[#111317] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] font-display">Africa IT Spending Forecast 2024</p>
+<p class="text-[#646f87] dark:text-gray-400 text-sm font-normal">Published: Oct 2023 • 18 Pages</p>
+</div>
+<div class="flex items-center gap-3 mt-1">
+<button class="flex-1 flex cursor-pointer items-center justify-center rounded-xl h-10 px-4 bg-transparent border border-[#dcdfe5] dark:border-gray-600 text-[#111317] dark:text-white text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            Preview
+                        </button>
+<button class="flex-1 flex cursor-pointer items-center justify-center rounded-xl h-10 px-4 bg-primary text-white text-sm font-semibold shadow-sm hover:bg-opacity-90 transition-all">
+                            Download PDF
+                        </button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.05)] bg-white dark:bg-gray-800 border border-[#dcdfe5] dark:border-gray-700 overflow-hidden">
+<div class="relative w-full h-40 bg-center bg-no-repeat bg-cover" data-alt="Cybersecurity digital shield and network lines" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAZb4XS0nr5FLN_KRB_lTrZ46WXARi7-x8SoEdl4kO1E8FmYGtGQ9GRkyDYdzl7srHab4YmnEQLncKvMBhKUyzSlfJn2rPHlv7Jr1La_lSWDp26qt0QkZZUEjJiEHAGAGtWS31N3UqJESrZnFzLXvYn1AvxD7LudBFc4hRj3kL6hRCW2PEnRrVN-DFmxwMWz12Dtg5LsVIJ_9EO6Rii747yZ0bp1eC_f32Q_8n2DI-yKHTa12ZU8Q7sLYvftcKRwcLdJSbCaMlgDw");'>
+<div class="absolute top-3 left-3 flex items-center bg-primary text-white px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase">
+<span class="material-symbols-outlined text-[14px] mr-1">star</span>
+                        Member Exclusive
+                    </div>
+<div class="absolute bottom-3 right-3 bg-white/90 dark:bg-gray-900/90 p-2 rounded-lg flex items-center shadow-md">
+<span class="material-symbols-outlined text-primary">shield</span>
+</div>
+</div>
+<div class="flex w-full flex-col gap-3 p-4">
+<div class="space-y-1">
+<p class="text-[#111317] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] font-display">Cybersecurity Trends in Pan-African Banking</p>
+<p class="text-[#646f87] dark:text-gray-400 text-sm font-normal">Published: Nov 2023 • 24 Pages</p>
+</div>
+<div class="flex items-center gap-3 mt-1">
+<button class="flex-1 flex cursor-pointer items-center justify-center rounded-xl h-10 px-4 bg-transparent border border-[#dcdfe5] dark:border-gray-600 text-[#111317] dark:text-white text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            Preview
+                        </button>
+<button class="flex-1 flex cursor-pointer items-center justify-center rounded-xl h-10 px-4 bg-primary text-white text-sm font-semibold shadow-sm hover:bg-opacity-90 transition-all">
+                            Download PDF
+                        </button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.05)] bg-white dark:bg-gray-800 border border-[#dcdfe5] dark:border-gray-700 overflow-hidden">
+<div class="relative w-full h-40 bg-center bg-no-repeat bg-cover" data-alt="Cloud computing network diagram with blue glows" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDTYcGXm8qk85dySiH6Se49pKDUS-mEdAo5GLmQRgmGi_WcBTCIR5FF2GwhBjk31YKfnDlOn0K1O-imwfom3uFUxYY1nVfuxvruqgFa0m08fp8IPwqP2tn47SDkk2ZR818QLMx7Rhhl1GhtIZxNyluqQ3OTZU0jHFhPV8kLiIzTKAQtRn5gTVTc5zfGouXjHN1Z_b9TFVdCncv_AvUVuXs64uOiIcj8khzhM88bkYvWzlP30PrcE9uCqKVfP5nXfpmdQDe7gQPPkA");'>
+<div class="absolute top-3 left-3 flex items-center bg-primary text-white px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase">
+<span class="material-symbols-outlined text-[14px] mr-1">star</span>
+                        Member Exclusive
+                    </div>
+<div class="absolute bottom-3 right-3 bg-white/90 dark:bg-gray-900/90 p-2 rounded-lg flex items-center shadow-md">
+<span class="material-symbols-outlined text-primary">cloud</span>
+</div>
+</div>
+<div class="flex w-full flex-col gap-3 p-4">
+<div class="space-y-1">
+<p class="text-[#111317] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] font-display">Cloud Adoption Maturity Model: West Africa</p>
+<p class="text-[#646f87] dark:text-gray-400 text-sm font-normal">Published: Dec 2023 • 12 Pages</p>
+</div>
+<div class="flex items-center gap-3 mt-1">
+<button class="flex-1 flex cursor-pointer items-center justify-center rounded-xl h-10 px-4 bg-transparent border border-[#dcdfe5] dark:border-gray-600 text-[#111317] dark:text-white text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            Preview
+                        </button>
+<button class="flex-1 flex cursor-pointer items-center justify-center rounded-xl h-10 px-4 bg-primary text-white text-sm font-semibold shadow-sm hover:bg-opacity-90 transition-all">
+                            Download PDF
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Mobile Bottom Navigation Placeholder for context -->
+<div class="fixed bottom-0 left-0 right-0 bg-white dark:bg-background-dark border-t border-[#dcdfe5] dark:border-gray-800 px-6 py-2 flex justify-between items-center max-w-md mx-auto">
+<div class="flex flex-col items-center gap-1 text-[#646f87] dark:text-gray-400">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined">library_books</span>
+<span class="text-[10px] font-bold">Library</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-[#646f87] dark:text-gray-400">
+<span class="material-symbols-outlined">event</span>
+<span class="text-[10px] font-medium">Events</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-[#646f87] dark:text-gray-400">
+<span class="material-symbols-outlined">group</span>
+<span class="text-[10px] font-medium">Network</span>
+</div>
+</div>
+</body></html>

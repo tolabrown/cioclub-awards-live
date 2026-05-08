@@ -1,0 +1,75 @@
+The CIO Club
+- /team
+  -✅ Remove the our committees section
+  -✅ remove the outgoing from executive
+
+- /partnerships
+  - 🚨Rachael to provide the prospectus
+  - 🚨Rachael to provide the updated partnership tiers
+ 
+- /events
+  - ✅ Update CSR to CSV
+  - ✅ remove & leadership from events & leadership
+  - 🚨Rachael to provide registration links and fliers for the events
+  - ✅ Location of all webinars to be virtual or online
+  - take out location for csr
+  - ✅ Take out board meeting entirely
+  - ✅ Take out leadership unscripted
+  - ✅ Replace May 18 - 23, 2026 with May 15, 2026
+  - ✅ Panel discussion = Rwanda
+  - ✅ remove c-suite advisory council 
+  - ✅ webinar make it virtual
+  - ✅ workshop make it virtual
+  - ✅ remove location icons for those without location
+  - ✅ agm & induction = lagos Nigeria
+  - ✅ end of year appreciation = remove location
+  - ✅ remove board of trustees from the /events page
+
+- /membership
+  - 🚨 Rachael to send the membership types. They are not accurate
+  - ✅ we'd take out free membership
+
+- /awards
+  - remove enter now from the hero 
+  - ✅ align homepage C-SUITE to Awards C-Suite
+  - ✅ Remove reserve your ticket button or link to the tickets page
+  - 🚨 Rachael to send me the complete list of sponsors
+  - 🚨 there's a difference between sponsors and product sponsors. Waiting for Rachel to send the list
+
+- 🚨/awards/categories (Waiting for the list of corporate and special awards)
+  - 🚨apart from sector based categories (they are the only ones that need nomination), we have corporate awards and special awards
+  - 🚨for corporate & special, we award the organizations based on what they are doing at that time
+  - 🚨for special awards they don't need to submit a nomination. We do our internal research, see people that are worthy. We award these people based on merit.
+
+- /awards/nominate
+  - ✅ To save nominee status when they nominate
+
+- /awards/sponsorship
+  - ✅ Remove the amount in each sponsorship package and replace with a button that leads to /contact
+
+- /awards/tickets
+ - ✅ the hero text should be The CIO & C-Suite Conference & Awards Africa ${The Current Year}
+ - Update the date and the time and remove location
+ - ✅ Update VIP to 200,000
+ - ✅ Update standard to 100,000
+ - 🚨 They should be linked to paystack. Rachael to give me paystack publishable and secret keys
+
+
+Edniesal
+
+- /
+  - ✅ Make it known that the are the board of directors
+
+- /team
+  - ✅ Oluwakayode Adigun is first
+  - ✅ Abiola Laseinde
+  - ✅ Adewale Laseinde husband
+  - 🚨 Rachael to send me the details of Wole Adeleke
+  - ✅ Cordelia first, sewa second, rachael = third
+
+- Update to Ladies in Tech & Leadership on all pages
+  - For the ladies in tech, can we have info of the upcoming one.
+  - It can also be a popup.
+  - It's a paid event and it's not just free
+  - $1,500
+  - ✅ Instead of putting ladies in tech & the cio awards in a dropdown make it visible on the navigation

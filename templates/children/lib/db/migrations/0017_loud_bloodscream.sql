@@ -1,0 +1,1 @@
+ALTER TABLE "score" ALTER COLUMN "normalized_score" SET DATA TYPE double precision;
