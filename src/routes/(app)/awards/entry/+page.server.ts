@@ -53,7 +53,7 @@ export const load: PageServerLoad = async ({ locals }) => {
     ],
     industries: [
       'Banking & Finance',
-      'Fintech',
+      'Fintech & Financial Services',
       'Telecommunications',
       'Oil & Gas',
       'Manufacturing',

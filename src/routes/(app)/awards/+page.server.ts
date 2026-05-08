@@ -27,7 +27,7 @@ export const load: PageServerLoad = async () => {
     rawData.features = [
       {
         title: "Sector-Based Excellence",
-        desc: "Recognizing transformation across Banking, Fintech, FMCG, and beyond.",
+        desc: "Recognizing transformation across Banking, Fintech & Financial Services, FMCG, and beyond.",
         iconName: "Award",
       },
       {
