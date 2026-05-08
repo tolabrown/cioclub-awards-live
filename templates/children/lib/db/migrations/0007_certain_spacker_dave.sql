@@ -1,2 +1,0 @@
-ALTER TABLE "child" ADD COLUMN "image" text;--> statement-breakpoint
-ALTER TABLE "child" ADD CONSTRAINT "child_image_file_id_fk" FOREIGN KEY ("image") REFERENCES "public"."file"("id") ON DELETE no action ON UPDATE no action;

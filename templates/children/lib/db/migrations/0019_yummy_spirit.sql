@@ -1,1 +1,0 @@
-ALTER TABLE "child" DROP COLUMN "age_group";
