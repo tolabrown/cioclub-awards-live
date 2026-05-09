@@ -371,7 +371,7 @@
         Our Ecosystem
       </div>
       <h2 class="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-        Our Strategic <span class="text-primary italic">Partners</span>
+        2025 <span class="text-primary italic">Partners</span>
       </h2>
       <p class="text-muted-foreground mt-4 max-w-2xl mx-auto font-medium">
         Collaborating with industry leaders to drive technological
