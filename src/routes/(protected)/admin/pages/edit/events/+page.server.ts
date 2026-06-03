@@ -135,6 +135,10 @@ export const actions: Actions = {
     }
 
     try {
+      // Track old file IDs to delete AFTER the event record is updated
+      let oldImageId: string | null = null;
+      let oldCoverImageId: string | null = null;
+
       let imageId = existingImageId;
       if (imageFile && imageFile.size > 0) {
         const arrayBuffer = await imageFile.arrayBuffer();
@@ -143,8 +147,8 @@ export const actions: Actions = {
           .resize(1200, 1200, { fit: 'inside', withoutEnlargement: true })
           .webp({ quality: 80 })
           .toBuffer();
-        if (existingImageId) await deleteAndRemoveFile(existingImageId);
         const result = await uploadAndSaveBuffer(resizedBuffer, 'image/webp', imageFile.name);
+        oldImageId = existingImageId || null;
         imageId = result.dbId;
       }
 
@@ -156,8 +160,8 @@ export const actions: Actions = {
           .resize(1920, 1080, { fit: 'cover' })
           .webp({ quality: 80 })
           .toBuffer();
-        if (existingCoverImageId) await deleteAndRemoveFile(existingCoverImageId);
         const result = await uploadAndSaveBuffer(resizedBuffer, 'image/webp', coverImageFile.name);
+        oldCoverImageId = existingCoverImageId || null;
         coverImageId = result.dbId;
       }
 
@@ -188,6 +192,14 @@ export const actions: Actions = {
           imageId: imageId || null,
           coverImageId: coverImageId || null
         });
+      }
+
+      // Now safe to delete old files — FK references have been removed
+      if (oldImageId) {
+        try { await deleteAndRemoveFile(oldImageId); } catch (e) { console.error('Old image cleanup error:', e); }
+      }
+      if (oldCoverImageId) {
+        try { await deleteAndRemoveFile(oldCoverImageId); } catch (e) { console.error('Old cover cleanup error:', e); }
       }
 
       await logActivity(locals, {
