@@ -1,10 +1,32 @@
 import { fail } from '@sveltejs/kit';
 import type { PageServerLoad, Actions } from './$types';
 import { db } from '$lib/db';
-import { sponsorshipInquiry } from '$lib/db/schema';
+import { sponsorshipInquiry, partner } from '$lib/db/schema';
+import { eq } from 'drizzle-orm';
 
 export const load: PageServerLoad = async () => {
+  const partners = await db.query.partner.findMany({
+    where: eq(partner.category, 'Awards'),
+    orderBy: partner.displayOrder,
+    with: {
+      logo: true
+    }
+  });
+
+  const defaultPartners = [
+    { name: "Friesland Campina", logo: { url: "/partners/friesland_campina_nin.webp" }, type: null },
+    { name: "Golden Penny", logo: { url: "/partners/goldenpenny_foods.webp" }, type: null },
+    { name: "Guinness Nigeria", logo: { url: "/partners/guinness_nigeria.webp" }, type: null },
+    { name: "NBC", logo: { url: "/partners/nbc.webp" }, type: null },
+    { name: "Nestle Nigeria", logo: { url: "/partners/nestle_nigeria.webp" }, type: null },
+    { name: "Nigerian Breweries", logo: { url: "/partners/nigerian_breweries_plc.webp" }, type: null },
+    { name: "PFS", logo: { url: "/partners/pfs.webp" }, type: null },
+    { name: "SBC", logo: { url: "/partners/sbc.webp" }, type: null },
+    { name: "Unicloud Africa", logo: { url: "/partners/unicloud_africa.webp" }, type: null }
+  ];
+
   return {
+    partners: partners.length > 0 ? partners : defaultPartners,
     packages: [
       {
         id: 'platinum',
