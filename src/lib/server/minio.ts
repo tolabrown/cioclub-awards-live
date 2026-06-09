@@ -15,19 +15,20 @@ const minioClient = new Client({
 });
 
 const BUCKET_NAME = env.MINIO_BUCKET;
+const ENDPOINT = env.MINIO_ENDPOINT
 
 /**
  * Get direct HTTPS object URL (via Traefik)
  */
 export function getDirectObjectUrl(bucketName: string, objectName: string): string {
-  return `https://api.minio.toolsntuts.com/${bucketName}/${objectName}`;
+  return `http://${ENDPOINT}/${bucketName}/${objectName}`;
 }
 
 /**
  * Get permanent MinIO Console API URL
  */
 export function getObjectUrl(bucketName: string, objectName: string): string {
-  return `https://minio.toolsntuts.com/api/v1/buckets/${bucketName}/objects/download?preview=true&prefix=${encodeURIComponent(objectName)}&version_id=null`;
+  return `http://${ENDPOINT}/api/v1/buckets/${bucketName}/objects/download?preview=true&prefix=${encodeURIComponent(objectName)}&version_id=null`;
 }
 
 /**
