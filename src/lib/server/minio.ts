@@ -21,14 +21,14 @@ const ENDPOINT = env.MINIO_ENDPOINT
  * Get direct HTTPS object URL (via Traefik)
  */
 export function getDirectObjectUrl(bucketName: string, objectName: string): string {
-  return `http://${ENDPOINT}/${bucketName}/${objectName}`;
+  return `https://${ENDPOINT}/${bucketName}/${objectName}`;
 }
 
 /**
  * Get permanent MinIO Console API URL
  */
 export function getObjectUrl(bucketName: string, objectName: string): string {
-  return `http://${ENDPOINT}/api/v1/buckets/${bucketName}/objects/download?preview=true&prefix=${encodeURIComponent(objectName)}&version_id=null`;
+  return `https://${ENDPOINT}/api/v1/buckets/${bucketName}/objects/download?preview=true&prefix=${encodeURIComponent(objectName)}&version_id=null`;
 }
 
 /**
