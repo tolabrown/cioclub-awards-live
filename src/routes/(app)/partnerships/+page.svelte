@@ -119,7 +119,7 @@
                     target="_blank"
                     class="hover:underline"
                   >
-                    Dr. Cordelia Ilori
+                    Racheal Odeja
                   </a>
                 </p>
                 <div class="flex flex-wrap gap-4 pt-1">

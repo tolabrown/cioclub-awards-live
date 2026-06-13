@@ -45,8 +45,8 @@ export enum Constants {
   WHATSAPP = 'https://wa.me/2348102668340',
   ADESEWA_PHONE = '+2348102668340',
   ADESEWA_WHATSAPP = 'https://wa.me/2348102668340',
-  CORDELIA_PHONE = '+2347069432878',
-  CORDELIA_WHATSAPP = 'https://wa.me/2347069432878',
+  RACHEAL_PHONE = '+2347069432878',
+  RACHEAL_WHATSAPP = 'https://wa.me/2347069432878',
 }
 
 export type FileType = 'audio' | 'video' | 'file' | 'image';

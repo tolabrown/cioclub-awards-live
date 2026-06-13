@@ -89,11 +89,11 @@
         </a>
         <div class="flex items-center gap-4">
           <a
-            href="tel:{Constants.CORDELIA_PHONE}"
+            href="tel:{Constants.ADESEWA_PHONE}"
             class="flex items-center gap-2 hover:text-primary transition-colors border-l border-border/50 pl-4 h-4"
           >
             <Phone class="size-3.5" />
-            <span>Dr. Cordelia Ilori: {Constants.CORDELIA_PHONE}</span>
+            <span>Adesewa Jethro: {Constants.ADESEWA_PHONE}</span>
           </a>
         </div>
       </div>

@@ -251,12 +251,12 @@
                     <div
                       class="flex flex-col md:flex-row items-stretch min-h-[220px]"
                     >
-                      {#if event.image?.url || event.coverImage?.url}
+                      {#if event.image?.directUrl || event.image?.url || event.coverImage?.directUrl || event.coverImage?.url}
                         <div
                           class="w-full md:w-72 overflow-hidden flex-shrink-0 relative bg-slate-950/50 flex items-center justify-center p-2"
                         >
                           <img
-                            src={event.image?.url || event.coverImage?.url}
+                            src={event.image?.directUrl || event.image?.url || event.coverImage?.directUrl || event.coverImage?.url}
                             alt={event.title}
                             class="max-w-full max-h-full w-auto h-auto object-contain grayscale group-hover:grayscale-0 transition-all duration-500"
                           />

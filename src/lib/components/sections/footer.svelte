@@ -153,17 +153,18 @@
             <div class="space-y-1">
               <p class="text-sm font-bold">Direct Support</p>
               <div class="flex flex-col gap-1">
-                <a
-                  href="tel:{Constants.CORDELIA_PHONE}"
-                  class="text-xs text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Dr. Cordelia Ilori
-                </a>
+
                 <a
                   href="tel:{Constants.ADESEWA_PHONE}"
                   class="text-xs text-muted-foreground hover:text-primary transition-colors"
                 >
                   Adesewa Jethro
+                </a>
+                <a
+                  href="tel:{Constants.RACHEAL_PHONE}"
+                  class="text-xs text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Racheal Odeja
                 </a>
               </div>
             </div>

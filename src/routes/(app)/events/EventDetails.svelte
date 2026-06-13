@@ -17,12 +17,12 @@
 </script>
 
 <div class="grid gap-6">
-  {#if event.image?.url || event.coverImage?.url}
+  {#if event.image?.directUrl || event.image?.url || event.coverImage?.directUrl || event.coverImage?.url}
     <div
       class="relative w-full max-h-[500px] overflow-hidden -mx-8 -mt-8 mb-4 bg-[#050A18] flex items-center justify-center p-4 min-h-[300px]"
     >
       <img
-        src={event.image?.url || event.coverImage?.url}
+        src={event.image?.directUrl || event.image?.url || event.coverImage?.directUrl || event.coverImage?.url}
         alt={event.title}
         class="max-w-full max-h-[480px] w-auto h-auto object-contain transition-transform duration-500 hover:scale-105"
       />
