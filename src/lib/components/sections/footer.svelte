@@ -154,12 +154,6 @@
               <p class="text-sm font-bold">Direct Support</p>
               <div class="flex flex-col gap-1">
                 <a
-                  href="tel:{Constants.CORDELIA_PHONE}"
-                  class="text-xs text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Dr. Cordelia Ilori
-                </a>
-                <a
                   href="tel:{Constants.ADESEWA_PHONE}"
                   class="text-xs text-muted-foreground hover:text-primary transition-colors"
                 >
