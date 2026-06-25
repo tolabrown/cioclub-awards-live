@@ -48,11 +48,6 @@
       isPersonnel: true,
       contacts: [
         {
-          name: "Dr. Cordelia Ilori",
-          tel: "tel:+2347069432878",
-          wa: "https://wa.me/2347069432878",
-        },
-        {
           name: "Adesewa Jethro",
           tel: "tel:+2348102668340",
           wa: "https://wa.me/2348102668340",
@@ -391,11 +386,11 @@
                     <User class="size-8" />
                   </div>
                   <div class="flex-1">
-                    <p class="font-bold">Dr. Cordelia Ilori</p>
+                    <p class="font-bold">Adesewa Jethro</p>
                     <p
                       class="text-[10px] text-black/80 font-bold uppercase tracking-widest"
                     >
-                      Dr. / Partnership Lead
+                      Head of Partnerships
                     </p>
                   </div>
                 </div>
@@ -403,7 +398,7 @@
                   variant="secondary"
                   size="sm"
                   class="rounded-full px-6 font-bold uppercase text-[10px] tracking-widest"
-                  href="https://wa.me/2347069432878"
+                  href="https://wa.me/2348102668340"
                   target="_blank"
                 >
                   Connect
