@@ -5,13 +5,32 @@ import { db } from '$lib/db';
 import { file as fileTable, albumMedia as albumMediaTable } from '$lib/db/schema';
 import { eq } from 'drizzle-orm';
 
-// Initialize MinIO Client
-const minioClient = new Client({
-  endPoint: env.MINIO_ENDPOINT,
-  port: 9000,
-  useSSL: false,
-  accessKey: env.MINIO_ROOT_USER,
-  secretKey: env.MINIO_ROOT_PASSWORD,
+// Lazily initialize the MinIO Client. The client must NOT be constructed at
+// module load: during `vite build` server modules are evaluated with empty
+// dynamic env, and `new Client({ endPoint: undefined })` throws
+// ("Invalid endPoint : undefined"). The Proxy defers construction to the first
+// method access, which only happens at runtime once env vars are present.
+let _minioClient: Client | null = null;
+function getMinioClient(): Client {
+  if (!_minioClient) {
+    const useSSL = env.MINIO_USE_SSL === 'true';
+    _minioClient = new Client({
+      endPoint: env.MINIO_ENDPOINT,
+      port: env.MINIO_PORT ? Number(env.MINIO_PORT) : useSSL ? 443 : 9000,
+      useSSL,
+      accessKey: env.MINIO_ROOT_USER,
+      secretKey: env.MINIO_ROOT_PASSWORD,
+    });
+  }
+  return _minioClient;
+}
+
+const minioClient = new Proxy({} as Client, {
+  get(_target, prop) {
+    const client = getMinioClient();
+    const value = (client as Record<string | symbol, unknown>)[prop];
+    return typeof value === 'function' ? value.bind(client) : value;
+  }
 });
 
 const BUCKET_NAME = env.MINIO_BUCKET;

@@ -1,57 +1,43 @@
-version: "3.8"
 services:
-  cioclub:
-    image: your-registry/cioclub:latest
+  cio:
+    image: edniesalconsulting/cioclubawards:0.0.2
     restart: always
-    ports:
+    expose:
       - "3000"
     networks:
       - dokploy-network
     environment:
-      # Server config
       - NODE_ENV=production
       - HOST=0.0.0.0
       - PORT=3000
-      - ORIGIN=https://cioclub.com
-      
-      # Better Auth
+      - ORIGIN=https://thecioclubafrica.com
+      - BODY_SIZE_LIMIT=10485760
       - BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
-      - BETTER_AUTH_URL=https://cioclub.com
-      - BETTER_API_URL=https://cioclub.com/api/auth
-      
-      # Database
+      - BETTER_AUTH_URL=https://thecioclubafrica.com
+      - PUBLIC_BETTER_AUTH_URL=https://thecioclubafrica.com
       - DATABASE_URL=${DATABASE_URL}
-      
-      # Google OAuth
       - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
-      - REDIRECT_URI=${REDIRECT_URI}
-      
-      # MinIO
+      - REDIRECT_URI=https://thecioclubafrica.com/api/auth/callback/google
+      - MINIO_ENDPOINT=${MINIO_ENDPOINT}
+      - MINIO_PORT=${MINIO_PORT:-443}
+      - MINIO_USE_SSL=${MINIO_USE_SSL:-true}
       - MINIO_ROOT_USER=${MINIO_ROOT_USER}
       - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
-      - MINIO_ENDPOINT=${MINIO_ENDPOINT}
       - MINIO_BUCKET=${MINIO_BUCKET}
-      
-      # Webhooks
       - EMAIL_WEBHOOK=${EMAIL_WEBHOOK}
-      - BODY_SIZE_LIMIT=10485760
-    
+      - NEWS_ARTICLE=${NEWS_ARTICLE}
+      - PS_SECRET_KEY=${PS_SECRET_KEY}
+      - FW_PUBLIC_KEY=${FW_PUBLIC_KEY}
+      - FW_SECRET_KEY=${FW_SECRET_KEY}
+      - FW_ENCRYPTION_KEY=${FW_ENCRYPTION_KEY}
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.cioclub.rule=Host(`cioclub.com`)"
-      - "traefik.http.routers.cioclub.entrypoints=websecure"
-      - "traefik.http.routers.cioclub.tls.certresolver=letsencrypt"
-      - "traefik.http.services.cioclub.loadbalancer.server.port=3000"
-      
-      # www redirect
-      - "traefik.http.routers.cioclub-www.rule=Host(`www.cioclub.com`)"
-      - "traefik.http.routers.cioclub-www.entrypoints=websecure"
-      - "traefik.http.routers.cioclub-www.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.cioclub-www.middlewares=cioclub-www-redirect"
-      - "traefik.http.middlewares.cioclub-www-redirect.redirectregex.regex=^https://www\\.cioclub\\.com/(.*)"
-      - "traefik.http.middlewares.cioclub-www-redirect.redirectregex.replacement=https://cioclub.com/$${1}"
-      - "traefik.http.middlewares.cioclub-www-redirect.redirectregex.permanent=true"
+      - "traefik.docker.network=dokploy-network"
+      - "traefik.http.routers.cio.rule=Host(`thecioclubafrica.com`)"
+      - "traefik.http.routers.cio.entrypoints=websecure"
+      - "traefik.http.routers.cio.tls.certresolver=letsencrypt"
+      - "traefik.http.services.cio.loadbalancer.server.port=3000"
 
 networks:
   dokploy-network:

@@ -2,8 +2,8 @@
 setlocal enabledelayedexpansion
 
 REM Configuration
-set IMAGE_NAME=your-registry/cioclub
-set VERSION=0.0.1
+set IMAGE_NAME=edniesalconsulting/cioclubawards
+set VERSION=0.0.2
 
 echo ============================================
 echo Building and Deploying Docker Image
