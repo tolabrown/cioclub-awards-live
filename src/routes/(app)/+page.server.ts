@@ -1,21 +1,43 @@
 import { getPageContent } from '$lib/db/content';
 import { HomepageContent } from '$lib/constants';
 import { db } from '$lib/db';
-import { pageContent, news, testimonial } from '$lib/db/schema';
-import { eq, desc } from 'drizzle-orm';
+import { pageContent, news, testimonial, partner } from '$lib/db/schema';
+import { eq, desc, asc } from 'drizzle-orm';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
-  let [content, latestNews] = await Promise.all([
-    getPageContent('/', HomepageContent),
-    db.query.news.findMany({
-      with: {
-        image: true
-      },
-      limit: 3,
-      orderBy: [desc(news.createdAt)]
-    })
-  ]);
+  let contentRecord = null;
+  let content: any = null;
+  let latestNews: any[] = [];
+  let partners: any[] = [];
+
+  try {
+    const results = await Promise.all([
+      db.query.pageContent.findFirst({
+        where: eq(pageContent.path, '/')
+      }),
+      db.query.news.findMany({
+        with: {
+          image: true
+        },
+        limit: 3,
+        orderBy: [desc(news.createdAt)]
+      }),
+      db.query.partner.findMany({
+        with: {
+          logo: true
+        },
+        orderBy: [asc(partner.displayOrder)]
+      })
+    ]);
+    contentRecord = results[0];
+    latestNews = results[1];
+    partners = results[2];
+  } catch (err) {
+    console.error("Home DB Error:", err);
+  }
+
+  content = contentRecord?.data ? JSON.parse(contentRecord.data) : HomepageContent;
 
   // Self-healing: If content is remarkably empty (e.g. missing hero), restore defaults
   if (!content || !content.hero || !content.hero.title) {
@@ -44,12 +66,17 @@ export const load: PageServerLoad = async () => {
 
   // Ensure testimonials field exists
   if (!content.testimonials || content.testimonials.length === 0) {
-    const featuredTestimonials = await db.query.testimonial.findMany({
-      with: { image: true },
-      limit: 3,
-      orderBy: [desc(testimonial.createdAt)]
-    });
-    content.testimonials = featuredTestimonials;
+    try {
+      const featuredTestimonials = await db.query.testimonial.findMany({
+        with: { image: true },
+        limit: 3,
+        orderBy: [desc(testimonial.createdAt)]
+      });
+      content.testimonials = featuredTestimonials;
+    } catch (e) {
+      console.error("Testimonial DB Error:", e);
+      content.testimonials = [];
+    }
   }
 
   return {

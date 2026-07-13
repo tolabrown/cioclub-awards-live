@@ -217,7 +217,7 @@
           <div class="flex items-center gap-3 mb-8">
             <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-muted/50 text-xs text-muted-foreground font-medium">
               <Calendar class="size-3.5 text-primary" />
-              <span>{formatDate(event.date)}</span>
+              <span>Aug 2026</span>
             </div>
           </div>
           <Button

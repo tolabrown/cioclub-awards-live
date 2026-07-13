@@ -11,9 +11,14 @@ export type NominationPeriod = {
 };
 
 export async function getNominationPeriod(): Promise<NominationPeriod> {
-  const content = await db.query.pageContent.findFirst({
-    where: eq(pageContent.path, '/awards')
-  });
+  let content = null;
+  try {
+    content = await db.query.pageContent.findFirst({
+      where: eq(pageContent.path, '/awards')
+    });
+  } catch (err) {
+    console.error("Nomination period DB Error:", err);
+  }
 
   if (!content) return { startDate: null, endDate: null, status: 'not_set' };
 

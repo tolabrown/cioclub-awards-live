@@ -6,17 +6,22 @@ import type { PageServerLoad } from './$types';
 const PATH = '/partnerships';
 
 export const load: PageServerLoad = async () => {
-  const [contentRecord, partners] = await Promise.all([
-    db.query.pageContent.findFirst({
-      where: eq(pageContent.path, PATH)
-    }),
-    db.query.partner.findMany({
-      with: {
-        logo: true
-      },
-      orderBy: [asc(partner.displayOrder)]
-    })
-  ]);
+  let contentRecord = null;
+  let partners: any[] = [];
+  try {
+    [contentRecord, partners] = await Promise.all([
+      db.query.pageContent.findFirst({
+        where: eq(pageContent.path, PATH)
+      }),
+      db.query.partner.findMany({
+        with: { logo: true },
+        orderBy: [asc(partner.displayOrder)]
+      })
+    ]);
+  } catch (err) {
+    console.error("Partnerships DB Error:", err);
+  }
+
 
   const rawData = contentRecord?.data ? JSON.parse(contentRecord.data) : {
     hero: {

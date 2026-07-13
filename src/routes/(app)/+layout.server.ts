@@ -5,18 +5,25 @@ import { getNominationPeriod } from '$lib/server/nomination-period';
 import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async ({ locals }) => {
-  const [nominationPeriod, upcomingEvents] = await Promise.all([
-    getNominationPeriod(),
-    db.query.event.findMany({
-      where: gte(event.date, new Date()),
-      orderBy: [asc(event.date)],
-      limit: 1,
-      with: {
-        image: true,
-        coverImage: true
-      }
-    })
-  ]);
+  let nominationPeriod = null;
+  let upcomingEvents: any[] = [];
+  try {
+    [nominationPeriod, upcomingEvents] = await Promise.all([
+      getNominationPeriod(),
+      db.query.event.findMany({
+        where: gte(event.date, new Date()),
+        orderBy: [asc(event.date)],
+        limit: 1,
+        with: {
+          image: true,
+          coverImage: true
+        }
+      })
+    ]);
+  } catch (err) {
+    console.error("Layout DB Error:", err);
+  }
+
 
   return {
     user: locals.user,
