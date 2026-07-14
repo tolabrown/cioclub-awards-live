@@ -3,7 +3,7 @@ setlocal enabledelayedexpansion
 
 REM Configuration
 set IMAGE_NAME=edniesalconsulting/cioclubawards
-set VERSION=0.0.2
+set VERSION=0.0.3
 
 echo ============================================
 echo Building and Deploying Docker Image

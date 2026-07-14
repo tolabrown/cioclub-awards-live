@@ -20,8 +20,8 @@ services:
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
       - REDIRECT_URI=https://thecioclubafrica.com/api/auth/callback/google
       - MINIO_ENDPOINT=${MINIO_ENDPOINT}
-      - MINIO_PORT=${MINIO_PORT:-443}
-      - MINIO_USE_SSL=${MINIO_USE_SSL:-true}
+      - MINIO_PORT=${MINIO_PORT:-9000}
+      - MINIO_USE_SSL=${MINIO_USE_SSL:-false}
       - MINIO_ROOT_USER=${MINIO_ROOT_USER}
       - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
       - MINIO_BUCKET=${MINIO_BUCKET}

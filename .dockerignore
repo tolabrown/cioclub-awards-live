@@ -1,5 +1,6 @@
 # ---- Dependencies (reinstalled inside the image) ----
 node_modules
+sources
 .pnpm-store
 .npm
 .yarn
