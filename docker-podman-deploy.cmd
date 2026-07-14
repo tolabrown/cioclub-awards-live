@@ -13,7 +13,7 @@ REM ============================================================
 
 REM Configuration
 set IMAGE_NAME=edniesalconsulting/cioclubawards
-set VERSION=0.0.4
+set VERSION=0.0.5 
 set REGISTRY=docker.io
 set FULL_IMAGE=%REGISTRY%/%IMAGE_NAME%:%VERSION%
 
