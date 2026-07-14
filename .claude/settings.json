@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(bun run build)",
+      "PowerShell(docker build -t edniesalconsulting/cioclubawards:0.0.2 . 2>&1)",
+      "PowerShell(docker rm -f cio_smoke 2>$null)",
+      "PowerShell(\"--- container status ---\")",
+      "PowerShell(\"--- logs ---\")"
+    ]
+  }
+}

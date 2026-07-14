@@ -1,5 +1,5 @@
 import { db } from '$lib/db';
-import { pageContent, partner, file, awardWinner } from '$lib/db/schema';
+import { pageContent, file, awardWinner } from '$lib/db/schema';
 import { eq, desc, like } from 'drizzle-orm';
 import { AwardsHeroContent } from '$lib/constants';
 import { getNominationPeriod } from '$lib/server/nomination-period';
@@ -27,7 +27,7 @@ export const load: PageServerLoad = async () => {
     rawData.features = [
       {
         title: "Sector-Based Excellence",
-        desc: "Recognizing transformation across Banking, Fintech, FMCG, and beyond.",
+        desc: "Recognizing transformation across Banking, Fintech & Financial Services, FMCG, and beyond.",
         iconName: "Award",
       },
       {
@@ -43,25 +43,6 @@ export const load: PageServerLoad = async () => {
     ];
   }
 
-  const partners = await db.query.partner.findMany({
-    where: eq(partner.category, 'Awards'),
-    orderBy: partner.displayOrder,
-    with: {
-      logo: true
-    }
-  });
-
-  const defaultPartners = [
-    { name: "Friesland Campina", logo: { url: "/partners/friesland_campina_nin.webp" }, type: null },
-    { name: "Golden Penny", logo: { url: "/partners/goldenpenny_foods.webp" }, type: null },
-    { name: "Guinness Nigeria", logo: { url: "/partners/guinness_nigeria.webp" }, type: null },
-    { name: "NBC", logo: { url: "/partners/nbc.webp" }, type: null },
-    { name: "Nestle Nigeria", logo: { url: "/partners/nestle_nigeria.webp" }, type: null },
-    { name: "Nigerian Breweries", logo: { url: "/partners/nigerian_breweries_plc.webp" }, type: null },
-    { name: "PFS", logo: { url: "/partners/pfs.webp" }, type: null },
-    { name: "SBC", logo: { url: "/partners/sbc.webp" }, type: null },
-    { name: "Unicloud Africa", logo: { url: "/partners/unicloud_africa.webp" }, type: null }
-  ];
 
   const highlightWinner = await db.query.awardWinner.findFirst({
     orderBy: [desc(awardWinner.createdAt)],
@@ -81,7 +62,6 @@ export const load: PageServerLoad = async () => {
       ogImage: contentRecord.ogImage
     } : null,
     content: rawData,
-    partners: partners.length > 0 ? partners : defaultPartners,
     highlightWinner,
     latestWinnerYear: latestWinnerYear?.year || "2024",
     nominationPeriod

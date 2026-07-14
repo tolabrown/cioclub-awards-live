@@ -115,18 +115,18 @@
               <div class="space-y-4">
                 <p class="font-medium text-primary">
                   <a
-                    href="https://wa.me/2347069432878"
+                    href="https://wa.me/2348102668340"
                     target="_blank"
                     class="hover:underline"
                   >
-                    Racheal Odeja
+                    Adesewa Jethro
                   </a>
                 </p>
                 <div class="flex flex-wrap gap-4 pt-1">
                   <a
-                    href="mailto:cordelia@edniesalconsulting.com"
+                    href="mailto:{Constants.SUPPORTEMAIL}"
                     class="hover:underline text-foreground"
-                    >cordelia@edniesalconsulting.com</a
+                    >{Constants.SUPPORTEMAIL}</a
                   >
                   <a
                     href="https://www.thecioclubafrica.com"

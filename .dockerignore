@@ -1,0 +1,62 @@
+# ---- Dependencies (reinstalled inside the image) ----
+node_modules
+sources
+.pnpm-store
+.npm
+.yarn
+
+# ---- Build output / framework caches ----
+build
+.svelte-kit
+.vercel
+.netlify
+.wrangler
+.output
+.vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# ---- Secrets & env (NEVER bake real secrets into an image) ----
+.env
+.env.*
+!.env.example
+
+# ---- Git / VCS ----
+.git
+.gitignore
+.gitattributes
+
+# ---- Docker / deploy meta (not needed inside the image) ----
+Dockerfile
+.dockerignore
+docker-compose*.yml
+docker-deploy.cmd
+
+# ---- One-off / local DB & debug scripts (contain hardcoded creds) ----
+db_debug.ts
+find_album_id.ts
+list_albums.ts
+check_winner_schema.ts
+fix_db.js
+fix_schema.js
+migrate_db.ts
+sync_db.ts
+scratch_query.ts
+scratch_update.ts
+scripts/
+
+# ---- Editor / OS / misc ----
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+.agent
+templates
+sources
+
+# ---- Docs & tests (optional, keeps context small) ----
+README*.md
+*.test.ts
+*.spec.ts

@@ -2,7 +2,7 @@ import { redirect } from '@sveltejs/kit';
 import { db } from '$lib/db';
 import { membershipPayment, user, membershipInquiry } from '$lib/db/schema';
 import { eq, sql } from 'drizzle-orm';
-import { PS_SECRET_KEY } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 import { calculateSubscriptionYearsFromKobo, calculateExtendedExpiry } from '$lib/utils/subscription';
 import { logActivity } from '$lib/server/activity-log';
 import type { RequestHandler } from './$types';
@@ -18,7 +18,7 @@ export const GET: RequestHandler = async ({ url }) => {
     // 1. Verify transaction with Paystack
     const response = await fetch(`https://api.paystack.co/transaction/verify/${reference}`, {
       headers: {
-        Authorization: `Bearer ${PS_SECRET_KEY}`
+        Authorization: `Bearer ${env.PS_SECRET_KEY}`
       }
     });
 

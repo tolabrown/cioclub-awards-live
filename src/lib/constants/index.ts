@@ -45,8 +45,6 @@ export enum Constants {
   WHATSAPP = 'https://wa.me/2348102668340',
   ADESEWA_PHONE = '+2348102668340',
   ADESEWA_WHATSAPP = 'https://wa.me/2348102668340',
-  RACHEAL_PHONE = '+2347069432878',
-  RACHEAL_WHATSAPP = 'https://wa.me/2347069432878',
 }
 
 export type FileType = 'audio' | 'video' | 'file' | 'image';
@@ -74,7 +72,7 @@ export const AwardsHeroContent = [
   {
     subtitle: "Innovation & Leadership",
     title: "Rewarding Visionaries Across Africa",
-    description: "Celebrating excellence across the continent's major economic hubs in Banking, Fintech, FMCG, and beyond.",
+    description: "Celebrating excellence across the continent's major economic hubs in Banking, Fintech & Financial Services, FMCG, and beyond.",
     mobileImage: "/awards_hero_backgrounds/awards-1_1920x1080.webp",
     desktopImage: "/awards_hero_backgrounds/awards-1_1920x720.webp",
     primaryCta: { text: "View Categories", href: "/awards/categories" },
@@ -83,7 +81,7 @@ export const AwardsHeroContent = [
 ];
 
 export const AwardCategories = [
-  { id: 1, title: "Fintech", description: "Recognizing excellence and innovation in financial technology across Africa.", href: "https://zfrmz.com/ehOL2qeENHenXNdwxiLi" },
+  { id: 1, title: "Fintech & Financial Services", description: "Recognizing excellence and innovation in financial technology and services across Africa.", href: "https://zfrmz.com/ehOL2qeENHenXNdwxiLi" },
   { id: 2, title: "E-commerce", description: "Celebrating pioneers in digital retail and online marketplace solutions.", href: "https://zfrmz.com/ehOL2qeENHenXNdwxiLi" },
   { id: 3, title: "Healthtech", description: "Honoring digital solutions transforming healthcare delivery and accessibility.", href: "https://zfrmz.com/ehOL2qeENHenXNdwxiLi" },
   { id: 4, title: "Agritech", description: "Recognizing technology-driven innovations in agriculture and food security.", href: "https://zfrmz.com/ehOL2qeENHenXNdwxiLi" },

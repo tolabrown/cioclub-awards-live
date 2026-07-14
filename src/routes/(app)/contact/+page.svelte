@@ -52,11 +52,6 @@
           tel: "tel:+2348102668340",
           wa: "https://wa.me/2348102668340",
         },
-        {
-          name: "Racheal Odeja",
-          tel: "tel:+2347069432878",
-          wa: "https://wa.me/2347069432878",
-        },
       ],
     },
     {
@@ -391,11 +386,11 @@
                     <User class="size-8" />
                   </div>
                   <div class="flex-1">
-                    <p class="font-bold">Racheal Odeja</p>
+                    <p class="font-bold">Adesewa Jethro</p>
                     <p
                       class="text-[10px] text-black/80 font-bold uppercase tracking-widest"
                     >
-                      Partnership Lead
+                      Head of Partnerships
                     </p>
                   </div>
                 </div>
@@ -403,7 +398,7 @@
                   variant="secondary"
                   size="sm"
                   class="rounded-full px-6 font-bold uppercase text-[10px] tracking-widest"
-                  href="https://wa.me/2347069432878"
+                  href="https://wa.me/2348102668340"
                   target="_blank"
                 >
                   Connect

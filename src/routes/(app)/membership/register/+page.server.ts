@@ -2,7 +2,6 @@ import { db } from '$lib/db';
 import { pageContent, membershipInquiry, membershipPayment } from '$lib/db/schema';
 import { eq } from 'drizzle-orm';
 import { fail, redirect } from '@sveltejs/kit';
-import { PS_SECRET_KEY } from '$env/static/private';
 import { env } from '$env/dynamic/private';
 import { auth } from '$lib/auth';
 import type { PageServerLoad, Actions } from './$types';
@@ -103,7 +102,7 @@ export const actions: Actions = {
         const response = await fetch('https://api.paystack.co/transaction/initialize', {
           method: 'POST',
           headers: {
-            Authorization: `Bearer ${PS_SECRET_KEY}`,
+            Authorization: `Bearer ${env.PS_SECRET_KEY}`,
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({

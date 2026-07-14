@@ -281,7 +281,7 @@
                 id="sector"
                 name="sector"
                 type="text"
-                placeholder="e.g., Fintech, Oil & Gas"
+                placeholder="e.g., Fintech & Financial Services, Oil & Gas"
                 class="h-12 rounded-xl border-border focus:border-primary focus:ring-primary shadow-sm"
               />
             </div>
