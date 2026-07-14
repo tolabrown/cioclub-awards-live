@@ -25,7 +25,11 @@ RUN echo "DATABASE_URL=postgresql://dummy:dummy@localhost:5432/dummy" > .env && 
     echo "BETTER_AUTH_URL=http://localhost:3000" >> .env && \
     echo "NODE_ENV=production" >> .env && \
     echo "EMAIL_WEBHOOK=https://email" >> .env && \
-    echo "BODY_SIZE_LIMIT=10485760" >> .env
+    echo "BODY_SIZE_LIMIT=10485760" >> .env && \
+    echo "PS_SECRET_KEY=dummy_ps_key" >> .env && \
+    echo "FW_PUBLIC_KEY=dummy_fw_pub" >> .env && \
+    echo "FW_SECRET_KEY=dummy_fw_sec" >> .env && \
+    echo "FW_ENCRYPTION_KEY=dummy_fw_enc" >> .env
 
 # Modify vite.config to skip SSR during build (temporary workaround)
 # Build with SSR disabled to prevent server code execution
