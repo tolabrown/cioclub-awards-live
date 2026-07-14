@@ -23,6 +23,7 @@ RUN echo "DATABASE_URL=postgresql://dummy:dummy@localhost:5432/dummy" > .env && 
     echo "MINIO_BUCKET=dummy-bucket" >> .env && \
     echo "BETTER_AUTH_SECRET=dummy-secret-key-for-build-minimum-32-characters-long" >> .env && \
     echo "BETTER_AUTH_URL=http://localhost:3000" >> .env && \
+    echo "PUBLIC_BETTER_AUTH_URL=http://localhost:3000" >> .env && \
     echo "NODE_ENV=production" >> .env && \
     echo "EMAIL_WEBHOOK=https://email" >> .env && \
     echo "BODY_SIZE_LIMIT=10485760" >> .env && \
