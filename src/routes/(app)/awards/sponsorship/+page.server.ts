@@ -5,14 +5,8 @@ import { sponsorshipInquiry, partner } from '$lib/db/schema';
 import { eq } from 'drizzle-orm';
 
 export const load: PageServerLoad = async () => {
-  const partners = await db.query.partner.findMany({
-    where: eq(partner.category, 'Awards'),
-    orderBy: partner.displayOrder,
-    with: {
-      logo: true
-    }
-  });
-
+  let partners: any[] = [];
+  
   const defaultPartners = [
     { name: "Friesland Campina", logo: { url: "/partners/friesland_campina_nin.webp" }, type: null },
     { name: "Golden Penny", logo: { url: "/partners/goldenpenny_foods.webp" }, type: null },
@@ -24,6 +18,18 @@ export const load: PageServerLoad = async () => {
     { name: "SBC", logo: { url: "/partners/sbc.webp" }, type: null },
     { name: "Unicloud Africa", logo: { url: "/partners/unicloud_africa.webp" }, type: null }
   ];
+
+  try {
+    partners = await db.query.partner.findMany({
+      where: eq(partner.category, 'Awards'),
+      orderBy: partner.displayOrder,
+      with: {
+        logo: true
+      }
+    });
+  } catch (err) {
+    console.error("Sponsorship Page DB Error:", err);
+  }
 
   return {
     partners: partners.length > 0 ? partners : defaultPartners,
@@ -90,7 +96,7 @@ export const load: PageServerLoad = async () => {
 };
 
 export const actions: Actions = {
-  submit: async ({ request }) => {
+  submit: async ({ request, locals }) => {
     const formData = await request.formData();
 
     const companyName = formData.get('companyName') as string;

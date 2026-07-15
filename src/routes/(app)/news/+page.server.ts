@@ -7,17 +7,26 @@ import { fail } from '@sveltejs/kit';
 const PATH = '/news';
 
 export const load: PageServerLoad = async () => {
-  const [content, newsItems] = await Promise.all([
-    db.query.pageContent.findFirst({
-      where: eq(pageContent.path, PATH)
-    }),
-    db.query.news.findMany({
-      with: {
-        image: true
-      },
-      orderBy: [desc(news.createdAt)]
-    })
-  ]);
+  let content = null;
+  let newsItems: any[] = [];
+
+  try {
+    const results = await Promise.all([
+      db.query.pageContent.findFirst({
+        where: eq(pageContent.path, PATH)
+      }),
+      db.query.news.findMany({
+        with: {
+          image: true
+        },
+        orderBy: [desc(news.createdAt)]
+      })
+    ]);
+    content = results[0];
+    newsItems = results[1];
+  } catch (err) {
+    console.error("News Page DB Error:", err);
+  }
 
   return {
     meta: content ? {

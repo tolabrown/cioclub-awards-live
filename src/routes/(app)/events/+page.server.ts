@@ -6,18 +6,27 @@ import type { PageServerLoad } from './$types';
 const PATH = '/events';
 
 export const load: PageServerLoad = async () => {
-  const [contentRecord, eventsList] = await Promise.all([
-    db.query.pageContent.findFirst({
-      where: eq(pageContent.path, PATH)
-    }),
-    db.query.event.findMany({
-      orderBy: [desc(event.date)],
-      with: {
-        image: true,
-        coverImage: true
-      }
-    })
-  ]);
+  let contentRecord = null;
+  let eventsList: any[] = [];
+
+  try {
+    const results = await Promise.all([
+      db.query.pageContent.findFirst({
+        where: eq(pageContent.path, PATH)
+      }),
+      db.query.event.findMany({
+        orderBy: [desc(event.date)],
+        with: {
+          image: true,
+          coverImage: true
+        }
+      })
+    ]);
+    contentRecord = results[0];
+    eventsList = results[1];
+  } catch (err) {
+    console.error("Events Page DB Error:", err);
+  }
 
   const rawData = contentRecord?.data ? JSON.parse(contentRecord.data) : {
     hero: {

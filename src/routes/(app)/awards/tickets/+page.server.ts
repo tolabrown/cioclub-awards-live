@@ -6,14 +6,19 @@ import { and, ilike, sql } from 'drizzle-orm';
 
 export const load: PageServerLoad = async ({ locals }) => {
   const currentYear = new Date().getFullYear();
+  let awardsEvent = null;
 
-  // Try to find the CIO Awards event for the current year
-  const awardsEvent = await db.query.event.findFirst({
-    where: and(
-      ilike(event.title, '%CIO%Awards%'),
-      sql`EXTRACT(YEAR FROM ${event.date}) = ${currentYear}`
-    )
-  });
+  try {
+    // Try to find the CIO Awards event for the current year
+    awardsEvent = await db.query.event.findFirst({
+      where: and(
+        ilike(event.title, '%CIO%Awards%'),
+        sql`EXTRACT(YEAR FROM ${event.date}) = ${currentYear}`
+      )
+    });
+  } catch (err) {
+    console.error("Tickets Page DB Error:", err);
+  }
 
   return {
     user: locals.user,

@@ -8,12 +8,34 @@ import type { PageServerLoad } from './$types';
 const PATH = '/awards';
 
 export const load: PageServerLoad = async () => {
-  const [contentRecord, nominationPeriod] = await Promise.all([
-    db.query.pageContent.findFirst({
-      where: eq(pageContent.path, PATH)
-    }),
-    getNominationPeriod()
-  ]);
+  let contentRecord = null;
+  let nominationPeriod = null;
+  let highlightWinner = null;
+  let latestWinnerYear = null;
+
+  try {
+    const results = await Promise.all([
+      db.query.pageContent.findFirst({
+        where: eq(pageContent.path, PATH)
+      }),
+      getNominationPeriod(),
+      db.query.awardWinner.findFirst({
+        orderBy: [desc(awardWinner.createdAt)],
+        with: {
+          image: true
+        }
+      }),
+      db.query.awardWinner.findFirst({
+        orderBy: [desc(awardWinner.year)]
+      })
+    ]);
+    contentRecord = results[0];
+    nominationPeriod = results[1];
+    highlightWinner = results[2];
+    latestWinnerYear = results[3];
+  } catch (err) {
+    console.error("Awards Page DB Error:", err);
+  }
 
   let rawData = contentRecord?.data ? JSON.parse(contentRecord.data) : {};
 
@@ -43,18 +65,6 @@ export const load: PageServerLoad = async () => {
     ];
   }
 
-
-  const highlightWinner = await db.query.awardWinner.findFirst({
-    orderBy: [desc(awardWinner.createdAt)],
-    with: {
-      image: true
-    }
-  });
-
-  const latestWinnerYear = await db.query.awardWinner.findFirst({
-    orderBy: [desc(awardWinner.year)]
-  });
-
   return {
     meta: contentRecord ? {
       title: contentRecord.title,
@@ -64,6 +74,6 @@ export const load: PageServerLoad = async () => {
     content: rawData,
     highlightWinner,
     latestWinnerYear: latestWinnerYear?.year || "2024",
-    nominationPeriod
+    nominationPeriod: nominationPeriod || { startDate: null, endDate: null, status: 'not_set' }
   };
 };

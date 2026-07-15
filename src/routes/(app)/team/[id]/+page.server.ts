@@ -6,13 +6,19 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params }) => {
   const { id } = params;
+  let member = null;
 
-  const member = await db.query.trustee.findFirst({
-    where: eq(trustee.id, id),
-    with: {
-      image: true
-    }
-  });
+  try {
+    member = await db.query.trustee.findFirst({
+      where: eq(trustee.id, id),
+      with: {
+        image: true
+      }
+    });
+  } catch (err) {
+    console.error("Team Member Detail Page DB Error:", err);
+    throw error(500, 'Database error occurred while fetching member details');
+  }
 
   if (!member) {
     throw error(404, 'Member not found');

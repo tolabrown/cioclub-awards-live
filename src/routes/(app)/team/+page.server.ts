@@ -6,17 +6,26 @@ import type { PageServerLoad } from './$types';
 const PATH = '/team';
 
 export const load: PageServerLoad = async () => {
-  const [contentRecord, trustees] = await Promise.all([
-    db.query.pageContent.findFirst({
-      where: eq(pageContent.path, PATH)
-    }),
-    db.query.trustee.findMany({
-      with: {
-        image: true
-      },
-      orderBy: [asc(trustee.displayOrder)]
-    })
-  ]);
+  let contentRecord = null;
+  let trustees: any[] = [];
+
+  try {
+    const results = await Promise.all([
+      db.query.pageContent.findFirst({
+        where: eq(pageContent.path, PATH)
+      }),
+      db.query.trustee.findMany({
+        with: {
+          image: true
+        },
+        orderBy: [asc(trustee.displayOrder)]
+      })
+    ]);
+    contentRecord = results[0];
+    trustees = results[1];
+  } catch (err) {
+    console.error("Team Page DB Error:", err);
+  }
 
   const rawData = contentRecord?.data ? JSON.parse(contentRecord.data) : {
     hero: {

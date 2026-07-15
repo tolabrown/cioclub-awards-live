@@ -16,7 +16,7 @@ export const load: PageServerLoad = async () => {
 };
 
 export const actions: Actions = {
-  submit: async ({ request }) => {
+  submit: async ({ request, locals }) => {
     const formData = await request.formData();
 
     const fullName = formData.get('fullName') as string;
