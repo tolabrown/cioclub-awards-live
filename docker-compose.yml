@@ -1,6 +1,6 @@
 services:
   cio:
-    image: edniesalconsulting/cioclubawards:0.0.2
+    image: edniesalconsulting/cioclubawards:0.0.6
     restart: always
     expose:
       - "3000"
