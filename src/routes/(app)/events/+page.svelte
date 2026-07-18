@@ -171,7 +171,7 @@
       >
         <div class="space-y-4">
           <h2 class="text-4xl md:text-5xl font-bold uppercase tracking-tight">
-            Initiatives <span class="text-primary">&</span> Registry
+            Initiatives
           </h2>
           <p class="text-muted-foreground font-medium max-w-lg">
             Explore our continental roadmaps, strategic summits, and leadership
