@@ -4,7 +4,8 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-		"dev": "bunx drizzle-kit generate && bunx drizzle-kit migrate && vite dev",
+		"migrate": "bunx drizzle-kit generate && bunx drizzle-kit migrate && vite dev",
+		"dev": "bunx drizzle-kit push && vite dev",
 		"start": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
@@ -47,6 +48,7 @@
 		"vite": "^7.3.1"
 	},
 	"dependencies": {
+		"@internationalized/date": "^3.12.2",
 		"@sveltejs/adapter-vercel": "^6.3.1",
 		"@tanstack/svelte-query": "^5.87.1",
 		"@types/node": "^24.9.1",
