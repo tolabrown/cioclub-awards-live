@@ -1,5 +1,6 @@
 services:
   cio:
+    build: .
     image: edniesalconsulting/cioclubawards:0.1.0
     restart: always
     expose:
