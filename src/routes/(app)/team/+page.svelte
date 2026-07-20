@@ -129,79 +129,72 @@
               </div>
 
               {#if section.members && section.members.length > 0}
-                <div
-                  class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
-                >
-                  {#each section.members as member}
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 pt-4">
+                  {#each section.members as member, i}
                     <div
-                      class="group bg-card rounded-xl border border-border shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col"
+                      class="relative bg-card border-2 border-amber-400/60 dark:border-amber-500/40 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden p-6 flex flex-col sm:flex-row items-center gap-6 cursor-pointer group"
+                      onclick={() => openProfile(member)}
                     >
-                      <div
-                        class="p-4 pb-0 flex flex-col items-center text-center"
-                      >
-                        <div
-                          class="size-28 rounded-xl overflow-hidden bg-muted border-2 border-primary/10 group-hover:border-primary/30 transition-colors shadow-md"
-                        >
-                          {#if member.image}
-                            <img
-                              src={member.image}
-                              alt={member.name}
-                              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                            />
-                          {:else}
-                            <div
-                              class="w-full h-full flex items-center justify-center bg-primary/5"
-                            >
-                              <UserCircle
-                                class="size-12 text-primary opacity-20"
-                              />
-                            </div>
-                          {/if}
-                        </div>
+                      <!-- Decorative corner bracket -->
+                      {#if i % 2 === 0}
+                        <div class="absolute top-2.5 left-2.5 w-5 h-5 border-t-2 border-l-2 border-amber-500 rounded-tl-sm pointer-events-none"></div>
+                      {:else}
+                        <div class="absolute top-2.5 right-2.5 w-5 h-5 border-t-2 border-r-2 border-amber-500 rounded-tr-sm pointer-events-none"></div>
+                      {/if}
 
-                        <div class="mt-6 space-y-1">
-                          <h3 class="text-xl font-bold text-foreground">
+                      {#if i % 2 === 0}
+                        <!-- Left Card: Text on Left, Photo on Right -->
+                        <div class="flex-1 space-y-2 text-left">
+                          <h3 class="text-xl md:text-2xl font-extrabold text-foreground tracking-tight group-hover:text-primary transition-colors">
                             {member.name}
                           </h3>
-                        </div>
-                      </div>
-
-                      <div class="p-4 pt-6 flex-1 flex flex-col">
-                        <p
-                          class="text-muted-foreground text-sm line-clamp-4 font-medium leading-relaxed"
-                        >
-                          {member.bio}
-                        </p>
-
-                        <div
-                          class="mt-auto pt-4 flex items-center justify-between"
-                        >
-                          <div class="flex gap-2">
-                            {#if member.socials?.linkedin && member.socials.linkedin !== "#"}
-                              <a
-                                href={member.socials.linkedin}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="p-2 rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                              >
-                                <Linkedin class="size-4" />
-                              </a>
-                            {/if}
+                          <div class="space-y-0.5">
+                            <p class="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground leading-tight">
+                              {member.designation || member.role || ""}
+                            </p>
+                            <p class="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/80 leading-tight">
+                              {member.organization || ""}
+                            </p>
                           </div>
-
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            class="group/btn text-[10px] font-bold uppercase tracking-widest gap-2 hover:bg-primary/5 rounded-lg"
-                            onclick={() => openProfile(member)}
-                          >
-                            Profile
-                            <ChevronRight
-                              class="size-3 group-hover/btn:translate-x-1 transition-transform"
-                            />
-                          </Button>
+                          <p class="text-base md:text-lg font-extrabold text-rose-800 dark:text-rose-400 pt-2">
+                            {member.councilRole || member.role || ""}
+                          </p>
                         </div>
-                      </div>
+
+                        <div class="w-32 h-40 md:w-36 md:h-44 rounded-2xl overflow-hidden bg-muted border border-border shrink-0 shadow-md group-hover:scale-105 transition-transform duration-500">
+                          <img
+                            src={member.image}
+                            alt={member.name}
+                            class="w-full h-full object-cover"
+                          />
+                        </div>
+                      {:else}
+                        <!-- Right Card: Photo on Left, Text on Right -->
+                        <div class="w-32 h-40 md:w-36 md:h-44 rounded-2xl overflow-hidden bg-muted border border-border shrink-0 shadow-md group-hover:scale-105 transition-transform duration-500">
+                          <img
+                            src={member.image}
+                            alt={member.name}
+                            class="w-full h-full object-cover"
+                          />
+                        </div>
+
+                        <div class="flex-1 space-y-2 text-left sm:text-right">
+                          <h3 class="text-xl md:text-2xl font-extrabold text-foreground tracking-tight group-hover:text-primary transition-colors">
+                            {member.name}
+                          </h3>
+                          <div class="space-y-0.5">
+                            <p class="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground leading-tight">
+                              {member.designation || member.role || ""}
+                            </p>
+                            <p class="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/80 leading-tight">
+                              {member.organization || ""}
+                            </p>
+                          </div>
+                          <p class="text-base md:text-lg font-extrabold text-rose-800 dark:text-rose-400 pt-2">
+                            {member.councilRole || member.role || ""}
+                          </p>
+                        </div>
+                      {/if}
                     </div>
                   {/each}
                 </div>

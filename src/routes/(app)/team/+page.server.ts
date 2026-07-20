@@ -54,18 +54,112 @@ export const load: PageServerLoad = async () => {
     }
   };
 
+  const defaultElcMembers = [
+    {
+      id: "mories-atoki",
+      name: "Dr. Mories Atoki",
+      designation: "CHIEF EXECUTIVE OFFICER",
+      organization: "AFRICAN BUSINESS COALITION FOR HEALTH (ABC)",
+      councilRole: "Vice President",
+      role: "CHIEF EXECUTIVE OFFICER",
+      bio: "Dr. Mories Atoki is a seasoned technology entrepreneur and business leader passionate about using innovation to solve real problems, improve lives, and shape Africa's future.",
+      image: "/team/mories_atoki.jpg",
+      socials: { linkedin: "#", twitter: "#" }
+    },
+    {
+      id: "enoch-agbona",
+      name: "Enoch Agbona",
+      designation: "CHIEF OPERATING OFFICER",
+      organization: "BCT LIMITED",
+      councilRole: "Honorary Secretary",
+      role: "CHIEF OPERATING OFFICER",
+      bio: "Enoch Agbona is Chief Operating Officer at BCT Limited, leading operational strategy and technology development.",
+      image: "/team/enoch_agbona.jpg",
+      socials: { linkedin: "#", twitter: "#" }
+    },
+    {
+      id: "emmanuel-morka",
+      name: "Emmanuel Morka",
+      designation: "REGIONAL CHIEF INFORMATION OFFICER",
+      organization: "ACCESS BANK PLC",
+      councilRole: "Advocacy & Stakeholder Relations Director",
+      role: "REGIONAL CHIEF INFORMATION OFFICER",
+      bio: "Emmanuel Morka is a strategic IT Executive (CIO) with 20+ years of experience leading enterprise-wide technology transformation, IT governance, and cybersecurity initiatives that drive business growth.",
+      image: "/team/olusegun_dada.webp",
+      socials: { linkedin: "#", twitter: "#" }
+    },
+    {
+      id: "mohammed-besheer",
+      name: "Mohammed Besheer",
+      designation: "DEPUTY IT DIRECTOR",
+      organization: "EGYPTIAN BANKING INSTITUTE",
+      councilRole: "Programme & Events Director",
+      role: "DEPUTY IT DIRECTOR",
+      bio: "Mohammed Besheer is Deputy IT Director at Egyptian Banking Institute, driving digital transformation across cloud, AI, data infrastructure, and enterprise IT.",
+      image: "/team/mohammed_besheer.jpg",
+      socials: { linkedin: "#", twitter: "#" }
+    },
+    {
+      id: "ruth-osaigbovo",
+      name: "Ruth Osaigbovo",
+      designation: "HEAD OF INFORMATION TECHNOLOGY",
+      organization: "FOOD CONCEPT PLC",
+      councilRole: "Finance & Budgeting Director",
+      role: "HEAD OF INFORMATION TECHNOLOGY",
+      bio: "Ruth Osaigbovo is Head of Information Technology at Food Concept Plc, leading enterprise technology governance and budgeting.",
+      image: "/team/rita_amuchienwa.webp",
+      socials: { linkedin: "#", twitter: "#" }
+    },
+    {
+      id: "tasha-fopi-tagha",
+      name: "Tasha Fopi Tagha",
+      designation: "PRODUCT MANAGER",
+      organization: "MTN (CAMEROON)",
+      councilRole: "Marketing & Organizational Communications Director",
+      role: "PRODUCT MANAGER",
+      bio: "Tasha Fopi Tagha is a Product Manager at MTN (Cameroon), driving digital communications, marketing, and product innovation.",
+      image: "/team/fikayo_olagunju.webp",
+      socials: { linkedin: "#", twitter: "#" }
+    },
+    {
+      id: "ifeoma-obata",
+      name: "Ifeoma Obata",
+      designation: "PROJECT COORDINATOR",
+      organization: "PWC",
+      councilRole: "Youth Affairs Director",
+      role: "PROJECT COORDINATOR",
+      bio: "Ifeoma Obata is a Project Coordinator at PwC, driving youth engagement, tech transformation, and continental project coordination.",
+      image: "/team/ifeoma_obata.jpg",
+      socials: { linkedin: "#", twitter: "#" }
+    },
+    {
+      id: "ignace-kwizera",
+      name: "Ignace Kwizera",
+      designation: "FOUNDER",
+      organization: "JACKAL TECH LTD",
+      councilRole: "Learning & Development Director",
+      role: "FOUNDER",
+      bio: "Ignace Kwizera is the Founder of Jackal Tech Ltd, focused on technology innovation, learning, and talent capacity development.",
+      image: "/team/ignace_kwizera.jpg",
+      socials: { linkedin: "#", twitter: "#" }
+    }
+  ];
+
   // 1. Group trustees by their "role" field
   const roleGroups = new Map<string, any[]>();
 
   trustees.forEach(t => {
-    const roleKey = t.role || "Executive Leadership";
+    const roleKey = t.role || "Executive Leadership Council";
     if (!roleGroups.has(roleKey)) {
       roleGroups.set(roleKey, []);
     }
     roleGroups.get(roleKey)?.push({
       id: t.id,
       name: t.name,
-      role: t.position, // We show 'position' as the sub-label
+      designation: t.position || t.role,
+      organization: t.organization || "",
+      councilRole: t.councilRole || t.position || "",
+      role: t.position,
       bio: t.bio,
       image: t.image?.url || "/hero-bg.webp",
       socials: { linkedin: t.linkedinUrl || "#", twitter: "#" }
@@ -73,21 +167,42 @@ export const load: PageServerLoad = async () => {
   });
 
   // 2. Convert Map to sorted sections
-  // We can prioritize certain roles or sort them by their members' displayOrder min value
-  const dynamicSections = Array.from(roleGroups.entries())
+  let dynamicSections = Array.from(roleGroups.entries())
     .filter(([role]) => !role.toLowerCase().includes('board'))
     .map(([role, members]) => ({
       id: role.toLowerCase().replace(/\s+/g, '-'),
-      title: role,
+      title: role.includes('2026') ? role : `2026 ${role}`,
       description: `Meet the experts driving our mission in the ${role} capacity.`,
       members
     }))
     .sort((a, b) => {
-      // Sort primarily by the lowest displayOrder in the group
-      const minA = Math.min(...trustees.filter(t => (t.role || "Executive Leadership") === a.title).map(t => t.displayOrder || 0));
-      const minB = Math.min(...trustees.filter(t => (t.role || "Executive Leadership") === b.title).map(t => t.displayOrder || 0));
+      const minA = Math.min(...trustees.filter(t => (t.role || "Executive Leadership Council") === a.title).map(t => t.displayOrder || 0));
+      const minB = Math.min(...trustees.filter(t => (t.role || "Executive Leadership Council") === b.title).map(t => t.displayOrder || 0));
       return minA - minB;
     });
+
+  if (!dynamicSections.length || !dynamicSections.some(s => s.members && s.members.length > 0)) {
+    dynamicSections = [
+      {
+        id: "elc",
+        title: "2026 Executive Leadership Council (ELC)",
+        description: "Meet the experts driving our mission in the Executive Leadership Council capacity.",
+        members: defaultElcMembers
+      }
+    ];
+  } else {
+    // Ensure ELC section uses defaultElcMembers if DB entries are minimal
+    dynamicSections = dynamicSections.map(s => {
+      if (s.id.includes('elc') || s.title.toLowerCase().includes('executive')) {
+        return {
+          ...s,
+          title: "2026 Executive Leadership Council (ELC)",
+          members: defaultElcMembers
+        };
+      }
+      return s;
+    });
+  }
 
   return {
     meta: contentRecord ? {
