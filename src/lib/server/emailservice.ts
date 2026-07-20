@@ -229,4 +229,36 @@ export class EmailService {
       html: `<h3>Internal Transaction Notification</h3><p>Recipient: ${to}</p><p>Description: ${description}</p><hr/>${html}`
     });
   }
+
+  /**
+   * Send Sponsorship Inquiry Notification to info@edniesalconsulting.com
+   */
+  static async sendSponsorshipInquiryNotification(data: {
+    companyName: string;
+    contactName: string;
+    contactEmail: string;
+    contactPhone?: string;
+    packageInterest?: string;
+    message?: string;
+  }): Promise<void> {
+    const to = 'info@edniesalconsulting.com';
+    const subject = `[New Sponsorship Inquiry] ${data.companyName} (${data.contactName})`;
+    const html = `
+      <div style="font-family: 'Inter', sans-serif; max-width: 600px; margin: 0 auto; color: #1f2937; padding: 20px;">
+        <h2 style="color: #d97706; font-size: 22px; font-weight: 700; margin-bottom: 20px;">New Sponsorship Inquiry</h2>
+        <table style="width: 100%; border-collapse: collapse; font-size: 15px;">
+          <tr><td style="padding: 8px 0; font-weight: 600; width: 160px;">Company / Org:</td><td style="padding: 8px 0;">${data.companyName}</td></tr>
+          <tr><td style="padding: 8px 0; font-weight: 600;">Contact Name:</td><td style="padding: 8px 0;">${data.contactName}</td></tr>
+          <tr><td style="padding: 8px 0; font-weight: 600;">Contact Email:</td><td style="padding: 8px 0;"><a href="mailto:${data.contactEmail}" style="color: #d97706;">${data.contactEmail}</a></td></tr>
+          <tr><td style="padding: 8px 0; font-weight: 600;">Phone Number:</td><td style="padding: 8px 0;">${data.contactPhone || 'N/A'}</td></tr>
+          ${data.packageInterest ? `<tr><td style="padding: 8px 0; font-weight: 600;">Package Interest:</td><td style="padding: 8px 0;">${data.packageInterest}</td></tr>` : ''}
+          ${data.message ? `<tr><td style="padding: 8px 0; font-weight: 600; vertical-align: top;">Message:</td><td style="padding: 8px 0;">${data.message}</td></tr>` : ''}
+        </table>
+        <hr style="border: 0; border-top: 1px solid #e5e7eb; margin: 24px 0;" />
+        <p style="font-size: 12px; color: #9ca3af; text-align: center;">&copy; ${new Date().getFullYear()} ${this.brandName}. Automated notification.</p>
+      </div>
+    `;
+
+    await this.send({ from: this.fromEmail, to, subject, html });
+  }
 }

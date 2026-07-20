@@ -143,6 +143,20 @@ export const actions: Actions = {
         metadata: { companyName, packageInterest, contactEmail }
       });
 
+      try {
+        const { EmailService } = await import('$lib/server/emailservice');
+        await EmailService.sendSponsorshipInquiryNotification({
+          companyName,
+          contactName,
+          contactEmail,
+          contactPhone,
+          packageInterest,
+          message
+        });
+      } catch (emailErr) {
+        console.error("Failed to send sponsorship notification email:", emailErr);
+      }
+
       return { success: true };
     } catch (e) {
       console.error('Sponsorship inquiry error:', e);
