@@ -118,45 +118,6 @@
   <!-- Leading The Next Africa & Highlights -->
   <section class="py-24 relative overflow-hidden">
     <div class="container mx-auto px-4">
-      <!-- Countdown Banner -->
-      {#if timeRemaining}
-        <div class="max-w-4xl mx-auto mb-12">
-          <Card class="border-primary/20 bg-primary/5 rounded-xl shadow-md">
-            <CardContent class="py-6">
-              <div
-                class="flex flex-col sm:flex-row items-center justify-between gap-6"
-              >
-                <div class="flex items-center gap-3">
-                  <div class="size-10 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Clock class="size-5 text-primary" />
-                  </div>
-                  <div class="flex flex-col">
-                    <span class="text-sm font-bold text-foreground"
-                      >Nominations Closing In</span
-                    >
-                    <span class="text-xs text-muted-foreground font-medium">Secure your recognition today</span>
-                  </div>
-                </div>
-                <div class="flex gap-4">
-                  {#each [{ value: timeRemaining.days, label: "Days" }, { value: timeRemaining.hours, label: "Hours" }, { value: timeRemaining.minutes, label: "Mins" }, { value: timeRemaining.seconds, label: "Secs" }] as unit}
-                    <div class="flex flex-col items-center min-w-[60px]">
-                      <span
-                        class="text-2xl font-bold text-primary tabular-nums"
-                      >
-                        {String(unit.value).padStart(2, "0")}
-                      </span>
-                      <span class="text-[10px] text-muted-foreground font-bold uppercase tracking-wider"
-                        >{unit.label}</span
-                      >
-                    </div>
-                  {/each}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      {/if}
-
       <div class="flex flex-col lg:flex-row gap-12 items-center">
         <div class="lg:w-1/2 space-y-6">
           <div
@@ -178,12 +139,11 @@
           </p>
           <div class="pt-4">
             <Button
-              href="https://zfrmz.com/ehOL2qeENHenXNdwxiLi"
-              target="_blank"
+              href="/awards/tickets"
               variant="default"
               class="rounded-xl shadow-lg shadow-primary/20 font-bold"
             >
-              Nominate Now
+              Get Tickets
               <ArrowRight class="ml-2 size-4" />
             </Button>
           </div>
@@ -399,8 +359,7 @@
             </Button>
           </div>
           <p class="text-primary-foreground/60 text-sm font-medium pt-4">
-            Nominations close soon. Secure your place at Africa's elite tech
-            gathering.
+            Join us on October 27 at Africa's elite tech gathering.
           </p>
         </div>
       </div>

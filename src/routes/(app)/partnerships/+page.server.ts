@@ -23,7 +23,7 @@ export const load: PageServerLoad = async () => {
   }
 
 
-  const rawData = contentRecord?.data ? JSON.parse(contentRecord.data) : {
+  const defaultData = {
     hero: {
       badge: "Partnerships",
       title: "Partner with Africa's Tech Decision Makers",
@@ -71,6 +71,24 @@ export const load: PageServerLoad = async () => {
     ]
   };
 
+  let parsed = {};
+  if (contentRecord?.data) {
+    try {
+      parsed = JSON.parse(contentRecord.data);
+    } catch (e) {
+      console.error("Error parsing partnership page content data:", e);
+    }
+  }
+
+  const rawData = {
+    ...defaultData,
+    ...parsed,
+    hero: { ...defaultData.hero, ...(parsed as any).hero },
+    advantage: { ...defaultData.advantage, ...(parsed as any).advantage },
+    prospectus: { ...defaultData.prospectus, ...(parsed as any).prospectus },
+    tiers: (parsed as any).tiers && (parsed as any).tiers.length ? (parsed as any).tiers : defaultData.tiers
+  };
+
   return {
     meta: contentRecord ? {
       title: contentRecord.title,
@@ -78,7 +96,7 @@ export const load: PageServerLoad = async () => {
       ogImage: contentRecord.ogImage
     } : null,
     content: rawData,
-    partners: partners.map(p => ({
+    partners: (partners || []).map(p => ({
       name: p.name,
       category: p.category,
       logo: p.logo?.url || "/hero-bg.webp",
