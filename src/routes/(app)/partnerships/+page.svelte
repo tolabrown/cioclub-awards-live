@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Constants } from "$lib/constants";
   import { Button } from "$lib/components/ui/button";
   import {
     Card,
@@ -46,6 +47,23 @@
     return type === "text" ? `text-${color}` : `bg-${color}/20`;
   }
 </script>
+
+<svelte:head>
+  {#if data.meta?.title}
+    <title>{data.meta.title}</title>
+    <meta name="title" content={data.meta.title} />
+    <meta property="og:title" content={data.meta.title} />
+  {:else}
+    <title>Partnerships - CIO Club Africa</title>
+  {/if}
+  {#if data.meta?.description}
+    <meta name="description" content={data.meta.description} />
+    <meta property="og:description" content={data.meta.description} />
+  {/if}
+  {#if data.meta?.ogImage}
+    <meta property="og:image" content={data.meta.ogImage} />
+  {/if}
+</svelte:head>
 
 <div class="min-h-screen pt-20">
   <!-- Header -->

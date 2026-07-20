@@ -7,9 +7,14 @@ import { MEMBERSHIP_DEFAULT } from '$lib/constants/defaults';
 const PATH = '/membership';
 
 export const load: PageServerLoad = async () => {
-  const contentRecord = await db.query.pageContent.findFirst({
-    where: eq(pageContent.path, PATH)
-  });
+  let contentRecord = null;
+  try {
+    contentRecord = await db.query.pageContent.findFirst({
+      where: eq(pageContent.path, PATH)
+    });
+  } catch (err) {
+    console.error("Membership Page DB Error:", err);
+  }
 
   const rawData = contentRecord?.data ? JSON.parse(contentRecord.data) : MEMBERSHIP_DEFAULT;
 

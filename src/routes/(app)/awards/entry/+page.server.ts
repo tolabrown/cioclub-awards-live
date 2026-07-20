@@ -18,23 +18,32 @@ export const load: PageServerLoad = async ({ locals }) => {
   const yearStart = new Date(`${currentYear}-01-01T00:00:00.000Z`);
   const yearEnd = new Date(`${currentYear + 1}-01-01T00:00:00.000Z`);
 
-  const [period, existingEntries] = await Promise.all([
-    getNominationPeriod(),
-    db.query.awardEntry.findMany({
-      where: and(
-        eq(awardEntry.userId, locals.user.id),
-        gte(awardEntry.submittedAt, yearStart),
-        lt(awardEntry.submittedAt, yearEnd)
-      ),
-      orderBy: [desc(awardEntry.submittedAt)],
-      with: {
-        supportingDoc: true,
-      },
-    }),
-  ]);
+  let period = null;
+  let existingEntries: any[] = [];
+
+  try {
+    const results = await Promise.all([
+      getNominationPeriod(),
+      db.query.awardEntry.findMany({
+        where: and(
+          eq(awardEntry.userId, locals.user.id),
+          gte(awardEntry.submittedAt, yearStart),
+          lt(awardEntry.submittedAt, yearEnd)
+        ),
+        orderBy: [desc(awardEntry.submittedAt)],
+        with: {
+          supportingDoc: true,
+        },
+      }),
+    ]);
+    period = results[0];
+    existingEntries = results[1];
+  } catch (err) {
+    console.error("Awards Entry Page DB Error:", err);
+  }
 
   // Categories the user has already entered
-  const enteredCategories = existingEntries.map((e) => e.category);
+  const enteredCategories = (existingEntries || []).map((e) => e.category);
 
   return {
     user: locals.user,

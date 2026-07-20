@@ -4,22 +4,31 @@ import { eq, desc } from 'drizzle-orm';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
-  const [contentRecord, resources] = await Promise.all([
-    db.query.pageContent.findFirst({
-      where: eq(pageContent.path, '/resources')
-    }),
-    db.query.resource.findMany({
-      orderBy: [desc(resource.createdAt)],
-      with: {
-        coverImage: true,
-        media: {
-          with: {
-            file: true
+  let contentRecord = null;
+  let resources: any[] = [];
+
+  try {
+    const results = await Promise.all([
+      db.query.pageContent.findFirst({
+        where: eq(pageContent.path, '/resources')
+      }),
+      db.query.resource.findMany({
+        orderBy: [desc(resource.createdAt)],
+        with: {
+          coverImage: true,
+          media: {
+            with: {
+              file: true
+            }
           }
         }
-      }
-    })
-  ]);
+      })
+    ]);
+    contentRecord = results[0];
+    resources = results[1];
+  } catch (err) {
+    console.error("Resources Page DB Error:", err);
+  }
 
   const defaultContent = {
     hero: {

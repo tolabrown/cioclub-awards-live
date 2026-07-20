@@ -6,18 +6,27 @@ import type { PageServerLoad } from './$types';
 const PATH = '/gallery';
 
 export const load: PageServerLoad = async () => {
-  const [contentRecord, albumsList] = await Promise.all([
-    db.query.pageContent.findFirst({
-      where: eq(pageContent.path, PATH)
-    }),
-    db.query.album.findMany({
-      with: {
-        coverImage: true,
-        media: true,
-      },
-      orderBy: (album, { desc }) => [desc(album.year), desc(album.createdAt)],
-    })
-  ]);
+  let contentRecord = null;
+  let albumsList: any[] = [];
+
+  try {
+    const results = await Promise.all([
+      db.query.pageContent.findFirst({
+        where: eq(pageContent.path, PATH)
+      }),
+      db.query.album.findMany({
+        with: {
+          coverImage: true,
+          media: true,
+        },
+        orderBy: (album, { desc }) => [desc(album.year), desc(album.createdAt)],
+      })
+    ]);
+    contentRecord = results[0];
+    albumsList = results[1];
+  } catch (err) {
+    console.error("Gallery Page DB Error:", err);
+  }
 
   const parsedContent = contentRecord ? JSON.parse(contentRecord.data) : null;
 

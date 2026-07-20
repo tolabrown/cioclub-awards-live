@@ -387,11 +387,6 @@
                   </div>
                   <div class="flex-1">
                     <p class="font-bold">Adesewa Jethro</p>
-                    <p
-                      class="text-[10px] text-black/80 font-bold uppercase tracking-widest"
-                    >
-                      Head of Partnerships
-                    </p>
                   </div>
                 </div>
                 <Button

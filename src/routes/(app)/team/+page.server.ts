@@ -6,17 +6,26 @@ import type { PageServerLoad } from './$types';
 const PATH = '/team';
 
 export const load: PageServerLoad = async () => {
-  const [contentRecord, trustees] = await Promise.all([
-    db.query.pageContent.findFirst({
-      where: eq(pageContent.path, PATH)
-    }),
-    db.query.trustee.findMany({
-      with: {
-        image: true
-      },
-      orderBy: [asc(trustee.displayOrder)]
-    })
-  ]);
+  let contentRecord = null;
+  let trustees: any[] = [];
+
+  try {
+    const results = await Promise.all([
+      db.query.pageContent.findFirst({
+        where: eq(pageContent.path, PATH)
+      }),
+      db.query.trustee.findMany({
+        with: {
+          image: true
+        },
+        orderBy: [asc(trustee.displayOrder)]
+      })
+    ]);
+    contentRecord = results[0];
+    trustees = results[1];
+  } catch (err) {
+    console.error("Team Page DB Error:", err);
+  }
 
   const rawData = contentRecord?.data ? JSON.parse(contentRecord.data) : {
     hero: {
@@ -66,6 +75,7 @@ export const load: PageServerLoad = async () => {
   // 2. Convert Map to sorted sections
   // We can prioritize certain roles or sort them by their members' displayOrder min value
   const dynamicSections = Array.from(roleGroups.entries())
+    .filter(([role]) => !role.toLowerCase().includes('board'))
     .map(([role, members]) => ({
       id: role.toLowerCase().replace(/\s+/g, '-'),
       title: role,

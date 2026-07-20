@@ -60,7 +60,7 @@
       title: "Corporate & Strategic Support",
       description: "Join forces with Africa's most influential...",
       personName: "Adesewa Jethro",
-      personRole: "Head of Partnerships",
+      personRole: "",
       personImage: "",
       cta: "Connect",
     },

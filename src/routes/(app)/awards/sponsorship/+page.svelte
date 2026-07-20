@@ -19,26 +19,15 @@
     ArrowRight,
   } from "@lucide/svelte";
   import { toast } from "svelte-sonner";
-  import SponsorshipInquiryForm from "$lib/components/awards/SponsorshipInquiryForm.svelte";
-  import SponsorshipModal from "$lib/components/awards/SponsorshipModal.svelte";
+  import { Input } from "$lib/components/ui/input";
+  import { Label } from "$lib/components/ui/label";
+  import { enhance } from "$app/forms";
     import Badge from "$lib/components/ui/badge/badge.svelte";
 
   let { data, form } = $props();
 
-  let isModalOpen = $state(false);
-  let selectedPackage = $state("");
-
-  function openSponsorshipModal(pkgId: string) {
-    selectedPackage = pkgId;
-    isModalOpen = true;
-  }
-
-  const packageIcons: Record<string, any> = {
-    platinum: Crown,
-    gold: Medal,
-    silver: Award,
-    bronze: Star,
-  };
+  let isSubmitting = $state(false);
+  let showSuccess = $state(false);
 
   $effect(() => {
     if (form?.message) {
@@ -187,61 +176,79 @@
     </div>
   </section>
 
-  <!-- Packages Section -->
-  <section class="py-16">
-    <div class="container mx-auto px-4">
+  <!-- Contact Form Section -->
+  <section class="py-16" id="sponsorship-form">
+    <div class="container mx-auto px-4 max-w-2xl">
       <div class="text-center space-y-4 mb-12">
         <h2 class="text-2xl md:text-3xl font-bold text-foreground">
-          Sponsorship Packages
+          Contact Us for Sponsorship
         </h2>
         <p class="text-muted-foreground">
-          Choose the partnership level that aligns with your objectives
+          Interested in partnering with us? Fill out the form below.
         </p>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-        {#each data.packages as pkg}
-          {@const Icon = packageIcons[pkg.id]}
-          <Card class="relative overflow-hidden">
-            <div
-              class="absolute top-0 inset-x-0 h-2 bg-gradient-to-r {pkg.color}"
-            ></div>
-            <CardHeader class="text-center pt-6">
-              <div
-                class="size-14 rounded-xl bg-gradient-to-br {pkg.color} flex items-center justify-center mx-auto mb-4"
-              >
-                <Icon class="size-7 text-white" />
-              </div>
-              <CardTitle class="text-xl">{pkg.name}</CardTitle>
-              <Button
-                onclick={() => openSponsorshipModal(pkg.id)}
-                variant="outline"
-                class="w-full mt-4 border-primary/20 hover:bg-primary/5"
-              >
-                Contact Us
-              </Button>
-            </CardHeader>
-            <CardContent>
-              <ul class="space-y-2">
-                {#each pkg.benefits as benefit}
-                  <li class="flex items-start gap-2 text-sm">
-                    <CheckCircle class="size-4 text-primary shrink-0 mt-0.5" />
-                    <span class="text-muted-foreground">{benefit}</span>
-                  </li>
-                {/each}
-              </ul>
-            </CardContent>
-          </Card>
-        {/each}
-      </div>
+      <Card class="p-6 sm:p-8 rounded-2xl shadow-lg border-primary/10 bg-card">
+        {#if showSuccess}
+          <div class="text-center space-y-4 py-8 animate-in fade-in">
+            <div class="size-16 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4">
+              <CheckCircle class="size-8" />
+            </div>
+            <h3 class="text-2xl font-bold text-foreground">Thank You</h3>
+            <p class="text-muted-foreground text-lg">
+              Thank you for your interest. A member of our team will contact you within the next 24 hours.
+            </p>
+          </div>
+        {:else}
+          <form
+            method="POST"
+            action="?/submit"
+            use:enhance={() => {
+              isSubmitting = true;
+              return async ({ result, update }) => {
+                await update({ reset: false });
+                isSubmitting = false;
+                if (result.type === "success") {
+                  showSuccess = true;
+                }
+              };
+            }}
+            class="space-y-6"
+          >
+            <input type="hidden" name="packageInterest" value="General Sponsorship Inquiry" />
+            
+            <div class="space-y-2 text-left">
+              <Label for="contactName" class="text-sm font-bold text-muted-foreground">Name</Label>
+              <Input id="contactName" name="contactName" placeholder="Your full name" required class="rounded-xl border-border/50 bg-background" />
+            </div>
+            
+            <div class="space-y-2 text-left">
+              <Label for="companyName" class="text-sm font-bold text-muted-foreground">Organization</Label>
+              <Input id="companyName" name="companyName" placeholder="Your organization name" required class="rounded-xl border-border/50 bg-background" />
+            </div>
+
+            <div class="space-y-2 text-left">
+              <Label for="contactEmail" class="text-sm font-bold text-muted-foreground">Organization Email</Label>
+              <Input id="contactEmail" name="contactEmail" type="email" placeholder="you@organization.com" required class="rounded-xl border-border/50 bg-background" />
+            </div>
+
+            <div class="space-y-2 text-left">
+              <Label for="contactPhone" class="text-sm font-bold text-muted-foreground">Contact Phone Number</Label>
+              <Input id="contactPhone" name="contactPhone" type="tel" placeholder="+234..." class="rounded-xl border-border/50 bg-background" />
+            </div>
+
+            <Button type="submit" class="w-full rounded-xl font-bold py-6 shadow-md shadow-primary/20" disabled={isSubmitting}>
+              {#if isSubmitting}
+                Submitting...
+              {:else}
+                Submit
+              {/if}
+            </Button>
+          </form>
+        {/if}
+      </Card>
     </div>
   </section>
-
-  <SponsorshipModal
-    bind:open={isModalOpen}
-    initialPackage={selectedPackage}
-    packages={data.packages}
-  />
 
   <!-- Partners & Sponsors Section (Moved from Awards Page) -->
   <section

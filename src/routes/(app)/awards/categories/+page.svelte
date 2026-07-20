@@ -74,13 +74,9 @@
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {#each categories as category}
-          <a
-            href={category.href}
-            target="_blank"
-            class="group block transition-all duration-300"
-          >
+          <div class="group block transition-all duration-300">
             <Card
-              class="relative h-full rounded-xl border-border/50 shadow-sm hover:shadow-lg hover:border-primary/20 transition-all duration-500 bg-card overflow-hidden"
+              class="relative h-full rounded-xl border-border/50 shadow-sm hover:shadow-lg transition-all duration-500 bg-card overflow-hidden"
             >
               <CardHeader class="pb-4">
                 <div
@@ -89,7 +85,7 @@
                   <Award class="size-7" />
                 </div>
                 <CardTitle
-                  class="text-xl font-bold text-foreground group-hover:text-primary transition-colors"
+                  class="text-xl font-bold text-foreground transition-colors"
                 >
                   {category.title}
                 </CardTitle>
@@ -98,23 +94,9 @@
                 <p class="text-muted-foreground leading-relaxed">
                   {category.description}
                 </p>
-
-                <div
-                  class="mt-8 pt-6 border-t border-border flex items-center justify-between"
-                >
-                  <span
-                    class="text-xs font-bold uppercase tracking-widest text-primary"
-                    >Nominate Now</span
-                  >
-                  <div
-                    class="rounded-full size-8 flex items-center justify-center bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                  >
-                    <ArrowLeft class="size-4 rotate-180" />
-                  </div>
-                </div>
               </CardContent>
             </Card>
-          </a>
+          </div>
         {/each}
       </div>
     </div>

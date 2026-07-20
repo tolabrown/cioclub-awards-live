@@ -6,9 +6,14 @@ import type { PageServerLoad } from './$types';
 const PATH = '/donate';
 
 export const load: PageServerLoad = async () => {
-  const content = await db.query.pageContent.findFirst({
-    where: eq(pageContent.path, PATH)
-  });
+  let content = null;
+  try {
+    content = await db.query.pageContent.findFirst({
+      where: eq(pageContent.path, PATH)
+    });
+  } catch (err) {
+    console.error("Donate Page DB Error:", err);
+  }
 
   const rawData = content?.data ? JSON.parse(content.data) : {
     hero: {
