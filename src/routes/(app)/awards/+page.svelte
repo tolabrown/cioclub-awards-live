@@ -329,6 +329,7 @@
         </p>
       </div>
 
+      <!-- 5 Benefit Buckets Grid -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {#each whyAttendItems as benefit, index}
           <div class="p-6 rounded-2xl bg-card border border-border/60 shadow-sm hover:shadow-lg transition-all duration-300 space-y-4 flex flex-col justify-between group">
@@ -346,22 +347,30 @@
             </div>
           </div>
         {/each}
+      </div>
 
-        <!-- 6th Card CTA -->
-        <div class="p-6 rounded-2xl bg-gradient-to-br from-primary via-primary/95 to-background text-primary-foreground shadow-lg flex flex-col justify-between space-y-6">
-          <div class="space-y-3">
-            <Badge class="bg-amber-500 text-slate-950 font-bold px-3 py-1 text-[10px] uppercase tracking-wider">
-              Limited Seats
+      <!-- Distinct CTA Standout Banner Underneath the 5 Points -->
+      <div class="mt-12 max-w-6xl mx-auto">
+        <div class="p-8 lg:p-10 rounded-3xl bg-gradient-to-r from-amber-500 via-amber-600 to-amber-500 text-slate-950 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+          <div class="space-y-2 text-center md:text-left z-10">
+            <Badge class="bg-slate-950 text-amber-400 font-bold px-3 py-1 text-[10px] uppercase tracking-wider">
+              Limited Seats Available
             </Badge>
-            <h3 class="text-2xl font-bold tracking-tight">Reserve Your Place</h3>
-            <p class="text-sm text-primary-foreground/80 leading-relaxed font-medium">
+            <h3 class="text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-950">
+              Reserve Your Place
+            </h3>
+            <p class="text-base text-slate-900 font-medium max-w-xl">
               Join 1,000+ technology decision-makers for Africa's most prestigious tech gathering.
             </p>
           </div>
-          <Button href="/awards/tickets" variant="secondary" size="lg" class="w-full font-bold rounded-xl gap-2 shadow-md">
-            <Ticket class="size-4" />
-            Get Your Tickets
-          </Button>
+
+          <div class="z-10 shrink-0">
+            <Button href="/awards/tickets" size="lg" class="bg-slate-950 hover:bg-slate-900 text-white font-extrabold px-8 h-14 rounded-2xl gap-3 shadow-lg text-base">
+              <Ticket class="size-5" />
+              Get Your Tickets
+              <ArrowRight class="size-4" />
+            </Button>
+          </div>
         </div>
       </div>
     </div>
