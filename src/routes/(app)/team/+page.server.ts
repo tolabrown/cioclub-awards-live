@@ -64,7 +64,7 @@ export const load: PageServerLoad = async () => {
       role: "CHIEF EXECUTIVE OFFICER",
       bio: "Dr. Mories Atoki is a seasoned technology entrepreneur and business leader passionate about using innovation to solve real problems, improve lives, and shape Africa's future.",
       image: "/team/mories_atoki.jpg",
-      socials: { linkedin: "#", twitter: "#" }
+      socials: { linkedin: "https://www.linkedin.com/in/dr-mories-atoki-faph-fspin-73152a15b?utm_source=share_via&utm_content=profile&utm_medium=member_android", twitter: "#" }
     },
     {
       id: "enoch-agbona",
@@ -75,7 +75,7 @@ export const load: PageServerLoad = async () => {
       role: "CHIEF OPERATING OFFICER",
       bio: "Enoch Agbona is Chief Operating Officer at BCT Limited, leading operational strategy and technology development.",
       image: "/team/enoch_agbona.jpg",
-      socials: { linkedin: "#", twitter: "#" }
+      socials: { linkedin: "https://www.linkedin.com/in/enoch-agbona?utm_source=share_via&utm_content=profile&utm_medium=member_android", twitter: "#" }
     },
     {
       id: "emmanuel-morka",
@@ -86,7 +86,7 @@ export const load: PageServerLoad = async () => {
       role: "REGIONAL CHIEF INFORMATION OFFICER",
       bio: "Emmanuel Morka is a strategic IT Executive (CIO) with 20+ years of experience leading enterprise-wide technology transformation, IT governance, and cybersecurity initiatives that drive business growth.",
       image: "/team/emmanuel_morka.jpg",
-      socials: { linkedin: "#", twitter: "#" }
+      socials: { linkedin: "https://www.linkedin.com/in/emmanuel-morka-0b8a8810?utm_source=share_via&utm_content=profile&utm_medium=member_android", twitter: "#" }
     },
     {
       id: "mohammed-besheer",
@@ -97,7 +97,7 @@ export const load: PageServerLoad = async () => {
       role: "DEPUTY IT DIRECTOR",
       bio: "Mohammed Besheer is Deputy IT Director at Egyptian Banking Institute, driving digital transformation across cloud, AI, data infrastructure, and enterprise IT.",
       image: "/team/mohammed_besheer.jpg",
-      socials: { linkedin: "#", twitter: "#" }
+      socials: { linkedin: "https://www.linkedin.com/in/mohamed-besheer-63285b80?utm_source=share_via&utm_content=profile&utm_medium=member_android", twitter: "#" }
     },
     {
       id: "ruth-osaigbovo",
@@ -108,7 +108,7 @@ export const load: PageServerLoad = async () => {
       role: "HEAD OF INFORMATION TECHNOLOGY",
       bio: "Ruth Osaigbovo is Head of Information Technology at Food Concept Plc, leading enterprise technology governance and budgeting.",
       image: "/team/ruth_osaigbovo.jpg",
-      socials: { linkedin: "#", twitter: "#" }
+      socials: { linkedin: "https://www.linkedin.com/in/ruth-osaigbovo-124b0057?utm_source=share_via&utm_content=profile&utm_medium=member_android", twitter: "#" }
     },
     {
       id: "tasha-fopi-tagha",
@@ -119,7 +119,7 @@ export const load: PageServerLoad = async () => {
       role: "PRODUCT MANAGER",
       bio: "Tasha Fopi Tagha is a Product Manager at MTN (Cameroon), driving digital communications, marketing, and product innovation.",
       image: "/team/tasha_fopi_tagha.jpg",
-      socials: { linkedin: "#", twitter: "#" }
+      socials: { linkedin: "https://www.linkedin.com/in/tasha-fopi-tagha-pmp%C2%AE-061064112?utm_source=share_via&utm_content=profile&utm_medium=member_android", twitter: "#" }
     },
     {
       id: "ifeoma-obata",
@@ -130,7 +130,7 @@ export const load: PageServerLoad = async () => {
       role: "PROJECT COORDINATOR",
       bio: "Ifeoma Obata is a Project Coordinator at PwC, driving youth engagement, tech transformation, and continental project coordination.",
       image: "/team/ifeoma_obata.jpg",
-      socials: { linkedin: "#", twitter: "#" }
+      socials: { linkedin: "https://www.linkedin.com/in/ifeoma-obata?utm_source=share_via&utm_content=profile&utm_medium=member_android", twitter: "#" }
     },
     {
       id: "ignace-kwizera",
@@ -141,7 +141,7 @@ export const load: PageServerLoad = async () => {
       role: "FOUNDER",
       bio: "Ignace Kwizera is the Founder of Jackal Tech Ltd, focused on technology innovation, learning, and talent capacity development.",
       image: "/team/ignace_kwizera.jpg",
-      socials: { linkedin: "#", twitter: "#" }
+      socials: { linkedin: "https://www.linkedin.com/in/kwizera-ignace-297200229?utm_source=share_via&utm_content=profile&utm_medium=member_android", twitter: "#" }
     }
   ];
 
