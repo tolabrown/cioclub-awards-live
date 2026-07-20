@@ -85,7 +85,7 @@ export const load: PageServerLoad = async () => {
       councilRole: "Advocacy & Stakeholder Relations Director",
       role: "REGIONAL CHIEF INFORMATION OFFICER",
       bio: "Emmanuel Morka is a strategic IT Executive (CIO) with 20+ years of experience leading enterprise-wide technology transformation, IT governance, and cybersecurity initiatives that drive business growth.",
-      image: "/team/olusegun_dada.webp",
+      image: "/team/emmanuel_morka.jpg",
       socials: { linkedin: "#", twitter: "#" }
     },
     {
@@ -107,7 +107,7 @@ export const load: PageServerLoad = async () => {
       councilRole: "Finance & Budgeting Director",
       role: "HEAD OF INFORMATION TECHNOLOGY",
       bio: "Ruth Osaigbovo is Head of Information Technology at Food Concept Plc, leading enterprise technology governance and budgeting.",
-      image: "/team/rita_amuchienwa.webp",
+      image: "/team/ruth_osaigbovo.jpg",
       socials: { linkedin: "#", twitter: "#" }
     },
     {
@@ -118,7 +118,7 @@ export const load: PageServerLoad = async () => {
       councilRole: "Marketing & Organizational Communications Director",
       role: "PRODUCT MANAGER",
       bio: "Tasha Fopi Tagha is a Product Manager at MTN (Cameroon), driving digital communications, marketing, and product innovation.",
-      image: "/team/fikayo_olagunju.webp",
+      image: "/team/tasha_fopi_tagha.jpg",
       socials: { linkedin: "#", twitter: "#" }
     },
     {
