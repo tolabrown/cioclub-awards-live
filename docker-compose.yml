@@ -1,6 +1,6 @@
 services:
   cio:
-    image: edniesalconsulting/cioclubawards:0.0.2
+    build: https://github.com/edniesal/cioclub-awards-live.git#main
     restart: always
     expose:
       - "3000"
@@ -20,8 +20,8 @@ services:
       - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
       - REDIRECT_URI=https://thecioclubafrica.com/api/auth/callback/google
       - MINIO_ENDPOINT=${MINIO_ENDPOINT}
-      - MINIO_PORT=${MINIO_PORT:-9000}
-      - MINIO_USE_SSL=${MINIO_USE_SSL:-false}
+      - MINIO_PORT=${MINIO_PORT:-443}
+      - MINIO_USE_SSL=${MINIO_USE_SSL:-true}
       - MINIO_ROOT_USER=${MINIO_ROOT_USER}
       - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
       - MINIO_BUCKET=${MINIO_BUCKET}
@@ -34,9 +34,23 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=dokploy-network"
-      - "traefik.http.routers.cio.rule=Host(`thecioclubafrica.com`)"
+
+      # ── Main router (canonical domain) ───────────────────────────────────
+      - "traefik.http.routers.cio.rule=Host(`thecioclubafrica.com`) || Host(`www.thecioclubafrica.com`)"
       - "traefik.http.routers.cio.entrypoints=websecure"
+      - "traefik.http.routers.cio.tls=true"
       - "traefik.http.routers.cio.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.cio.middlewares=redirect-www-thecioclubafrica"
+
+      # ── Redirect router for thecioawards.ng ──────────────────────────────
+      - "traefik.http.routers.cio-awards-redirect.rule=Host(`thecioawards.ng`) || Host(`www.thecioawards.ng`)"
+      - "traefik.http.routers.cio-awards-redirect.entrypoints=websecure"
+      - "traefik.http.routers.cio-awards-redirect.tls=true"
+      - "traefik.http.routers.cio-awards-redirect.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.cio-awards-redirect.middlewares=redirect-thecioawards"
+      - "traefik.http.routers.cio-awards-redirect.service=cio"
+
+      # ── Service ───────────────────────────────────────────────────────────
       - "traefik.http.services.cio.loadbalancer.server.port=3000"
 
 networks:
