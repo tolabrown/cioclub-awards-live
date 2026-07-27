@@ -113,9 +113,7 @@
           >
         </h1>
         <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Join Africa's premier IT leadership celebration. Reserve your tickets
-          for an unforgettable evening of recognition, networking, and
-          excellence.
+          Join Africa's premier IT leadership celebration. Reserve your Tickets for a day of Learning, Networking, and Recognition of Excellence.
         </p>
 
         <!-- Event Details -->
