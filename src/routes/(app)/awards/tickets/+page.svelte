@@ -108,7 +108,7 @@
         <h1
           class="text-3xl md:text-5xl font-bold tracking-tight text-foreground"
         >
-          CIO Awards Africa <span class="text-primary"
+          The CIO & C-Suite Awards Africa <span class="text-primary"
             >{new Date().getFullYear()}</span
           >
         </h1>
@@ -121,21 +121,13 @@
           <div class="flex items-center gap-2 text-muted-foreground">
             <Calendar class="size-5 text-primary" />
             <span class="font-medium">
-              {new Date(data.eventDetails.date).toLocaleDateString("en-US", {
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              })}
+              October 27, 2026
             </span>
           </div>
           <div class="flex items-center gap-2 text-muted-foreground">
             <Clock class="size-5 text-primary" />
             <span class="font-medium">
-              {new Date(data.eventDetails.time).toLocaleTimeString("en-US", {
-                hour: "numeric",
-                minute: "2-digit",
-                hour12: true,
-              })} WAT
+              2:00 PM WAT
             </span>
           </div>
         </div>

@@ -1,0 +1,222 @@
+const FS = require('fs');
+const JSZip = require('jszip');
+
+const INPUT_PATH = "C:\\Users\\TOLAN\\Downloads\\The House Was Never Quiet_June 23_final.WORD e book.docx";
+const OUTPUT_PATH = "C:\\Users\\TOLAN\\Downloads\\The_House_Was_Never_Quiet_Kindle_Ready.docx";
+
+const CHAPTER_DETAILS = [
+  { number: 1, title: "Chapter 1: The Violence We Don’t Name" },
+  { number: 2, title: "Chapter 2: The House That Lives Inside Us" },
+  { number: 3, title: "Chapter 3: Mothers in the Middle" },
+  { number: 4, title: "Chapter 4: The Violence That Doesn’t Leave Marks" },
+  { number: 5, title: "Chapter 5: The Burden of Endurance" },
+  { number: 6, title: "Chapter 6: What the Children See (And What We Think They Don’t)" },
+  { number: 7, title: "Chapter 7: Money, Power, and the Quiet Economy of Control" },
+  { number: 8, title: "Chapter 8: The Other Side of Father Involvement" },
+  { number: 9, title: "Chapter 9: Sisters in the Shadow — Solidarity, Sharing, and Quiet Resistance" },
+  { number: 10, title: "Chapter 10: Family and the Weight of Expectations" },
+  { number: 11, title: "Chapter 11: When Faith Demands Silence" },
+  { number: 12, title: "Chapter 12: Embracing and Questioning Tradition: A Personal Reflection" },
+  { number: 13, title: "Chapter 13: Beyond Survival—Reimagining Safety, Family, and Flourishing" }
+];
+
+function extractParagraphText(pXml) {
+  const tMatches = pXml.match(/<w:t(?:\s+[^>]*?)?>([\s\S]*?)<\/w:t>/g) || [];
+  return tMatches.map(t => t.replace(/<[^>]+>/g, '')).join('').trim();
+}
+
+function escapeXml(text) {
+  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function createHeading1Xml(text) {
+  return `<w:p><w:pPr><w:pStyle w:val="Heading1"/><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:b/><w:sz w:val="36"/><w:szCs w:val="36"/></w:rPr><w:t>${escapeXml(text)}</w:t></w:r></w:p>`;
+}
+
+function createPageBreakXml() {
+  return `<w:p><w:r><w:br w:type="page"/></w:r></w:p>`;
+}
+
+function createTocItemXml(text) {
+  return `<w:p><w:pPr><w:pStyle w:val="TOC1"/></w:pPr><w:r><w:t>${escapeXml(text)}</w:t></w:r></w:p>`;
+}
+
+async function rebuildCleanDocx() {
+  console.log("Rebuilding clean, 100% valid docx file...");
+  const fileData = FS.readFileSync(INPUT_PATH);
+  const zip = await JSZip.loadAsync(fileData);
+  let docXml = await zip.file("word/document.xml").async("string");
+
+  // Ensure Heading1 style is in styles.xml
+  let stylesXml = zip.file("word/styles.xml") ? await zip.file("word/styles.xml").async("string") : "";
+  if (stylesXml && !stylesXml.includes('w:styleId="Heading1"')) {
+    const heading1StyleXml = `<w:style w:type="paragraph" w:styleId="Heading1"><w:name w:val="heading 1"/><w:basedOn w:val="Normal"/><w:next w:val="Normal"/><w:qFormat/><w:pPr><w:keepNext/><w:spacing w:before="480" w:after="240"/><w:jc w:val="center"/></w:pPr><w:rPr><w:b/><w:sz w:val="36"/><w:szCs w:val="36"/></w:rPr></w:style>`;
+    stylesXml = stylesXml.replace('</w:styles>', `${heading1StyleXml}</w:styles>`);
+    zip.file("word/styles.xml", stylesXml);
+  }
+
+  const bodyMatch = docXml.match(/(<w:body>)([\s\S]*?)(<\/w:body>)/);
+  if (!bodyMatch) throw new Error("Could not find w:body in document.xml");
+
+  const bodyPrefix = bodyMatch[1];
+  const bodyContent = bodyMatch[2];
+  const bodySuffix = bodyMatch[3];
+
+  const pRegex = /<w:p(?:\s+[^>]*?)?>[\s\S]*?<\/w:p>/g;
+  let pList = bodyContent.match(pRegex) || [];
+  console.log(`Original paragraph count: ${pList.length}`);
+
+  let newParagraphs = [];
+  let inTocBlock = false;
+  let forewordCount = 0;
+
+  for (let i = 0; i < pList.length; i++) {
+    const pXml = pList[i];
+    const text = extractParagraphText(pXml);
+
+    if (!text) continue;
+
+    // Filter 1: Strip print running headers
+    if (/^Tanitoluwa Adeniba,\s*Ph\.?D\.?$/i.test(text) || 
+        /^THE HO\s?US\s?E\s?W\s?A\s?S\s?NEVER\s?Q\s?UIET$/i.test(text) ||
+        /^THE HOUSE WAS NEVER QUIET$/i.test(text)) {
+      continue;
+    }
+
+    // Filter 2: Strip standalone print page numbers
+    if (/^\d{1,3}$/.test(text) && i > 15) {
+      continue;
+    }
+
+    // Table of Contents Block
+    if (/^CONTENTS$/i.test(text) && i < 200) {
+      inTocBlock = true;
+      newParagraphs.push(createPageBreakXml());
+      newParagraphs.push(createHeading1Xml("Contents"));
+      continue;
+    }
+
+    if (inTocBlock) {
+      if (/^A NOTE TO THE READER$/i.test(text) || i > 250) {
+        inTocBlock = false;
+      } else {
+        let cleanToc = text.replace(/(\D+)\d+$/, '$1').trim();
+        if (/^Chapter\s+\d+$/i.test(cleanToc) && i + 1 < pList.length) {
+          const nextText = extractParagraphText(pList[i + 1]);
+          if (nextText) {
+            let nextClean = nextText.replace(/(\D+)\d+$/, '$1').trim();
+            cleanToc = `${cleanToc}: ${nextClean}`;
+            i++;
+          }
+        }
+        newParagraphs.push(createTocItemXml(cleanToc));
+        continue;
+      }
+    }
+
+    // Dedication
+    if (/^DEDICATION$/i.test(text) && i < 100) {
+      newParagraphs.push(createPageBreakXml());
+      newParagraphs.push(createHeading1Xml("Dedication"));
+      continue;
+    }
+
+    // A Note to the Reader
+    if (/^A NOTE TO THE READER$/i.test(text)) {
+      newParagraphs.push(createPageBreakXml());
+      newParagraphs.push(createHeading1Xml("A Note to the Reader"));
+      continue;
+    }
+
+    // Forewords
+    if (/^FOREWORD$/i.test(text) && i < 400) {
+      forewordCount++;
+      const forewordTitle = forewordCount === 1 
+        ? "Foreword by Bishop Funke Felix-Adejumo"
+        : "Foreword by Titilola Vivour-Adeniyi";
+      newParagraphs.push(createPageBreakXml());
+      newParagraphs.push(createHeading1Xml(forewordTitle));
+      continue;
+    }
+
+    // Prologue
+    if (/^PROLOGUE$/i.test(text)) {
+      newParagraphs.push(createPageBreakXml());
+      newParagraphs.push(createHeading1Xml("Prologue"));
+      continue;
+    }
+
+    // Chapter Starts
+    let chapterMatch = text.match(/^CHAPTER\s+(\d+)\b/i);
+    if (chapterMatch && i > 250) {
+      const chNum = parseInt(chapterMatch[1], 10);
+      const chInfo = CHAPTER_DETAILS.find(c => c.number === chNum);
+      if (chInfo) {
+        newParagraphs.push(createPageBreakXml());
+        newParagraphs.push(createHeading1Xml(chInfo.title));
+
+        let peekIdx = i + 1;
+        while (peekIdx < pList.length && peekIdx <= i + 3) {
+          const peekText = extractParagraphText(pList[peekIdx]);
+          if (!peekText) { peekIdx++; continue; }
+          if (/^CHAPTER\s+\d+\b/i.test(peekText) || 
+              /^THE VIOLENCE WE DON’T NAME$/i.test(peekText) ||
+              /^THE HOUSE THAT LIVES INSIDE US$/i.test(peekText) ||
+              /^MOTHERS IN THE MIDDLE$/i.test(peekText) ||
+              /^THE VIOLENCE THAT DOESN’T LEAVE MARKS$/i.test(peekText) ||
+              /^THE BURDEN OF ENDURANCE$/i.test(peekText) ||
+              /^WHAT THE CHILDREN SEE/i.test(peekText) ||
+              /^MONEY, POWER, AND THE QUIET ECONOMY/i.test(peekText) ||
+              /^THE OTHER SIDE OF FATHER INVOLVEMENT$/i.test(peekText) ||
+              /^SISTERS IN THE SHADOW/i.test(peekText) ||
+              /^FAMILY AND THE WEIGHT OF EXPECTATIONS$/i.test(peekText) ||
+              /^WHEN FAITH DEMANDS SILENCE$/i.test(peekText) ||
+              /^EMBRACING AND QUESTIONING TRADITION/i.test(peekText) ||
+              /^BEYOND SURVIVAL/i.test(peekText)) {
+            i = peekIdx;
+            peekIdx++;
+          } else {
+            break;
+          }
+        }
+        continue;
+      }
+    }
+
+    // Back Matter
+    if (/^ACKNOWLEDGEMENTS$/i.test(text)) {
+      newParagraphs.push(createPageBreakXml());
+      newParagraphs.push(createHeading1Xml("Acknowledgements"));
+      continue;
+    }
+    if (/^RESOURCES AND SUPPORT$/i.test(text)) {
+      newParagraphs.push(createPageBreakXml());
+      newParagraphs.push(createHeading1Xml("Resources and Support"));
+      continue;
+    }
+    if (/^END NOTES$/i.test(text)) {
+      newParagraphs.push(createPageBreakXml());
+      newParagraphs.push(createHeading1Xml("End Notes"));
+      continue;
+    }
+    if (/^ABOUT THE AUTHOR$/i.test(text)) {
+      newParagraphs.push(createPageBreakXml());
+      newParagraphs.push(createHeading1Xml("About the Author"));
+      continue;
+    }
+
+    // Leave body paragraph XML untouched (preserving valid OpenXML element sequence)
+    newParagraphs.push(pXml);
+  }
+
+  console.log(`New paragraph count: ${newParagraphs.length}`);
+
+  const newBodyXml = `${bodyPrefix}\n${newParagraphs.join('\n')}\n${bodySuffix}`;
+  zip.file("word/document.xml", newBodyXml);
+
+  const outBuf = await zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" });
+  FS.writeFileSync(OUTPUT_PATH, outBuf);
+  console.log("Successfully generated clean OpenXML docx file!");
+}
+
+rebuildCleanDocx().catch(err => console.error(err));

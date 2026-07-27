@@ -1,0 +1,19 @@
+{
+  "name": "scratch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "run_migration.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@xmldom/xmldom": "^0.9.10",
+    "fluent-ffmpeg": "^2.1.3",
+    "jszip": "^3.10.1"
+  }
+}

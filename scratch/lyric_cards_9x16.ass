@@ -1,0 +1,24 @@
+[Script Info]
+Title: Lyric Video Cards (Pillow Music Format)
+ScriptType: v4.00+
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+YCbCr Matrix: None
+PlayResX: 1080
+PlayResY: 1920
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: LyricCard,Arial,34,&H00FFFFFF,&H000000FF,&H00000000,&H90000000,1,0,0,0,100,100,0,0,1,3,2,5,60,60,50,1
+Style: TitleCard,Arial,46,&H0000E5FF,&H000000FF,&H00000000,&H90000000,1,0,0,0,100,100,0,0,1,4,3,5,60,60,50,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:01.50,0:00:14.00,LyricCard,,0,0,0,,{\fad(400,400)}{\rTitleCard}Reflection... 🎉🙏🏾❤️\N\N{\rLyricCard}This month has been one of the most emotional\Nand life-changing months of my life.\NCoincidentally, it is also my birth month.
+Dialogue: 0,0:00:14.80,0:00:27.50,LyricCard,,0,0,0,,{\fad(400,400)}As I celebrate another year today,\NI can't help but look back and see the hand of God\Nthrough every joy, every tear, every victory,\Nand every trial.
+Dialogue: 0,0:00:28.30,0:00:46.00,LyricCard,,0,0,0,,{\fad(400,400)}This month, I had the privilege of seeing a dream come to life\Nas Brightsteps Foundation officially held its very first\NEducation & Community Engagement Event—\Na nonprofit initiative born from a passion to ensure African children,\Nregardless of their background, have access to educational support,\Nmentorship, and opportunities to thrive.
+Dialogue: 0,0:00:46.80,0:01:06.00,LyricCard,,0,0,0,,{\fad(400,400)}To everyone who believed in this vision, thank you.\NI am deeply grateful to United Alliance of African Communities USA,\NA New Dimension of Hope Foundation, Colorado Gives Foundation,\NMega Real Estate, King Soopers Green Valley Ranch,\Nand to Mr. Ebenezer Norman, Mr. Gbenga Adeniyi, Sis Blessing Abraham,\Nand everyone whose support made this event possible.\NYou have become part of a story that is already changing lives.
+Dialogue: 0,0:01:06.80,0:01:21.00,LyricCard,,0,0,0,,{\fad(400,400)}If God places it on your heart to support our mission\Nof empowering African children through education,\Nwe would be honored to partner with you.\N\N📧 info@brightsteps-foundation.org\N📞 +1 (646) 371-3827\N🌐 brightsteps-foundation.org
+Dialogue: 0,0:01:21.80,0:01:38.00,LyricCard,,0,0,0,,{\fad(400,400)}While God allowed me to witness a dream come true,\NJuly also tested my faith in ways I never imagined.\NI survived an armed robbery and came close to losing my life,\Nwhile also facing uncertainty at work.\NThere were moments of fear, disappointment,\Nand questions I couldn't answer.
+Dialogue: 0,0:01:38.80,0:01:53.00,LyricCard,,0,0,0,,{\fad(400,400)}Yet, here I am—still breathing, still standing, and still believing.\NWhat should have broken me only strengthened my faith.\NThank you to everyone who prayed for me,\Nencouraged me, and stood by me.
+Dialogue: 0,0:01:53.80,0:02:08.00,LyricCard,,0,0,0,,{\fad(400,400)}As I step into this new year, my prayer is simple:\NLord, use me even more to be a light of hope for children,\Nand let my life always be a testimony of Your goodness.\N\NCheers to another 365 days of purpose, impact,\Nand God's amazing grace. 🎂🎉✨

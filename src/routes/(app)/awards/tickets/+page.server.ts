@@ -25,13 +25,13 @@ export const load: PageServerLoad = async ({ locals }) => {
     eventDetails: awardsEvent ? {
       name: awardsEvent.title,
       date: awardsEvent.date,
-      time: awardsEvent.date, // The same timestamp, frontend will format
-      venue: awardsEvent.location || "To be announced",
+      time: awardsEvent.date,
+      venue: awardsEvent.location || "Balmoral Convention Center, Victoria Island, Lagos",
     } : {
-      name: `CIO & C-Suite Awards Africa ${currentYear}`,
-      date: new Date(currentYear, 10, 28, 18, 0).toISOString(), // Fallback to Nov 28, 6 PM
-      time: new Date(currentYear, 10, 28, 18, 0).toISOString(),
-      venue: "Eko Hotels & Suites",
+      name: `The CIO & C-Suite Awards Africa ${currentYear}`,
+      date: new Date(currentYear, 9, 27, 14, 0).toISOString(),
+      time: new Date(currentYear, 9, 27, 14, 0).toISOString(),
+      venue: "Balmoral Convention Center, Victoria Island, Lagos",
     },
     ticketTypes: [
       {
