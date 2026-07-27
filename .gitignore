@@ -1,6 +1,8 @@
 node_modules
 templates
 sources
+scratch/
+scratch
 
 # Output
 drizzle

@@ -44,6 +44,8 @@ sync_db.ts
 scratch_query.ts
 scratch_update.ts
 scripts/
+scratch/
+scratch
 
 # ---- Editor / OS / misc ----
 .vscode
