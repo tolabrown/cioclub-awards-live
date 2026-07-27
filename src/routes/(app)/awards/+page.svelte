@@ -25,7 +25,6 @@
     MapPin,
     Clock,
     Ticket,
-    CheckCircle2,
     Sparkles,
     Building2,
     GraduationCap,
@@ -332,7 +331,7 @@
       <!-- 5 Benefit Buckets Grid -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {#each whyAttendItems as benefit, index}
-          <div class="p-6 rounded-2xl bg-card border border-border/60 shadow-sm hover:shadow-lg transition-all duration-300 space-y-4 flex flex-col justify-between group">
+          <div class="p-6 rounded-2xl bg-card border border-border/60 shadow-sm hover:shadow-lg transition-all duration-300 space-y-4 flex flex-col justify-start group">
             <div class="space-y-4">
               <div class="size-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center font-extrabold text-lg group-hover:scale-110 transition-transform">
                 0{index + 1}
@@ -340,10 +339,6 @@
               <p class="text-base text-foreground font-semibold leading-relaxed">
                 {benefit}
               </p>
-            </div>
-            <div class="pt-2 flex items-center gap-2 text-xs font-bold text-primary uppercase tracking-wider">
-              <CheckCircle2 class="size-4 text-emerald-500" />
-              <span>Verified Participant</span>
             </div>
           </div>
         {/each}
