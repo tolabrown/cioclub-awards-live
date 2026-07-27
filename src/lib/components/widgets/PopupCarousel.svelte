@@ -15,6 +15,8 @@
     AlertCircle,
     Loader2,
     Trophy,
+    Ticket,
+    MapPin,
   } from "@lucide/svelte";
   import { onMount } from "svelte";
   import { browser } from "$app/environment";
@@ -39,12 +41,10 @@
 
   // Build slides array based on available data
   const slideList = $derived.by(() => {
-    const s: Array<{ type: "nomination" | "event" | "newsletter"; data?: any }> = [];
+    const s: Array<{ type: "awards" | "nomination" | "event" | "newsletter"; data?: any }> = [];
     
-    // Awards slide
-    if (nominationPeriod && nominationPeriod.status !== "closed") {
-      s.push({ type: "nomination", data: nominationPeriod });
-    }
+    // Conference & Awards 2026 slide (Always featured)
+    s.push({ type: "awards", data: nominationPeriod });
     
     // Upcoming event if available
     if (upcomingEvent) {
@@ -63,15 +63,6 @@
 
   function getTodayKey(): string {
     return new Date().toISOString().slice(0, 10);
-  }
-
-  function shouldAutoShow(): boolean {
-    if (!browser) return false;
-    if (!show) return false;
-    const lastShown = localStorage.getItem(DISMISS_KEY);
-    // If shown today, don't auto-show again
-    if (lastShown === getTodayKey()) return false;
-    return true;
   }
 
   function dismiss() {
@@ -125,26 +116,24 @@
     }
   }
 
-  let hasShownThisSession = $state(false);
+  // Auto popup trigger on route visit (e.g. /awards, /events, or home)
+  $effect(() => {
+    if (!browser) return;
+    const path = page.url.pathname;
+    const targetPages = ["/awards", "/awards/tickets", "/events", "/"];
+    const isTarget = targetPages.some(p => path === p || (p !== "/" && path.startsWith(p)));
 
-  onMount(() => {
-    // Check if we should auto-show
-    if (shouldAutoShow() && !hasShownThisSession) {
-      hasShownThisSession = true;
-      // Short delay for better UX
-      setTimeout(() => {
-        if (shouldAutoShow()) openPopup();
-      }, 2000);
+    if (isTarget) {
+      const sessionKey = `popup_shown_${path}`;
+      if (!sessionStorage.getItem(sessionKey)) {
+        sessionStorage.setItem(sessionKey, "true");
+        setTimeout(() => {
+          openPopup();
+        }, 800);
+      }
     }
   });
 
-  function formatDate(dateStr: string | Date) {
-    return new Date(dateStr).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
-  }
   function handleOpenChange(isOpen: boolean) {
     if (!isOpen && browser) {
       localStorage.setItem(DISMISS_KEY, getTodayKey());
@@ -165,8 +154,8 @@
         variant="secondary"
         class="px-3 py-0.5 rounded-full uppercase text-[10px] font-bold tracking-widest bg-primary/10 text-primary border-none"
       >
-        {currentSlideData?.type === "nomination"
-          ? "🏆 Awards"
+        {currentSlideData?.type === "awards" || currentSlideData?.type === "nomination"
+          ? "🏆 Awards 2026"
           : currentSlideData?.type === "event"
             ? "📅 Upcoming Event"
             : "✉️ Newsletter"}
@@ -175,34 +164,60 @@
 
     <!-- Slide Content -->
     <div class="px-6 pb-8 flex-1 overflow-y-auto min-h-[350px] flex flex-col justify-center">
-      {#if currentSlideData?.type === "nomination"}
-        <div class="py-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <div class="rounded-xl overflow-hidden mb-6 aspect-video shadow-md border border-border/50">
+      {#if currentSlideData?.type === "awards" || currentSlideData?.type === "nomination"}
+        <div class="py-4 animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-4">
+          <div class="rounded-xl overflow-hidden aspect-video shadow-md border border-border/50">
             <img
               src="/awards_nomination.webp"
-              alt="The CIO C-Suite Awards"
+              alt="The CIO & C-Suite Awards Africa 2026"
               class="size-full object-cover transition-transform duration-700 hover:scale-105"
             />
           </div>
-          <h2 class="text-2xl font-bold leading-tight mb-3">The CIO & C-Suite Awards</h2>
-          <p class="text-muted-foreground text-sm leading-relaxed mb-8 line-clamp-3">
-            Recognizing excellence in digital leadership across Africa. Join the elite circle of technology visionaries and lead the next Africa.
+
+          <h2 class="text-2xl font-extrabold leading-tight tracking-tight text-foreground">
+            The CIO & C-Suite Awards Africa 2026
+          </h2>
+
+          <div class="flex flex-wrap items-center gap-2">
+            <Badge variant="outline" class="bg-primary/10 border-primary/20 text-primary text-[10px] font-bold uppercase tracking-wider px-2.5 py-1">
+              <Calendar class="size-3 mr-1.5" />
+              October 27, 2026
+            </Badge>
+            <Badge variant="outline" class="bg-amber-500/10 border-amber-500/20 text-amber-600 dark:text-amber-400 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1">
+              <MapPin class="size-3 mr-1.5" />
+              Balmoral Convention Center, Lagos
+            </Badge>
+          </div>
+
+          <p class="text-muted-foreground text-sm leading-relaxed">
+            Join over 1,000 CIOs, C-Suite executives, and innovators for Africa's premier IT leadership celebration. Reserve your tickets for a day of Learning, Networking, and Recognition of Excellence.
           </p>
-          <Button
-            href="https://zfrmz.com/ehOL2qeENHenXNdwxiLi"
-            target="_blank"
-            class="w-full font-bold group"
-            onclick={dismiss}
-          >
-            Nominate Now
-            <ArrowRight class="ml-2 size-4 transition-transform group-hover:translate-x-1" />
-          </Button>
+
+          <div class="flex flex-col sm:flex-row gap-3 pt-2">
+            <Button
+              href="/awards/tickets"
+              class="flex-1 font-extrabold group h-11 rounded-xl shadow-md"
+              onclick={dismiss}
+            >
+              <Ticket class="mr-2 size-4" />
+              Get Your Tickets
+              <ArrowRight class="ml-2 size-4 transition-transform group-hover:translate-x-1" />
+            </Button>
+            <Button
+              href="/awards"
+              variant="outline"
+              class="flex-1 font-bold h-11 rounded-xl"
+              onclick={dismiss}
+            >
+              View Event Details
+            </Button>
+          </div>
         </div>
       {:else if currentSlideData?.type === "event" && currentSlideData?.data}
         {@const event = currentSlideData.data}
-        <div class="py-4 animate-in fade-in slide-in-from-right-4 duration-500">
+        <div class="py-4 animate-in fade-in slide-in-from-right-4 duration-500 space-y-4">
           {#if event.coverImage?.url || event.image?.url}
-            <div class="rounded-xl overflow-hidden mb-6 aspect-video shadow-md border border-border/50">
+            <div class="rounded-xl overflow-hidden aspect-video shadow-md border border-border/50">
               <img
                 src={event.coverImage?.url || event.image?.url}
                 alt={event.title}
@@ -210,19 +225,23 @@
               />
             </div>
           {/if}
-          <h2 class="text-2xl font-bold leading-tight mb-3">{event.title}</h2>
-          <p class="text-muted-foreground text-sm leading-relaxed mb-6 line-clamp-3">
-            {event.description || "Join us for our next signature event defining the pulse of Africa's digital leadership."}
-          </p>
-          <div class="flex items-center gap-3 mb-8">
+
+          <h2 class="text-2xl font-bold leading-tight tracking-tight">{event.title}</h2>
+
+          <div class="flex items-center gap-2">
             <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-muted/50 text-xs text-muted-foreground font-medium">
               <Calendar class="size-3.5 text-primary" />
               <span>Aug 2026</span>
             </div>
           </div>
+
+          <p class="text-muted-foreground text-sm leading-relaxed line-clamp-3">
+            {event.description || "Join us for our next signature event defining the pulse of Africa's digital leadership."}
+          </p>
+
           <Button
             href="/events"
-            class="w-full font-bold group"
+            class="w-full font-bold group h-11 rounded-xl"
             onclick={dismiss}
           >
             View Event Details
