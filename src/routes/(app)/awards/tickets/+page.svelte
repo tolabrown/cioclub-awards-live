@@ -11,13 +11,7 @@
     CardContent,
     CardFooter,
   } from "$lib/components/ui/card";
-  import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
-    DialogDescription,
-  } from "$lib/components/ui/dialog";
+  import * as Dialog from "$lib/components/ui/dialog";
   import {
     Ticket,
     Calendar,
@@ -259,12 +253,12 @@
 </div>
 
 <!-- Booking Modal -->
-<Dialog bind:open={showBookingModal}>
-  <DialogContent class="sm:max-w-md">
-    <DialogHeader>
-      <DialogTitle>Book {selectedTicketDetails?.name} Ticket</DialogTitle>
-      <DialogDescription>Complete your booking details below</DialogDescription>
-    </DialogHeader>
+<Dialog.Root bind:open={showBookingModal}>
+  <Dialog.Content class="sm:max-w-md">
+    <Dialog.Header>
+      <Dialog.Title>Book {selectedTicketDetails?.name || 'Ticket'} Ticket</Dialog.Title>
+      <Dialog.Description>Complete your booking details below</Dialog.Description>
+    </Dialog.Header>
 
     <form
       method="POST"
@@ -382,5 +376,5 @@
         </Button>
       </div>
     </form>
-  </DialogContent>
-</Dialog>
+  </Dialog.Content>
+</Dialog.Root>
