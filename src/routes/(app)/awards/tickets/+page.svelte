@@ -14,6 +14,7 @@
   import * as Dialog from "$lib/components/ui/dialog";
   import {
     Ticket,
+    Trophy,
     Calendar,
     MapPin,
     Clock,
