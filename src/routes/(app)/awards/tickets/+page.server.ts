@@ -1,38 +1,24 @@
 import { fail } from '@sveltejs/kit';
 import type { PageServerLoad, Actions } from './$types';
 import { db } from '$lib/db';
-import { ticketBooking, event } from '$lib/db/schema';
-import { ilike } from 'drizzle-orm';
+import { ticketBooking } from '$lib/db/schema';
 
 export const load: PageServerLoad = async ({ locals }) => {
   const currentYear = new Date().getFullYear();
-  let awardsEvent = null;
 
-  try {
-    awardsEvent = await db.query.event.findFirst({
-      where: ilike(event.title, '%CIO%')
-    });
-  } catch (err) {
-    console.error("Tickets Page DB Error:", err);
-  }
-
-  const user = locals.user ? {
+  const user = locals?.user ? {
     id: locals.user.id,
     name: locals.user.name,
     email: locals.user.email,
   } : null;
 
-  const eventDateStr = awardsEvent?.date
-    ? (awardsEvent.date instanceof Date ? awardsEvent.date.toISOString() : String(awardsEvent.date))
-    : new Date(currentYear, 9, 27, 14, 0).toISOString();
-
   return {
     user,
     eventDetails: {
-      name: awardsEvent?.title || `The CIO & C-Suite Awards Africa ${currentYear}`,
-      date: eventDateStr,
-      time: eventDateStr,
-      venue: awardsEvent?.location || "Balmoral Convention Center, Victoria Island, Lagos",
+      name: `The CIO & C-Suite Awards Africa ${currentYear}`,
+      date: new Date(currentYear, 9, 27, 14, 0).toISOString(),
+      time: new Date(currentYear, 9, 27, 14, 0).toISOString(),
+      venue: "Balmoral Convention Center, Victoria Island, Lagos",
     },
     ticketTypes: [
       {

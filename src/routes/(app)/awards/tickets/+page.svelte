@@ -73,8 +73,10 @@
     }
   }
 
+  const ticketTypes = $derived(data?.ticketTypes || []);
+
   const selectedTicketDetails = $derived(
-    data.ticketTypes.find((t: any) => t.id === selectedTicket),
+    ticketTypes.find((t: any) => t.id === selectedTicket),
   );
 
   const totalPrice = $derived(
@@ -139,7 +141,7 @@
   <section class="py-16">
     <div class="container mx-auto px-4">
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-        {#each data.ticketTypes as ticket}
+        {#each ticketTypes as ticket}
           <Card
             class={cn(
               "relative overflow-hidden transition-all hover:shadow-lg flex flex-col justify-between",
