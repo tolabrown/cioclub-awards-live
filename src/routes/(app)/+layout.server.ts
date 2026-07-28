@@ -25,11 +25,19 @@ export const load: LayoutServerLoad = async ({ locals }) => {
   }
 
 
+  const rawUser = locals.user ? {
+    id: locals.user.id,
+    name: locals.user.name,
+    email: locals.user.email,
+  } : null;
+
+  const rawPopupData = {
+    nominationPeriod,
+    upcomingEvent: upcomingEvents.length > 0 ? upcomingEvents[0] : null
+  };
+
   return {
-    user: locals.user,
-    popupData: {
-      nominationPeriod,
-      upcomingEvent: upcomingEvents.length > 0 ? upcomingEvents[0] : null
-    }
+    user: rawUser,
+    popupData: JSON.parse(JSON.stringify(rawPopupData))
   };
 };
