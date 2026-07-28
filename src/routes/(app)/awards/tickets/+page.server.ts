@@ -35,48 +35,68 @@ export const load: PageServerLoad = async ({ locals }) => {
     },
     ticketTypes: [
       {
-        id: 'standard',
-        name: 'Standard',
-        price: 10000000, // 100,000 NGN in kobo
-        priceDisplay: '₦100,000',
-        description: 'General admission to the awards ceremony',
+        id: 'regular',
+        name: 'Regular',
+        price: 5000000, // 50,000 NGN in kobo
+        priceDisplay: '₦50,000',
+        unit: '/ person',
+        description: 'General admission ticket',
         features: [
-          'Access to awards ceremony',
-          'Networking cocktails',
-          'Dinner included',
-          'Awards ceremony program',
+          'Access to the Conference and Awards Ceremony',
+          'Participate in the Exhibition Experience',
+          'Networking',
+          'Access to Breakout Sessions',
         ],
       },
       {
         id: 'vip',
         name: 'VIP',
-        price: 20000000, // 200,000 NGN in kobo
-        priceDisplay: '₦200,000',
-        description: 'Premium experience with exclusive benefits',
+        price: 10000000, // 100,000 NGN in kobo
+        priceDisplay: '₦100,000',
+        unit: '/ person',
+        description: 'Premium experience with VIP benefits',
         features: [
-          'Priority seating',
-          'VIP lounge access',
-          'Premium dinner & drinks',
-          'Exclusive networking session',
-          'Gift bag & memorabilia',
-          'Photo opportunity with winners',
+          'Access to the Conference and Awards Ceremony',
+          'Participate in the Exhibition Experience',
+          'Networking',
+          'Access to Breakout Sessions',
+          'VIP Lounge',
+          'Priority Seating',
+          'Certificate of Participation',
         ],
         recommended: true,
       },
       {
-        id: 'corporate_table',
-        name: 'Corporate Table',
-        price: 250000000, // 2,500,000 NGN in kobo
-        priceDisplay: '₦2,500,000',
-        description: 'Table of 10 for corporate groups',
+        id: 'regular_bundle_3',
+        name: 'Regular Bundle for 3',
+        price: 10000000, // 100,000 NGN in kobo
+        priceDisplay: '₦100,000',
+        unit: '/ 3 attendees',
+        description: 'Group pass for 3 attendees',
         features: [
-          'Premium table for 10 guests',
-          'Prime location seating',
-          'Corporate branding at table',
-          'VIP service throughout',
-          'Premium dinner & open bar',
-          'Executive networking access',
-          'Professional group photo',
+          'Group entry for 3 attendees',
+          'Access to the Conference and Awards Ceremony',
+          'Participate in the Exhibition Experience',
+          'Networking',
+          'Access to Breakout Sessions',
+        ],
+      },
+      {
+        id: 'vip_bundle_3',
+        name: 'VIP Bundle for 3',
+        price: 20000000, // 200,000 NGN in kobo
+        priceDisplay: '₦200,000',
+        unit: '/ 3 VIP attendees',
+        description: 'Group VIP pass for 3 attendees',
+        features: [
+          'Group VIP entry for 3 attendees',
+          'Access to the Conference and Awards Ceremony',
+          'Participate in the Exhibition Experience',
+          'Networking',
+          'Access to Breakout Sessions',
+          'VIP Lounge',
+          'Priority Seating',
+          'Certificate of Participation',
         ],
       },
     ],
@@ -106,9 +126,12 @@ export const actions: Actions = {
 
     // Calculate total based on ticket type
     const prices: Record<string, number> = {
-      standard: 10000000,
-      vip: 20000000,
-      corporate_table: 250000000,
+      regular: 5000000,
+      vip: 10000000,
+      regular_bundle_3: 10000000,
+      vip_bundle_3: 20000000,
+      standard: 5000000,
+      corporate_table: 20000000,
     };
 
     const totalAmount = (prices[ticketType] || 10000000) * quantity;

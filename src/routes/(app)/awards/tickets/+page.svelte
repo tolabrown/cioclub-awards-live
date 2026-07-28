@@ -138,61 +138,65 @@
   <!-- Tickets Section -->
   <section class="py-16">
     <div class="container mx-auto px-4">
-      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
         {#each data.ticketTypes as ticket}
           <Card
             class={cn(
-              "relative overflow-hidden transition-all hover:shadow-lg",
-              ticket.recommended && "border-primary shadow-md",
+              "relative overflow-hidden transition-all hover:shadow-lg flex flex-col justify-between",
+              ticket.recommended && "border-amber-500 shadow-md ring-1 ring-amber-500/30",
             )}
           >
             {#if ticket.recommended}
               <div
-                class="absolute top-0 right-0 bg-primary text-primary-foreground px-4 py-1 text-xs font-bold uppercase tracking-widest rounded-bl-lg"
+                class="absolute top-0 right-0 bg-amber-500 text-slate-950 px-4 py-1 text-xs font-bold uppercase tracking-widest rounded-bl-lg"
               >
                 Most Popular
               </div>
             {/if}
             <CardHeader class="text-center pb-4">
               <div
-                class="size-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4"
+                class={cn(
+                  "size-14 rounded-xl bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4",
+                  ticket.recommended && "bg-amber-500/10 text-amber-500"
+                )}
               >
-                {#if ticket.id === "standard"}
+                {#if ticket.id === "regular"}
                   <Ticket class="size-7" />
                 {:else if ticket.id === "vip"}
-                  <Star class="size-7" />
+                  <Star class="size-7 text-amber-500" />
+                {:else if ticket.id === "regular_bundle_3"}
+                  <Users class="size-7 text-blue-500" />
                 {:else}
-                  <Users class="size-7" />
+                  <Trophy class="size-7 text-purple-500" />
                 {/if}
               </div>
-              <CardTitle class="text-xl">{ticket.name}</CardTitle>
-              <CardDescription>{ticket.description}</CardDescription>
+              <CardTitle class="text-xl font-extrabold">{ticket.name}</CardTitle>
+              <CardDescription class="text-xs font-medium">{ticket.description}</CardDescription>
             </CardHeader>
-            <CardContent class="space-y-6">
+            <CardContent class="space-y-6 flex-1">
               <div class="text-center">
-                <span class="text-4xl font-bold text-foreground"
+                <span class="text-3xl font-extrabold text-foreground"
                   >{ticket.priceDisplay}</span
                 >
-                {#if ticket.id === "corporate_table"}
-                  <span class="text-muted-foreground text-sm">
-                    / table of 10</span
-                  >
-                {:else}
-                  <span class="text-muted-foreground text-sm"> / person</span>
-                {/if}
+                <span class="text-muted-foreground text-xs block font-medium pt-1">
+                  {ticket.unit || "/ person"}</span
+                >
               </div>
               <ul class="space-y-3">
                 {#each ticket.features as feature}
-                  <li class="flex items-start gap-3">
-                    <CheckCircle class="size-5 text-primary shrink-0 mt-0.5" />
-                    <span class="text-sm text-muted-foreground">{feature}</span>
+                  <li class="flex items-start gap-2.5">
+                    <CheckCircle class="size-4 text-emerald-500 shrink-0 mt-0.5" />
+                    <span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">{feature}</span>
                   </li>
                 {/each}
               </ul>
             </CardContent>
-            <CardFooter>
+            <CardFooter class="pt-4">
               <Button
-                class="w-full"
+                class={cn(
+                  "w-full font-bold rounded-xl",
+                  ticket.recommended && "bg-amber-500 hover:bg-amber-600 text-slate-950"
+                )}
                 variant={ticket.recommended ? "default" : "outline"}
                 onclick={() => selectTicket(ticket.id)}
               >
