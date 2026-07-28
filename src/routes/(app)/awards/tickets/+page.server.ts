@@ -20,18 +20,23 @@ export const load: PageServerLoad = async ({ locals }) => {
     console.error("Tickets Page DB Error:", err);
   }
 
+  const user = locals.user ? {
+    id: locals.user.id,
+    name: locals.user.name,
+    email: locals.user.email,
+  } : null;
+
+  const eventDateStr = awardsEvent?.date
+    ? (awardsEvent.date instanceof Date ? awardsEvent.date.toISOString() : String(awardsEvent.date))
+    : new Date(currentYear, 9, 27, 14, 0).toISOString();
+
   return {
-    user: locals.user,
-    eventDetails: awardsEvent ? {
-      name: awardsEvent.title,
-      date: awardsEvent.date,
-      time: awardsEvent.date,
-      venue: awardsEvent.location || "Balmoral Convention Center, Victoria Island, Lagos",
-    } : {
-      name: `The CIO & C-Suite Awards Africa ${currentYear}`,
-      date: new Date(currentYear, 9, 27, 14, 0).toISOString(),
-      time: new Date(currentYear, 9, 27, 14, 0).toISOString(),
-      venue: "Balmoral Convention Center, Victoria Island, Lagos",
+    user,
+    eventDetails: {
+      name: awardsEvent?.title || `The CIO & C-Suite Awards Africa ${currentYear}`,
+      date: eventDateStr,
+      time: eventDateStr,
+      venue: awardsEvent?.location || "Balmoral Convention Center, Victoria Island, Lagos",
     },
     ticketTypes: [
       {
