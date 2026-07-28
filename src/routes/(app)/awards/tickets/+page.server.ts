@@ -2,19 +2,15 @@ import { fail } from '@sveltejs/kit';
 import type { PageServerLoad, Actions } from './$types';
 import { db } from '$lib/db';
 import { ticketBooking, event } from '$lib/db/schema';
-import { and, ilike, sql } from 'drizzle-orm';
+import { ilike } from 'drizzle-orm';
 
 export const load: PageServerLoad = async ({ locals }) => {
   const currentYear = new Date().getFullYear();
   let awardsEvent = null;
 
   try {
-    // Try to find the CIO Awards event for the current year
     awardsEvent = await db.query.event.findFirst({
-      where: and(
-        ilike(event.title, '%CIO%Awards%'),
-        sql`EXTRACT(YEAR FROM ${event.date}) = ${currentYear}`
-      )
+      where: ilike(event.title, '%CIO%')
     });
   } catch (err) {
     console.error("Tickets Page DB Error:", err);
