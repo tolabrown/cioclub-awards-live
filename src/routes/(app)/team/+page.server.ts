@@ -145,64 +145,39 @@ export const load: PageServerLoad = async () => {
     }
   ];
 
-  // 1. Group trustees by their "role" field
-  const roleGroups = new Map<string, any[]>();
-
-  trustees.forEach(t => {
-    const roleKey = t.role || "Executive Leadership Council";
-    if (!roleGroups.has(roleKey)) {
-      roleGroups.set(roleKey, []);
-    }
-    roleGroups.get(roleKey)?.push({
+  // Build BOT section from DB trustees with role "Board of Trustees"
+  const botMembers = trustees
+    .filter(t => (t.role || '').toLowerCase().includes('board'))
+    .map(t => ({
       id: t.id,
       name: t.name,
       designation: t.position || t.role,
-      organization: t.organization || "",
-      councilRole: t.councilRole || t.position || "",
+      organization: '',
+      councilRole: t.position || '',
       role: t.position,
       bio: t.bio,
-      image: t.image?.url || "/hero-bg.webp",
-      socials: { linkedin: t.linkedinUrl || "#", twitter: "#" }
-    });
-  });
+      image: t.image?.url || '/hero-bg.webp',
+      socials: { linkedin: t.linkedinUrl || '#', twitter: '#' }
+    }));
 
-  // 2. Convert Map to sorted sections
-  let dynamicSections = Array.from(roleGroups.entries())
-    .filter(([role]) => !role.toLowerCase().includes('board'))
-    .map(([role, members]) => ({
-      id: role.toLowerCase().replace(/\s+/g, '-'),
-      title: role.includes('2026') ? role : `2026 ${role}`,
-      description: `Meet the experts driving our mission in the ${role} capacity.`,
-      members
-    }))
-    .sort((a, b) => {
-      const minA = Math.min(...trustees.filter(t => (t.role || "Executive Leadership Council") === a.title).map(t => t.displayOrder || 0));
-      const minB = Math.min(...trustees.filter(t => (t.role || "Executive Leadership Council") === b.title).map(t => t.displayOrder || 0));
-      return minA - minB;
-    });
+  // Always build both sections — BOT first, then ELC
+  let dynamicSections: any[] = [];
 
-  if (!dynamicSections.length || !dynamicSections.some(s => s.members && s.members.length > 0)) {
-    dynamicSections = [
-      {
-        id: "elc",
-        title: "2026 Executive Leadership Council (ELC)",
-        description: "Meet the experts driving our mission in the Executive Leadership Council capacity.",
-        members: defaultElcMembers
-      }
-    ];
-  } else {
-    // Ensure ELC section uses defaultElcMembers if DB entries are minimal
-    dynamicSections = dynamicSections.map(s => {
-      if (s.id.includes('elc') || s.title.toLowerCase().includes('executive')) {
-        return {
-          ...s,
-          title: "2026 Executive Leadership Council (ELC)",
-          members: defaultElcMembers
-        };
-      }
-      return s;
+  if (botMembers.length > 0) {
+    dynamicSections.push({
+      id: 'board-of-trustees',
+      title: 'Board of Trustees',
+      description: 'Founding members and executive advisors shaping the continental tech landscape.',
+      members: botMembers
     });
   }
+
+  dynamicSections.push({
+    id: 'elc',
+    title: '2026 Executive Leadership Council (ELC)',
+    description: 'Meet the experts driving our mission in the Executive Leadership Council capacity.',
+    members: defaultElcMembers
+  });
 
   return {
     meta: contentRecord ? {

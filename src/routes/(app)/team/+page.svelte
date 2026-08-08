@@ -16,7 +16,6 @@
     Quote,
   } from "@lucide/svelte";
   import * as Drawer from "$lib/components/ui/drawer";
-  import SelectComponent from "$lib/components/ui/select/select-component.svelte";
 
   let { data } = $props();
   const content = $derived(data.content);
@@ -31,21 +30,10 @@
     }
   });
 
-  const committeeOptions = $derived(
-    content.sections.map((s: any) => ({
-      label: s.title,
-      value: s.id,
-    })),
-  );
-
   function openProfile(member: any) {
     selectedMember = member;
     isProfileOpen = true;
   }
-
-  $effect(() => {
-    console.log("image is",content.quote.image);
-  });
 </script>
 
 <div class="min-h-screen">
@@ -87,36 +75,17 @@
           onValueChange={(v) => (activeSection = v)}
           class="w-full space-y-8"
         >
-          <div
-            class="flex flex-col lg:flex-row lg:items-end justify-between gap-8"
-          >
-            <!-- <div class="max-w-xl space-y-4">
-              <h2
-                class="text-3xl font-bold uppercase tracking-tight text-foreground"
-              >
-                Our Committees
-              </h2>
-              <div class="h-1.5 w-24 bg-primary rounded-full"></div>
-              <p class="text-lg text-muted-foreground font-medium">
-                Diverse leadership groups bringing specialized expertise to
-                Africa's digital transformation.
-              </p>
-            </div> -->
 
-            <div class="flex flex-col gap-2">
-              <!-- <span
-                class="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground ml-1"
-                >Select Committee</span
-              > -->
-              <SelectComponent
-                options={committeeOptions}
-                bind:value={activeSection}
-                placeholder="Choose Committee"
-                name="committee-selector"
-                class="w-full sm:w-[300px] h-12 rounded-xl bg-muted border-border/50 font-bold uppercase tracking-widest text-[10px] shadow-sm hover:border-primary/30 transition-all"
-              />
-            </div>
-          </div>
+          <TabsList class="flex flex-wrap gap-2 bg-transparent p-0 h-auto">
+            {#each content.sections as section}
+              <TabsTrigger
+                value={section.id}
+                class="px-6 py-2.5 rounded-xl font-bold uppercase tracking-widest text-[10px] border border-border data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary data-[state=inactive]:bg-muted data-[state=inactive]:text-muted-foreground transition-all"
+              >
+                {section.title}
+              </TabsTrigger>
+            {/each}
+          </TabsList>
 
           {#each content.sections as section}
             <TabsContent value={section.id} class="space-y-4">
