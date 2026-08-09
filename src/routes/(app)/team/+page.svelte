@@ -118,12 +118,16 @@
                             {member.name}
                           </h3>
                           <div class="space-y-0.5">
-                            <p class="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground leading-tight">
-                              {member.designation || member.role || ""}
-                            </p>
-                            <p class="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/80 leading-tight">
-                              {member.organization || ""}
-                            </p>
+                            {#if member.designation && member.designation.toLowerCase() !== (member.councilRole || member.role || "").toLowerCase()}
+                              <p class="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground leading-tight">
+                                {member.designation}
+                              </p>
+                            {/if}
+                            {#if member.organization}
+                              <p class="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/80 leading-tight">
+                                {member.organization}
+                              </p>
+                            {/if}
                           </div>
                           <p class="text-base md:text-lg font-extrabold text-rose-800 dark:text-rose-400 pt-2">
                             {member.councilRole || member.role || ""}
@@ -152,12 +156,16 @@
                             {member.name}
                           </h3>
                           <div class="space-y-0.5">
-                            <p class="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground leading-tight">
-                              {member.designation || member.role || ""}
-                            </p>
-                            <p class="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/80 leading-tight">
-                              {member.organization || ""}
-                            </p>
+                            {#if member.designation && member.designation.toLowerCase() !== (member.councilRole || member.role || "").toLowerCase()}
+                              <p class="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground leading-tight">
+                                {member.designation}
+                              </p>
+                            {/if}
+                            {#if member.organization}
+                              <p class="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground/80 leading-tight">
+                                {member.organization}
+                              </p>
+                            {/if}
                           </div>
                           <p class="text-base md:text-lg font-extrabold text-rose-800 dark:text-rose-400 pt-2">
                             {member.councilRole || member.role || ""}
