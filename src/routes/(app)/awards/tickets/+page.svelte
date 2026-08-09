@@ -105,7 +105,7 @@
         <h1
           class="text-3xl md:text-5xl font-bold tracking-tight text-foreground"
         >
-          The CIO & C-Suite Awards Africa <span class="text-primary"
+          The CIO & C-Suite Conference & Awards Africa <span class="text-primary"
             >{new Date().getFullYear()}</span
           >
         </h1>

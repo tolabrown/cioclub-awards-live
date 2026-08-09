@@ -169,13 +169,13 @@
           <div class="rounded-xl overflow-hidden aspect-video shadow-md border border-border/50">
             <img
               src="/awards_nomination.webp"
-              alt="The CIO & C-Suite Awards Africa 2026"
+              alt="The CIO & C-Suite Conference and Awards Africa 2026"
               class="size-full object-cover transition-transform duration-700 hover:scale-105"
             />
           </div>
 
           <h2 class="text-2xl font-extrabold leading-tight tracking-tight text-foreground">
-            The CIO & C-Suite Awards Africa 2026
+            The CIO & C-Suite Conference and Awards Africa 2026
           </h2>
 
           <div class="flex flex-wrap items-center gap-2">
