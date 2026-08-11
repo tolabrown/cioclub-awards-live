@@ -109,12 +109,14 @@
 
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
         <Button
-          href="/awards/tickets"
+          href="https://rsvp.app-wt.com.ng/the-cio-c-suite-awards-africa-2026"
+          target="_blank"
+          rel="noopener noreferrer"
           size="lg"
           class="rounded-xl shadow-lg shadow-primary/20 font-bold px-8 h-12 gap-2 text-base"
         >
           <Ticket class="size-5" />
-          Get Your Tickets
+          Get your Ticket
           <ArrowRight class="size-4" />
         </Button>
 
@@ -174,11 +176,13 @@
           </p>
           <div class="pt-2">
             <Button
-              href="/awards/tickets"
+              href="https://rsvp.app-wt.com.ng/the-cio-c-suite-awards-africa-2026"
+              target="_blank"
+              rel="noopener noreferrer"
               variant="default"
               class="rounded-xl shadow-lg shadow-primary/20 font-bold px-6 h-12"
             >
-              Get Your Tickets
+              Get your Ticket
               <ArrowRight class="ml-2 size-4" />
             </Button>
           </div>
@@ -360,9 +364,9 @@
           </div>
 
           <div class="z-10 shrink-0">
-            <Button href="/awards/tickets" size="lg" class="bg-slate-950 hover:bg-slate-900 text-white font-extrabold px-8 h-14 rounded-2xl gap-3 shadow-lg text-base">
+            <Button href="https://rsvp.app-wt.com.ng/the-cio-c-suite-awards-africa-2026" target="_blank" rel="noopener noreferrer" size="lg" class="bg-slate-950 hover:bg-slate-900 text-white font-extrabold px-8 h-14 rounded-2xl gap-3 shadow-lg text-base">
               <Ticket class="size-5" />
-              Get Your Tickets
+              Get your Ticket
               <ArrowRight class="size-4" />
             </Button>
           </div>
@@ -393,9 +397,9 @@
               A landmark venue for a landmark night. Full address and access details will be shared upon registration.
             </p>
             <div class="pt-2">
-              <Button href="/awards/tickets" size="lg" class="rounded-xl shadow-lg shadow-primary/20 font-bold px-8 h-12 gap-2">
+              <Button href="https://rsvp.app-wt.com.ng/the-cio-c-suite-awards-africa-2026" target="_blank" rel="noopener noreferrer" size="lg" class="rounded-xl shadow-lg shadow-primary/20 font-bold px-8 h-12 gap-2">
                 <Ticket class="size-5" />
-                GET YOUR TICKETS
+                Get your Ticket
                 <ArrowRight class="size-4" />
               </Button>
             </div>
@@ -438,13 +442,15 @@
           </p>
           <div class="pt-6">
             <Button
-              href="/awards/tickets"
+              href="https://rsvp.app-wt.com.ng/the-cio-c-suite-awards-africa-2026"
+              target="_blank"
+              rel="noopener noreferrer"
               variant="secondary"
               size="lg"
               class="rounded-xl shadow-xl font-extrabold px-10 h-14 text-base gap-3"
             >
               <Ticket class="size-5" />
-              GET YOUR TICKETS
+              Get your Ticket
               <ArrowRight class="size-5" />
             </Button>
           </div>

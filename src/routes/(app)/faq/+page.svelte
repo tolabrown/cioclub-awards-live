@@ -143,9 +143,12 @@
         </div>
         <div class="flex gap-4">
           <Button
+            href="https://rsvp.app-wt.com.ng/the-cio-c-suite-awards-africa-2026"
+            target="_blank"
+            rel="noopener noreferrer"
             variant="default"
             class="shadow-lg shadow-primary/20"
-            >Reserve Ticket</Button
+            >Get your Ticket</Button
           >
         </div>
       </div>

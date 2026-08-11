@@ -66,7 +66,7 @@ export const AwardsHeroContent = [
     description: "Celebrating IT leadership across 15 African countries across different sectors. Discover the visionaries shaping the continent's digital future.",
     mobileImage: "/awards_hero_backgrounds/awards-0_1920x1080.webp",
     desktopImage: "/awards_hero_backgrounds/awards-0_1920x720.webp",
-    primaryCta: { text: "Get Tickets", href: "/awards/tickets" },
+    primaryCta: { text: "Get your Ticket", href: "https://rsvp.app-wt.com.ng/the-cio-c-suite-awards-africa-2026" },
     secondaryCta: { text: "Sponsorship", href: "/awards/sponsorship" },
   },
   {
@@ -76,7 +76,7 @@ export const AwardsHeroContent = [
     mobileImage: "/awards_hero_backgrounds/awards-1_1920x1080.webp",
     desktopImage: "/awards_hero_backgrounds/awards-1_1920x720.webp",
     primaryCta: { text: "View Categories", href: "/awards/categories" },
-    secondaryCta: { text: "Get Tickets", href: "/awards/tickets" },
+    secondaryCta: { text: "Get your Ticket", href: "https://rsvp.app-wt.com.ng/the-cio-c-suite-awards-africa-2026" },
   },
 ];
 

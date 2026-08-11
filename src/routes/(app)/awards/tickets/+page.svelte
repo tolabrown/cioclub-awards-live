@@ -77,6 +77,14 @@
   const totalPrice = $derived(
     selectedTicketDetails ? selectedTicketDetails.price * quantity : 0,
   );
+  import { onMount } from "svelte";
+  import { browser } from "$app/environment";
+
+  onMount(() => {
+    if (browser) {
+      window.location.href = "https://rsvp.app-wt.com.ng/the-cio-c-suite-awards-africa-2026";
+    }
+  });
 </script>
 
 <svelte:head>
@@ -112,6 +120,19 @@
         <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
           Join Africa's premier IT leadership celebration. Reserve your Tickets for a day of Learning, Networking, and Recognition of Excellence.
         </p>
+
+        <div class="pt-4">
+          <Button
+            href="https://rsvp.app-wt.com.ng/the-cio-c-suite-awards-africa-2026"
+            target="_blank"
+            rel="noopener noreferrer"
+            size="lg"
+            class="rounded-xl shadow-lg shadow-primary/20 font-bold px-8 h-12 gap-2 text-base"
+          >
+            <Ticket class="size-5" />
+            Get your Ticket
+          </Button>
+        </div>
 
         <!-- Event Details -->
         <div class="flex flex-wrap items-center justify-center gap-6 pt-4">
@@ -190,14 +211,16 @@
             </CardContent>
             <CardFooter class="pt-4">
               <Button
+                href="https://rsvp.app-wt.com.ng/the-cio-c-suite-awards-africa-2026"
+                target="_blank"
+                rel="noopener noreferrer"
                 class={cn(
                   "w-full font-bold rounded-xl",
                   ticket.recommended && "bg-amber-500 hover:bg-amber-600 text-slate-950"
                 )}
                 variant={ticket.recommended ? "default" : "outline"}
-                onclick={() => selectTicket(ticket.id)}
               >
-                Select {ticket.name}
+                Get your Ticket
               </Button>
             </CardFooter>
           </Card>

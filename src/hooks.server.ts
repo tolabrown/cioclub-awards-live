@@ -24,7 +24,8 @@ const REDIRECTS: Record<string, string> = {
   '/breakout-sessions': '/events#summit',
   '/thank-you': '/',
   '/wp-content/uploads/2024/05/Colorful-Illustrated-Weekly-Calendar-2.pdf': '/resources',
-  '/tickets-order': '/awards/tickets',
+  '/tickets-order': 'https://rsvp.app-wt.com.ng/the-cio-c-suite-awards-africa-2026',
+  '/awards/tickets': 'https://rsvp.app-wt.com.ng/the-cio-c-suite-awards-africa-2026',
   '/admin/pages/edit': '/admin/pages/edit/home'
 };
 

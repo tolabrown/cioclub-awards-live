@@ -195,12 +195,14 @@
 
           <div class="flex flex-col sm:flex-row gap-3 pt-2">
             <Button
-              href="/awards/tickets"
+              href="https://rsvp.app-wt.com.ng/the-cio-c-suite-awards-africa-2026"
+              target="_blank"
+              rel="noopener noreferrer"
               class="flex-1 font-extrabold group h-11 rounded-xl shadow-md"
               onclick={dismiss}
             >
               <Ticket class="mr-2 size-4" />
-              Get Your Tickets
+              Get your Ticket
               <ArrowRight class="ml-2 size-4 transition-transform group-hover:translate-x-1" />
             </Button>
             <Button
