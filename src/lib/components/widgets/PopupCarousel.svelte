@@ -168,7 +168,7 @@
         <div class="py-4 animate-in fade-in slide-in-from-bottom-4 duration-500 space-y-4">
           <div class="rounded-xl overflow-hidden aspect-video shadow-md border border-border/50">
             <img
-              src="/awards_nomination.webp"
+              src="/awards_nomination_v2.webp?v=2"
               alt="The CIO & C-Suite Conference and Awards Africa 2026"
               class="size-full object-cover transition-transform duration-700 hover:scale-105"
             />
