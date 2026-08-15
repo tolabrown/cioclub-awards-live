@@ -53,8 +53,7 @@ export const MEMBERSHIP_DEFAULT = {
         { text: "Partner event discounts", included: true },
         { text: "50% off Club programs", included: true },
         { text: "Community networking", included: true },
-        { text: "Internal role recommendations", included: true },
-        { text: "Lekki Colosseum discounts", included: true }
+        { text: "Internal role recommendations", included: true }
       ],
       cta: "Join Now",
       href: "#",
@@ -74,9 +73,7 @@ export const MEMBERSHIP_DEFAULT = {
         { text: "Free/Discounted Flagship access", included: true },
         { text: "Executive retreats & private events", included: true },
         { text: "Media & Professional visibility", included: true },
-        { text: "Strategic group discussions", included: true },
-        { text: "Hotel & Golf club discounts", included: true },
-        { text: "Lekki Colosseum discounts", included: true }
+        { text: "Strategic group discussions", included: true }
       ],
       cta: "Become an Executive",
       href: "#",
