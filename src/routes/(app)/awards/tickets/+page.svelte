@@ -145,7 +145,7 @@
           <div class="flex items-center gap-2 text-muted-foreground">
             <Clock class="size-5 text-primary" />
             <span class="font-medium">
-              2:00 PM WAT
+              12:00 PM WAT
             </span>
           </div>
         </div>

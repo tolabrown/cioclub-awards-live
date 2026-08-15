@@ -99,6 +99,9 @@
         <Calendar class="size-4" />
         <span>October 27, 2026</span>
         <span class="text-primary/40">•</span>
+        <Clock class="size-4" />
+        <span>12:00 PM WAT</span>
+        <span class="text-primary/40">•</span>
         <MapPin class="size-4" />
         <span>Balmoral Convention Center, Victoria Island, Lagos</span>
       </div>
