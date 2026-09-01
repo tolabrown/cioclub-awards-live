@@ -32,6 +32,7 @@
   let isDialogOpen = $state(false);
   let isDrawerOpen = $state(false);
   let isLoadingMore = $state(false);
+  let isVerifying = $state(false);
 
   let allPayments = $state<any[]>([]);
 
@@ -453,7 +454,43 @@
         </div>
       </div>
 
-      <Dialog.Footer class="p-6 bg-muted/20 border-t border-border/40">
+      <Dialog.Footer class="p-6 bg-muted/20 border-t border-border/40 flex flex-col sm:flex-row gap-3">
+        {#if selectedPayment.status !== "success"}
+          <form
+            method="POST"
+            action="?/verify"
+            use:enhance={() => {
+              isVerifying = true;
+              return async ({ result }) => {
+                isVerifying = false;
+                if (result.type === "success") {
+                  toast.success((result.data as any)?.message || "Payment verified and membership activated!");
+                  isDialogOpen = false;
+                  await invalidateAll();
+                } else if (result.type === "failure") {
+                  toast.error((result.data as any)?.message || "Verification failed");
+                }
+              };
+            }}
+            class="w-full"
+          >
+            <input type="hidden" name="id" value={selectedPayment.id} />
+            <input type="hidden" name="reference" value={selectedPayment.reference} />
+            <Button
+              type="submit"
+              disabled={isVerifying}
+              class="w-full gap-2 font-bold rounded-xl bg-primary text-primary-foreground shadow-md hover:bg-primary/90"
+            >
+              {#if isVerifying}
+                <Loader2 class="size-4 animate-spin" />
+                Checking Gateway...
+              {:else}
+                <ShieldCheck class="size-4" />
+                Verify with Gateway
+              {/if}
+            </Button>
+          </form>
+        {/if}
         <Button
           variant="outline"
           class="w-full gap-2 font-bold rounded-xl"
@@ -573,6 +610,43 @@
             </p>
           </div>
         </div>
+
+        {#if selectedPayment.status !== "success"}
+          <form
+            method="POST"
+            action="?/verify"
+            use:enhance={() => {
+              isVerifying = true;
+              return async ({ result }) => {
+                isVerifying = false;
+                if (result.type === "success") {
+                  toast.success((result.data as any)?.message || "Payment verified and membership activated!");
+                  isDrawerOpen = false;
+                  await invalidateAll();
+                } else if (result.type === "failure") {
+                  toast.error((result.data as any)?.message || "Verification failed");
+                }
+              };
+            }}
+            class="w-full"
+          >
+            <input type="hidden" name="id" value={selectedPayment.id} />
+            <input type="hidden" name="reference" value={selectedPayment.reference} />
+            <Button
+              type="submit"
+              disabled={isVerifying}
+              class="w-full gap-2 font-bold rounded-xl h-12 bg-primary text-primary-foreground shadow-md hover:bg-primary/90"
+            >
+              {#if isVerifying}
+                <Loader2 class="size-4 animate-spin" />
+                Checking Gateway...
+              {:else}
+                <ShieldCheck class="size-4" />
+                Verify with Gateway
+              {/if}
+            </Button>
+          </form>
+        {/if}
 
         <Button
           variant="outline"

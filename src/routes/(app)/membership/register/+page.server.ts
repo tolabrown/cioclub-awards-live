@@ -96,6 +96,7 @@ export const actions: Actions = {
     try {
       let authorization_url = '';
       let finalConvertedAmount = amount * 100; // default to NGN kobo
+      const origin = request.headers.get('origin') || url.origin || env.ORIGIN || 'https://thecioclubafrica.com';
 
       if (currency === 'NGN') {
         // 1a. Initialize with Paystack
@@ -108,8 +109,9 @@ export const actions: Actions = {
           body: JSON.stringify({
             email,
             amount: amount * 100, // Paystack expects kobo
+            currency: 'NGN',
             reference,
-            callback_url: `${request.headers.get('origin')}/api/membership/callback/paystack`,
+            callback_url: `${origin}/api/membership/callback/paystack`,
             metadata: sharedMetadata
           })
         });
@@ -132,7 +134,7 @@ export const actions: Actions = {
             tx_ref: reference,
             amount: finalConvertedAmount,
             currency: currency,
-            redirect_url: `${request.headers.get('origin')}/api/membership/callback/flutterwave`,
+            redirect_url: `${origin}/api/membership/callback/flutterwave`,
             customer: {
               email,
               name: fullName,
@@ -141,7 +143,7 @@ export const actions: Actions = {
             customizations: {
               title: "Membership Subscription",
               description: `Subscription for ${tierId} tier`,
-              logo: "https://cioclub.africa/logo.png" // Replace with actual logo
+              logo: "https://thecioclubafrica.com/logo.png"
             },
             meta: sharedMetadata
           })

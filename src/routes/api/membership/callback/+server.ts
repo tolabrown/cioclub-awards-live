@@ -69,7 +69,7 @@ export const GET: RequestHandler = async ({ url }) => {
             payment.email,
             payment.fullName,
             payment.tier,
-            `₦${payment.amount.toLocaleString()}`
+            `₦${(payment.amount / 100).toLocaleString()}`
           );
         } catch (emailError) {
           console.error('Failed to send membership confirmation email:', emailError);
