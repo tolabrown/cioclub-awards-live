@@ -16,7 +16,6 @@
     ChevronRight,
     ArrowRight,
     Globe,
-    Zap,
     Shield,
     Lightbulb,
     Handshake,
@@ -28,7 +27,6 @@
     Sparkles,
     Building2,
     GraduationCap,
-    Laptop,
     PartyPopper,
   } from "@lucide/svelte";
   import { cn } from "$lib/utils";
@@ -51,7 +49,7 @@
     "Network with peers, partners, and decision makers shaping enterprise tech across the continent",
   ];
 
-  const day2Highlights = [
+  const eventHighlights = [
     {
       title: "Conference",
       desc: "Keynotes and panel discussions on the trends shaping enterprise technology in Africa.",
@@ -236,47 +234,20 @@
           Event Schedule
         </Badge>
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight">
-          Two Days of Leadership, Innovation & Celebration
+          Leadership, Innovation & Celebration
         </h2>
         <p class="text-lg text-muted-foreground font-medium">
-          A packed two-day itinerary designed for technical minds, industry leaders, and decision makers.
+          A packed itinerary designed for technical minds, industry leaders, and decision makers.
         </p>
       </div>
 
       <div class="space-y-12 max-w-5xl mx-auto">
-        <!-- Day 1 Card -->
-        <Card class="rounded-3xl border-2 border-primary/20 bg-card overflow-hidden shadow-lg hover:shadow-xl transition-all">
-          <CardHeader class="bg-primary/5 p-8 border-b border-primary/10 flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div class="space-y-1">
-              <Badge class="bg-primary text-primary-foreground font-bold px-3 py-1 text-xs uppercase tracking-wider rounded-md">
-                Day 1
-              </Badge>
-              <h3 class="text-2xl md:text-3xl font-extrabold text-foreground tracking-tight pt-2">
-                October 26, 2026
-              </h3>
-            </div>
-            <div class="inline-flex items-center gap-2 text-sm font-bold text-primary bg-background px-4 py-2 rounded-xl border border-primary/20">
-              <Laptop class="size-4" />
-              Pan-African Hackathon
-            </div>
-          </CardHeader>
-          <CardContent class="p-8 space-y-4">
-            <h4 class="text-xl font-bold text-foreground flex items-center gap-2">
-              <Zap class="size-5 text-amber-500" />
-              Hackathon
-            </h4>
-            <p class="text-base text-muted-foreground leading-relaxed font-medium">
-              A day for Africa's brightest technical minds to build, compete, and showcase solutions to real industry challenges.
-            </p>
-          </CardContent>
-        </Card>
-
-        <!-- Day 2 Card -->
+        <!-- Main Event Card -->
         <Card class="rounded-3xl border-2 border-amber-500/30 bg-card overflow-hidden shadow-xl hover:shadow-2xl transition-all">
           <CardHeader class="bg-gradient-to-r from-amber-500/10 via-primary/5 to-transparent p-8 border-b border-border/60 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div class="space-y-1">
               <Badge class="bg-amber-500 text-slate-950 font-bold px-3 py-1 text-xs uppercase tracking-wider rounded-md">
-                Day 2 (Main Event)
+                Main Event
               </Badge>
               <h3 class="text-2xl md:text-3xl font-extrabold text-foreground tracking-tight pt-2">
                 October 27, 2026
@@ -296,7 +267,7 @@
             </p>
 
             <div class="grid md:grid-cols-2 gap-6 pt-4">
-              {#each day2Highlights as item}
+              {#each eventHighlights as item}
                 <div class={cn("p-6 rounded-2xl border transition-all space-y-3", item.highlight ? "border-amber-500/50 bg-amber-500/5 shadow-md" : "border-border/60 bg-muted/30")}>
                   <div class="flex items-center justify-between">
                     <div class="size-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">

@@ -36,9 +36,9 @@ const events = [
     status: "upcoming"
   },
   {
-    title: "CSR: AI & Innovation Hackathon",
-    description: "Empowering the next generation of developers with AI tools and mentorship.",
-    shortDescription: "Community-driven AI development challenge.",
+    title: "CSR: AI & Innovation",
+    description: "Empowering the next generation of innovators with AI tools and mentorship.",
+    shortDescription: "Community-driven AI development initiative.",
     date: "2026-04-08T08:00:00Z",
     location: "Nairobi, Kenya",
     type: "CSR",
