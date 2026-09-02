@@ -13,8 +13,10 @@
     Award,
     Users,
     Star,
+    ChevronLeft,
     ChevronRight,
     ArrowRight,
+    ArrowUpRight,
     Globe,
     Shield,
     Lightbulb,
@@ -28,7 +30,10 @@
     Building2,
     GraduationCap,
     PartyPopper,
+    Mic,
+    Crown,
   } from "@lucide/svelte";
+  import { onMount } from "svelte";
   import { cn } from "$lib/utils";
   import AwardsHero from "$lib/components/sections/awards-hero.svelte";
 
@@ -76,6 +81,266 @@
       badge: "Gala Dinner",
     },
   ];
+
+  // ============================================
+  // RECAP OF PREVIOUS EDITION DATA
+  // ============================================
+
+  const previousSpeakers = [
+    {
+      name: "Dele Adeyinka",
+      role: "Chief Digital Officer",
+      org: "Polaris Bank",
+      topic: "Panel: Future of Digital Banking & Financial Inclusion",
+      image: "https://minio.toolsntuts.com/api/v1/buckets/cio/objects/download?preview=true&prefix=1773389151092-Dele%20Adeyinka%2C%20Chief%20Digital%20Officer%2C%20Polaris%20Bank.webp&version_id=null",
+      badge: "Fintech Leader"
+    },
+    {
+      name: "Olawale Noiki",
+      role: "Partner & West Africa Leader",
+      org: "Deloitte & Touche",
+      topic: "Keynote: Enterprise Technology Leadership & Digital Governance",
+      image: "https://minio.toolsntuts.com/api/v1/buckets/cio/objects/download?preview=true&prefix=1773389286462-Olawale%20Noiki%2C%20Partner%20%26%20West%20Africa%20Leader%20Enterprise%20Technology%20%26%20Performance%2C%20Africa%20Consulting%20Services%2C%20Deloitte%20%26%20Touche.jpg.crdownload.webp&version_id=null",
+      badge: "Strategy Keynote"
+    },
+    {
+      name: "Ayotunde Coker",
+      role: "Chief Executive Officer",
+      org: "Open Access Data Centers",
+      topic: "Panel: Data Center Infrastructure Driving Africa's AI Evolution",
+      image: "https://minio.toolsntuts.com/api/v1/buckets/cio/objects/download?preview=true&prefix=1773314692707-ayotunde_coker.webp&version_id=null",
+      badge: "Infrastructure Leader"
+    },
+    {
+      name: "Taiwo Afolayan",
+      role: "Head, Digital & E-Business Control",
+      org: "Stanbic IBTC",
+      topic: "Panel: Enterprise Cyber Resilience & Cloud Control",
+      image: "https://minio.toolsntuts.com/api/v1/buckets/cio/objects/download?preview=true&prefix=1773389453168-Taiwo%20Afolayan%2C%20%20Head%2C%20Digital%20%26%20E-Business%20Control%2C%20Stanbic%20IBTC.webp&version_id=null",
+      badge: "Security Speaker"
+    },
+    {
+      name: "Dr. Ademola Aladekomo",
+      role: "Chairman",
+      org: "Chams Group",
+      topic: "Keynote: 3 Decades of Tech Innovation & Identity in Africa",
+      image: "https://minio.toolsntuts.com/api/v1/buckets/cio/objects/download?preview=true&prefix=1773314573542-ademola_aladekomo.webp&version_id=null",
+      badge: "Pioneer Keynote"
+    },
+    {
+      name: "Ehia Erhaboh",
+      role: "Co-Convener",
+      org: "AI in Nigeria",
+      topic: "Breakout: Practical Enterprise AI Adoption & High-ROI Use Cases",
+      image: "https://minio.toolsntuts.com/api/v1/buckets/cio/objects/download?preview=true&prefix=1773389177744-Ehia%20Erhaboh%2C%20Co-Convener%2C%20AI%20in%20Nigeria.webp&version_id=null",
+      badge: "AI & Innovation"
+    },
+    {
+      name: "Nicholas Bortey",
+      role: "Founder & Technology Strategist",
+      org: "Liranz Ghana",
+      topic: "Session: Regional IT Integration & Cross-Border Scale",
+      image: "https://minio.toolsntuts.com/api/v1/buckets/cio/objects/download?preview=true&prefix=1774379479372-nicholas_bortey.webp&version_id=null",
+      badge: "Pan-African Leader"
+    },
+    {
+      name: "Ade Bajomo",
+      role: "President",
+      org: "FinTech Association of Nigeria",
+      topic: "Keynote: Capitalizing on African Digital Transformation",
+      image: "https://minio.toolsntuts.com/api/v1/buckets/cio/objects/download?preview=true&prefix=1773314527410-ade_bajomo.webp&version_id=null",
+      badge: "Keynote Speaker"
+    }
+  ];
+
+  const previousSponsors = [
+    {
+      name: "FrieslandCampina",
+      category: "Platinum Sponsor",
+      sector: "FMCG / Nutrition",
+      desc: "Empowering tech leadership & digital supply chain innovation across Africa.",
+      logo: "/partners/friesland_campina_nin.webp",
+      badge: "Platinum Partner"
+    },
+    {
+      name: "Nigerian Breweries PLC",
+      category: "Gold Sponsor",
+      sector: "Manufacturing & Beverage",
+      desc: "Championing industrial automation and digital factory transformation.",
+      logo: "/partners/nigerian_breweries_plc.webp",
+      badge: "Gold Partner"
+    },
+    {
+      name: "Nestle Nigeria",
+      category: "Corporate Partner",
+      sector: "Food & Beverage",
+      desc: "Driving enterprise sustainability and smart technology deployment.",
+      logo: "/partners/nestle_nigeria.webp",
+      badge: "Corporate Partner"
+    },
+    {
+      name: "NBC (Coca-Cola Hellenic)",
+      category: "Enterprise Partner",
+      sector: "Bottling & Distribution",
+      desc: "Supporting digital excellence and operational agility across Africa.",
+      logo: "/partners/nbc.webp",
+      badge: "Enterprise Partner"
+    },
+    {
+      name: "UniCloud Africa",
+      category: "Technology Sponsor",
+      sector: "Cloud Infrastructure",
+      desc: "Powering sovereign cloud solutions and data residency for African firms.",
+      logo: "/partners/unicloud_africa.webp",
+      badge: "Cloud Partner"
+    },
+    {
+      name: "Guinness Nigeria (Diageo)",
+      category: "Strategic Partner",
+      sector: "Consumer Goods",
+      desc: "Fostering inclusive tech leadership and executive networking platforms.",
+      logo: "/partners/guinness_nigeria.webp",
+      badge: "Strategic Partner"
+    },
+    {
+      name: "Golden Penny Foods (FMN)",
+      category: "Corporate Sponsor",
+      sector: "Agro-Allied & FMCG",
+      desc: "Enabling digital agricultural logistics and food supply resilience.",
+      logo: "/partners/goldenpenny_foods.webp",
+      badge: "Corporate Sponsor"
+    },
+    {
+      name: "PFS (Payment Solutions)",
+      category: "Fintech Sponsor",
+      sector: "Financial Technology",
+      desc: "Building secure, high-throughput financial switches for African banking.",
+      logo: "/partners/pfs.webp",
+      badge: "Fintech Partner"
+    },
+    {
+      name: "SBC (Seven-Up Bottling Co.)",
+      category: "Event Partner",
+      sector: "Manufacturing",
+      desc: "Supporting enterprise IT development and executive talent initiatives.",
+      logo: "/partners/sbc.webp",
+      badge: "Event Partner"
+    }
+  ];
+
+  const previousWinners = [
+    {
+      name: "Shoyinka Shodunke",
+      awardType: "Overall CIO of the Year",
+      org: "MTN Nigeria Communications Plc",
+      year: "2025",
+      desc: "Recognized for continental leadership in 5G rollout, enterprise agility, and large-scale cloud modernization.",
+      image: "https://minio.toolsntuts.com/api/v1/buckets/cio/objects/download?preview=true&prefix=1771773757060-telecommunications_shoyinka_shodunke_ChiefInformationOfficerMTNNigeriaCommunicationsPlc.webp&version_id=null",
+      badge: "CIO of the Year"
+    },
+    {
+      name: "Ade Bajomo",
+      awardType: "Special Recognition Award",
+      org: "President, FinTech Association of Nigeria",
+      year: "2025",
+      desc: "Honored for pioneering financial technology architecture and open banking standards in West Africa.",
+      image: "https://minio.toolsntuts.com/api/v1/buckets/cio/objects/download?preview=true&prefix=1773314527410-ade_bajomo.webp&version_id=null",
+      badge: "Special Recognition"
+    },
+    {
+      name: "Busola Tejumola",
+      awardType: "Digital Transformation Leader",
+      org: "Executive Head, MultiChoice Group",
+      year: "2025",
+      desc: "Celebrated for broadcast technology innovation, OTT content delivery, and audience analytics scale.",
+      image: "https://minio.toolsntuts.com/api/v1/buckets/cio/objects/download?preview=true&prefix=1773314788106-busola_tejumola.webp&version_id=null",
+      badge: "Digital Pioneer"
+    },
+    {
+      name: "Ayotunde Coker",
+      awardType: "Technology Ecosystem Award",
+      org: "CEO, Open Access Data Centers",
+      year: "2025",
+      desc: "Pioneering hyperscale and edge data centre deployment across major commercial corridors in Africa.",
+      image: "https://minio.toolsntuts.com/api/v1/buckets/cio/objects/download?preview=true&prefix=1773314692707-ayotunde_coker.webp&version_id=null",
+      badge: "Ecosystem Builder"
+    },
+    {
+      name: "Agnes Gathaiya",
+      awardType: "Pan-African Tech Leadership",
+      org: "East Africa Technology Executive",
+      year: "2025",
+      desc: "Recognized for exemplary enterprise expansion, digital empowerment, and technology leadership in East Africa.",
+      image: "https://minio.toolsntuts.com/api/v1/buckets/cio/objects/download?preview=true&prefix=1773314658780-agnes_gathaiya.webp&version_id=null",
+      badge: "Leadership Award"
+    },
+    {
+      name: "Dr. Ademola Aladekomo",
+      awardType: "Lifetime Achievement Award",
+      org: "Chairman, Chams Group",
+      year: "2025",
+      desc: "Honoring over 3 decades of indigenous identity management, payment card systems, and tech infrastructure.",
+      image: "https://minio.toolsntuts.com/api/v1/buckets/cio/objects/download?preview=true&prefix=1773314573542-ademola_aladekomo.webp&version_id=null",
+      badge: "Lifetime Honoree"
+    },
+    {
+      name: "Markie Idowu",
+      awardType: "Fintech Executive of the Year",
+      org: "MD/CEO, Xpress Payment Solutions",
+      year: "2025",
+      desc: "Championing secure digital transactions, frictionless payment infrastructure, and financial inclusion.",
+      image: "https://minio.toolsntuts.com/api/v1/buckets/cio/objects/download?preview=true&prefix=1773314828189-markie_idowu.webp&version_id=null",
+      badge: "Fintech Leader"
+    },
+    {
+      name: "Mojisola Ologe",
+      awardType: "Risk & Governance Honoree",
+      org: "Chief Risk & Compliance Officer, Hydrogen",
+      year: "2025",
+      desc: "Recognized for setting benchmark risk frameworks and governance in digital payment architectures.",
+      image: "https://minio.toolsntuts.com/api/v1/buckets/cio/objects/download?preview=true&prefix=1773314855100-mojisola_ologe.webp&version_id=null",
+      badge: "Governance Award"
+    }
+  ];
+
+  // Slideshow States
+  let speakerIndex = $state(0);
+  let sponsorIndex = $state(0);
+  let winnerIndex = $state(0);
+
+  let isSpeakerPaused = $state(false);
+  let isSponsorPaused = $state(false);
+  let isWinnerPaused = $state(false);
+
+  const currentSpeaker = $derived(previousSpeakers[speakerIndex]);
+  const currentSponsor = $derived(previousSponsors[sponsorIndex]);
+  const currentWinner = $derived(previousWinners[winnerIndex]);
+
+  onMount(() => {
+    const speakerTimer = setInterval(() => {
+      if (!isSpeakerPaused) {
+        speakerIndex = (speakerIndex + 1) % previousSpeakers.length;
+      }
+    }, 4200);
+
+    const sponsorTimer = setInterval(() => {
+      if (!isSponsorPaused) {
+        sponsorIndex = (sponsorIndex + 1) % previousSponsors.length;
+      }
+    }, 3800);
+
+    const winnerTimer = setInterval(() => {
+      if (!isWinnerPaused) {
+        winnerIndex = (winnerIndex + 1) % previousWinners.length;
+      }
+    }, 4600);
+
+    return () => {
+      clearInterval(speakerTimer);
+      clearInterval(sponsorTimer);
+      clearInterval(winnerTimer);
+    };
+  });
 </script>
 
 <svelte:head>
@@ -394,6 +659,341 @@
           </div>
         </div>
       </Card>
+    </div>
+  </section>
+
+  <!-- Recap of Previous Edition Section -->
+  <section class="py-24 bg-gradient-to-b from-muted/30 via-background to-muted/20 border-t border-border/40 relative overflow-hidden">
+    <div class="absolute -top-40 right-1/4 size-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-40 left-1/4 size-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <Badge variant="outline" class="px-4 py-1.5 text-xs font-bold uppercase tracking-widest border-amber-500/40 text-amber-500 bg-amber-500/10">
+          <Trophy class="size-3.5 mr-2" />
+          Legacy of Excellence
+        </Badge>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
+          Recap of Previous Edition
+        </h2>
+        <p class="text-lg text-muted-foreground font-medium">
+          A retrospective look at the distinguished keynote speakers, prestigious corporate sponsors, and celebrated industry winners from our past editions.
+        </p>
+      </div>
+
+      <!-- 3 Slideshow Boxes Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        
+        <!-- Box 1: Previous Speakers -->
+        <div 
+          class="rounded-3xl border-2 border-border/70 bg-card p-6 lg:p-8 flex flex-col justify-between shadow-xl hover:shadow-2xl hover:border-amber-500/40 transition-all duration-300 relative group overflow-hidden"
+          onmouseenter={() => (isSpeakerPaused = true)}
+          onmouseleave={() => (isSpeakerPaused = false)}
+          role="region"
+          aria-label="Previous Speakers Slideshow"
+        >
+          <div class="space-y-6">
+            <!-- Box Header -->
+            <div class="flex items-center justify-between pb-4 border-b border-border/60">
+              <div class="flex items-center gap-3">
+                <div class="size-11 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center font-bold">
+                  <Mic class="size-5" />
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-foreground">Previous Speakers</h3>
+                  <p class="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Thought Leaders</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  aria-label="Previous Speaker"
+                  onclick={() => (speakerIndex = (speakerIndex - 1 + previousSpeakers.length) % previousSpeakers.length)}
+                  class="size-8 rounded-lg bg-muted hover:bg-muted/80 text-foreground flex items-center justify-center transition-colors"
+                >
+                  <ChevronLeft class="size-4" />
+                </button>
+                <button
+                  type="button"
+                  aria-label="Next Speaker"
+                  onclick={() => (speakerIndex = (speakerIndex + 1) % previousSpeakers.length)}
+                  class="size-8 rounded-lg bg-muted hover:bg-muted/80 text-foreground flex items-center justify-center transition-colors"
+                >
+                  <ChevronRight class="size-4" />
+                </button>
+              </div>
+            </div>
+
+            <!-- Slideshow Content -->
+            {#if currentSpeaker}
+              <div class="space-y-5 transition-all duration-500">
+                <!-- Speaker Photo & Badge -->
+                <div class="relative rounded-2xl overflow-hidden aspect-4/3 bg-muted/60 border border-border/60 shadow-inner group-hover:border-amber-500/30 transition-colors">
+                  <img
+                    src={currentSpeaker.image}
+                    alt={currentSpeaker.name}
+                    class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent flex flex-col justify-end p-4 text-white">
+                    <Badge class="bg-amber-500 text-slate-950 font-extrabold text-[10px] uppercase tracking-wider w-fit mb-1.5">
+                      {currentSpeaker.badge}
+                    </Badge>
+                    <h4 class="text-lg font-extrabold tracking-tight leading-snug text-white">
+                      {currentSpeaker.name}
+                    </h4>
+                    <p class="text-xs text-amber-200/90 font-semibold line-clamp-1">
+                      {currentSpeaker.role}
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Organization & Topic Details -->
+                <div class="space-y-2 p-3.5 rounded-xl bg-muted/30 border border-border/40">
+                  <div class="flex items-center gap-2 text-xs font-bold text-foreground">
+                    <Building2 class="size-3.5 text-primary shrink-0" />
+                    <span class="line-clamp-1">{currentSpeaker.org}</span>
+                  </div>
+                  <div class="flex items-start gap-2 text-xs text-muted-foreground font-medium pt-1 border-t border-border/30">
+                    <Sparkles class="size-3.5 text-amber-500 shrink-0 mt-0.5" />
+                    <span class="line-clamp-2 leading-relaxed">{currentSpeaker.topic}</span>
+                  </div>
+                </div>
+              </div>
+            {/if}
+          </div>
+
+          <!-- Slide Controls & Indicator Footer -->
+          <div class="pt-6 mt-6 border-t border-border/60 flex items-center justify-between">
+            <div class="flex items-center gap-1.5">
+              {#each previousSpeakers as _, i}
+                <button
+                  type="button"
+                  aria-label={`Go to speaker slide ${i + 1}`}
+                  onclick={() => (speakerIndex = i)}
+                  class={cn(
+                    "h-1.5 rounded-full transition-all duration-300",
+                    speakerIndex === i ? "w-6 bg-amber-500" : "w-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                  )}
+                ></button>
+              {/each}
+            </div>
+            <span class="text-[11px] font-bold text-muted-foreground">
+              {speakerIndex + 1} / {previousSpeakers.length}
+            </span>
+          </div>
+        </div>
+
+        <!-- Box 2: Previous Sponsors -->
+        <div 
+          class="rounded-3xl border-2 border-border/70 bg-card p-6 lg:p-8 flex flex-col justify-between shadow-xl hover:shadow-2xl hover:border-blue-500/40 transition-all duration-300 relative group overflow-hidden"
+          onmouseenter={() => (isSponsorPaused = true)}
+          onmouseleave={() => (isSponsorPaused = false)}
+          role="region"
+          aria-label="Previous Sponsors Slideshow"
+        >
+          <div class="space-y-6">
+            <!-- Box Header -->
+            <div class="flex items-center justify-between pb-4 border-b border-border/60">
+              <div class="flex items-center gap-3">
+                <div class="size-11 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center font-bold">
+                  <Handshake class="size-5" />
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-foreground">Previous Sponsors</h3>
+                  <p class="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Corporate Partners</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  aria-label="Previous Sponsor"
+                  onclick={() => (sponsorIndex = (sponsorIndex - 1 + previousSponsors.length) % previousSponsors.length)}
+                  class="size-8 rounded-lg bg-muted hover:bg-muted/80 text-foreground flex items-center justify-center transition-colors"
+                >
+                  <ChevronLeft class="size-4" />
+                </button>
+                <button
+                  type="button"
+                  aria-label="Next Sponsor"
+                  onclick={() => (sponsorIndex = (sponsorIndex + 1) % previousSponsors.length)}
+                  class="size-8 rounded-lg bg-muted hover:bg-muted/80 text-foreground flex items-center justify-center transition-colors"
+                >
+                  <ChevronRight class="size-4" />
+                </button>
+              </div>
+            </div>
+
+            <!-- Slideshow Content -->
+            {#if currentSponsor}
+              <div class="space-y-5 transition-all duration-500">
+                <!-- Sponsor Logo Showcase -->
+                <div class="relative rounded-2xl overflow-hidden aspect-4/3 bg-card border-2 border-border/60 flex items-center justify-center p-8 shadow-inner group-hover:border-blue-500/30 transition-colors">
+                  <div class="absolute top-3 right-3">
+                    <Badge class="bg-blue-500 text-white font-extrabold text-[10px] uppercase tracking-wider">
+                      {currentSponsor.category}
+                    </Badge>
+                  </div>
+                  <img
+                    src={currentSponsor.logo}
+                    alt={currentSponsor.name}
+                    class="max-h-24 w-auto max-w-[80%] object-contain filter drop-shadow-md transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div class="absolute bottom-3 left-3">
+                    <Badge variant="outline" class="text-[9px] font-semibold uppercase tracking-wider bg-background/80 backdrop-blur-sm">
+                      {currentSponsor.sector}
+                    </Badge>
+                  </div>
+                </div>
+
+                <!-- Sponsor Name & Impact Details -->
+                <div class="space-y-2 p-3.5 rounded-xl bg-muted/30 border border-border/40">
+                  <div class="flex items-center justify-between">
+                    <h4 class="text-base font-extrabold text-foreground">
+                      {currentSponsor.name}
+                    </h4>
+                    <span class="text-[11px] font-bold text-blue-600 dark:text-blue-400">
+                      {currentSponsor.badge}
+                    </span>
+                  </div>
+                  <p class="text-xs text-muted-foreground font-medium leading-relaxed">
+                    {currentSponsor.desc}
+                  </p>
+                </div>
+              </div>
+            {/if}
+          </div>
+
+          <!-- Slide Controls & Indicator Footer -->
+          <div class="pt-6 mt-6 border-t border-border/60 flex items-center justify-between">
+            <div class="flex items-center gap-1.5">
+              {#each previousSponsors as _, i}
+                <button
+                  type="button"
+                  aria-label={`Go to sponsor slide ${i + 1}`}
+                  onclick={() => (sponsorIndex = i)}
+                  class={cn(
+                    "h-1.5 rounded-full transition-all duration-300",
+                    sponsorIndex === i ? "w-6 bg-blue-500" : "w-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                  )}
+                ></button>
+              {/each}
+            </div>
+            <a href="/awards/sponsorship" class="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+              Become a Sponsor
+              <ArrowUpRight class="size-3.5" />
+            </a>
+          </div>
+        </div>
+
+        <!-- Box 3: Previous Winners -->
+        <div 
+          class="rounded-3xl border-2 border-border/70 bg-card p-6 lg:p-8 flex flex-col justify-between shadow-xl hover:shadow-2xl hover:border-emerald-500/40 transition-all duration-300 relative group overflow-hidden"
+          onmouseenter={() => (isWinnerPaused = true)}
+          onmouseleave={() => (isWinnerPaused = false)}
+          role="region"
+          aria-label="Previous Winners Slideshow"
+        >
+          <div class="space-y-6">
+            <!-- Box Header -->
+            <div class="flex items-center justify-between pb-4 border-b border-border/60">
+              <div class="flex items-center gap-3">
+                <div class="size-11 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-bold">
+                  <Award class="size-5" />
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-foreground">Previous Winners</h3>
+                  <p class="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Hall of Fame</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <button
+                  type="button"
+                  aria-label="Previous Winner"
+                  onclick={() => (winnerIndex = (winnerIndex - 1 + previousWinners.length) % previousWinners.length)}
+                  class="size-8 rounded-lg bg-muted hover:bg-muted/80 text-foreground flex items-center justify-center transition-colors"
+                >
+                  <ChevronLeft class="size-4" />
+                </button>
+                <button
+                  type="button"
+                  aria-label="Next Winner"
+                  onclick={() => (winnerIndex = (winnerIndex + 1) % previousWinners.length)}
+                  class="size-8 rounded-lg bg-muted hover:bg-muted/80 text-foreground flex items-center justify-center transition-colors"
+                >
+                  <ChevronRight class="size-4" />
+                </button>
+              </div>
+            </div>
+
+            <!-- Slideshow Content -->
+            {#if currentWinner}
+              <div class="space-y-5 transition-all duration-500">
+                <!-- Winner Portrait & Golden Badge -->
+                <div class="relative rounded-2xl overflow-hidden aspect-4/3 bg-muted/60 border border-border/60 shadow-inner group-hover:border-emerald-500/30 transition-colors">
+                  <img
+                    src={currentWinner.image}
+                    alt={currentWinner.name}
+                    class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent flex flex-col justify-end p-4 text-white">
+                    <div class="flex items-center gap-2 mb-1.5">
+                      <Badge class="bg-emerald-500 text-slate-950 font-extrabold text-[10px] uppercase tracking-wider">
+                        {currentWinner.awardType}
+                      </Badge>
+                      <Badge variant="outline" class="border-white/30 text-white font-bold text-[9px]">
+                        {currentWinner.year} Edition
+                      </Badge>
+                    </div>
+                    <h4 class="text-lg font-extrabold tracking-tight leading-snug text-white">
+                      {currentWinner.name}
+                    </h4>
+                    <p class="text-xs text-emerald-200/90 font-semibold line-clamp-1">
+                      {currentWinner.org}
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Winner Achievement Details -->
+                <div class="space-y-2 p-3.5 rounded-xl bg-muted/30 border border-border/40">
+                  <div class="flex items-center gap-2 text-xs font-bold text-foreground">
+                    <Trophy class="size-3.5 text-amber-500 shrink-0" />
+                    <span class="line-clamp-1">{currentWinner.awardType}</span>
+                  </div>
+                  <p class="text-xs text-muted-foreground font-medium leading-relaxed line-clamp-2">
+                    {currentWinner.desc}
+                  </p>
+                </div>
+              </div>
+            {/if}
+          </div>
+
+          <!-- Slide Controls & Indicator Footer -->
+          <div class="pt-6 mt-6 border-t border-border/60 flex items-center justify-between">
+            <div class="flex items-center gap-1.5">
+              {#each previousWinners as _, i}
+                <button
+                  type="button"
+                  aria-label={`Go to winner slide ${i + 1}`}
+                  onclick={() => (winnerIndex = i)}
+                  class={cn(
+                    "h-1.5 rounded-full transition-all duration-300",
+                    winnerIndex === i ? "w-6 bg-emerald-500" : "w-1.5 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                  )}
+                ></button>
+              {/each}
+            </div>
+            <a href="/awards/winners" class="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+              View All Winners
+              <ArrowUpRight class="size-3.5" />
+            </a>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
