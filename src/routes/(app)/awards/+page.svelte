@@ -370,6 +370,22 @@
     }
   ];
 
+  // 2026 OFFICIAL SPONSORS (NO TAGS)
+  const officialSponsors = [
+    {
+      name: "MTN",
+      logo: "/partners/mtn.png"
+    },
+    {
+      name: "Interswitch",
+      logo: "/partners/interswitch.png"
+    },
+    {
+      name: "FirstBank",
+      logo: "/partners/firstbank.jpg"
+    }
+  ];
+
   // Slideshow States
   let speakerIndex = $state(0);
   let sponsorIndex = $state(0);
@@ -757,6 +773,45 @@
     </div>
   </section>
 
+  <!-- 2026 Official Sponsors Horizontal Showcase Section -->
+  <section class="py-16 bg-muted/30 border-t border-border/40 relative overflow-hidden">
+    <div class="container mx-auto px-4 max-w-7xl mb-8">
+      <div class="flex items-center justify-between gap-6 pb-4 border-b border-border/60">
+        <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight text-foreground">
+          Our Official Sponsors
+        </h2>
+
+        <Button href="/awards/sponsorship" variant="outline" size="sm" class="rounded-xl font-bold gap-2 text-xs">
+          <Building2 class="size-4 text-primary" />
+          Become a Sponsor
+          <ArrowUpRight class="size-3.5" />
+        </Button>
+      </div>
+    </div>
+
+    <!-- Infinite Scrolling Horizontal Marquee Carousel -->
+    <div class="relative w-full overflow-hidden py-4 group">
+      <!-- Gradient Fade Edges -->
+      <div class="absolute left-0 top-0 bottom-0 w-28 bg-gradient-to-r from-background via-background/70 to-transparent z-10 pointer-events-none"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-28 bg-gradient-to-l from-background via-background/70 to-transparent z-10 pointer-events-none"></div>
+
+      <div class="animate-marquee flex gap-8 items-center">
+        {#each [...officialSponsors, ...officialSponsors, ...officialSponsors, ...officialSponsors] as sponsor}
+          <div class="shrink-0 w-72 md:w-80 h-32 p-4 rounded-2xl bg-card border-2 border-border/80 hover:border-primary shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group/card">
+            <div class="w-full h-full bg-white dark:bg-white/95 rounded-xl p-4 flex items-center justify-center border border-border/40 shadow-inner">
+              <img
+                src={sponsor.logo}
+                alt={sponsor.name}
+                class="max-h-16 md:max-h-20 w-auto max-w-[85%] object-contain filter drop-shadow-md group-hover/card:scale-110 transition-transform duration-300"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        {/each}
+      </div>
+    </div>
+  </section>
+
   <!-- Venue Section -->
   <section class="py-24 bg-background border-t border-border/40">
     <div class="container mx-auto px-4 max-w-5xl">
@@ -812,13 +867,10 @@
 
     <div class="container mx-auto px-4 relative z-10">
       <!-- Section Header -->
-      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+      <div class="text-center max-w-3xl mx-auto mb-16">
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-foreground">
           Recap of Previous Edition
         </h2>
-        <p class="text-lg text-muted-foreground font-medium">
-          A retrospective look at the distinguished keynote speakers, prestigious corporate sponsors, and celebrated industry winners from our past editions.
-        </p>
       </div>
 
       <!-- 3 Slideshow Boxes Grid -->
@@ -839,10 +891,7 @@
                 <div class="size-11 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center font-bold">
                   <Mic class="size-5" />
                 </div>
-                <div>
-                  <h3 class="text-xl font-bold text-foreground">Previous Speakers</h3>
-                  <p class="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Thought Leaders</p>
-                </div>
+                <h3 class="text-xl font-bold text-foreground">Previous Speakers</h3>
               </div>
               <div class="flex items-center gap-1.5">
                 <button
@@ -866,8 +915,8 @@
 
             <!-- Slideshow Content -->
             {#if currentSpeaker}
-              <div class="space-y-5 transition-all duration-500">
-                <!-- Speaker Photo & Badge -->
+              <div class="transition-all duration-500">
+                <!-- Speaker Photo & Overlay -->
                 <div class="relative rounded-2xl overflow-hidden aspect-4/3 bg-muted/60 border border-border/60 shadow-inner group-hover:border-amber-500/30 transition-colors">
                   <img
                     src={currentSpeaker.image}
@@ -885,18 +934,9 @@
                     <p class="text-xs text-amber-200/90 font-semibold line-clamp-1">
                       {currentSpeaker.role}
                     </p>
-                  </div>
-                </div>
-
-                <!-- Organization & Topic Details -->
-                <div class="space-y-2 p-3.5 rounded-xl bg-muted/30 border border-border/40">
-                  <div class="flex items-center gap-2 text-xs font-bold text-foreground">
-                    <Building2 class="size-3.5 text-primary shrink-0" />
-                    <span class="line-clamp-1">{currentSpeaker.org}</span>
-                  </div>
-                  <div class="flex items-start gap-2 text-xs text-muted-foreground font-medium pt-1 border-t border-border/30">
-                    <Sparkles class="size-3.5 text-amber-500 shrink-0 mt-0.5" />
-                    <span class="line-clamp-2 leading-relaxed">{currentSpeaker.topic}</span>
+                    <p class="text-[11px] text-white/80 font-medium line-clamp-1">
+                      {currentSpeaker.org}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -939,10 +979,7 @@
                 <div class="size-11 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center font-bold">
                   <Handshake class="size-5" />
                 </div>
-                <div>
-                  <h3 class="text-xl font-bold text-foreground">Previous Sponsors</h3>
-                  <p class="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Corporate Partners</p>
-                </div>
+                <h3 class="text-xl font-bold text-foreground">Previous Sponsors</h3>
               </div>
               <div class="flex items-center gap-1.5">
                 <button
@@ -966,40 +1003,20 @@
 
             <!-- Slideshow Content -->
             {#if currentSponsor}
-              <div class="space-y-5 transition-all duration-500">
+              <div class="transition-all duration-500">
                 <!-- Sponsor Logo Showcase -->
-                <div class="relative rounded-2xl overflow-hidden aspect-4/3 bg-card border-2 border-border/60 flex items-center justify-center p-8 shadow-inner group-hover:border-blue-500/30 transition-colors">
-                  <div class="absolute top-3 right-3">
-                    <Badge class="bg-blue-500 text-white font-extrabold text-[10px] uppercase tracking-wider">
-                      {currentSponsor.category}
-                    </Badge>
-                  </div>
+                <div class="relative rounded-2xl overflow-hidden aspect-4/3 bg-white dark:bg-white/95 border-2 border-border/60 flex flex-col items-center justify-center p-6 shadow-inner group-hover:border-blue-500/30 transition-colors">
                   <img
                     src={currentSponsor.logo}
                     alt={currentSponsor.name}
                     class="max-h-24 w-auto max-w-[80%] object-contain filter drop-shadow-md transition-transform duration-700 group-hover:scale-110"
                     loading="lazy"
                   />
-                  <div class="absolute bottom-3 left-3">
-                    <Badge variant="outline" class="text-[9px] font-semibold uppercase tracking-wider bg-background/80 backdrop-blur-sm">
-                      {currentSponsor.sector}
-                    </Badge>
-                  </div>
-                </div>
-
-                <!-- Sponsor Name & Impact Details -->
-                <div class="space-y-2 p-3.5 rounded-xl bg-muted/30 border border-border/40">
-                  <div class="flex items-center justify-between">
-                    <h4 class="text-base font-extrabold text-foreground">
+                  <div class="mt-4 text-center">
+                    <h4 class="text-base font-extrabold text-slate-900">
                       {currentSponsor.name}
                     </h4>
-                    <span class="text-[11px] font-bold text-blue-600 dark:text-blue-400">
-                      {currentSponsor.badge}
-                    </span>
                   </div>
-                  <p class="text-xs text-muted-foreground font-medium leading-relaxed">
-                    {currentSponsor.desc}
-                  </p>
                 </div>
               </div>
             {/if}
@@ -1042,10 +1059,7 @@
                 <div class="size-11 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-bold">
                   <Award class="size-5" />
                 </div>
-                <div>
-                  <h3 class="text-xl font-bold text-foreground">Previous Winners</h3>
-                  <p class="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">Hall of Fame</p>
-                </div>
+                <h3 class="text-xl font-bold text-foreground">Previous Winners</h3>
               </div>
               <div class="flex items-center gap-1.5">
                 <button
@@ -1069,7 +1083,7 @@
 
             <!-- Slideshow Content -->
             {#if currentWinner}
-              <div class="space-y-5 transition-all duration-500">
+              <div class="transition-all duration-500">
                 <!-- Winner Portrait & Golden Badge -->
                 <div class="relative rounded-2xl overflow-hidden aspect-4/3 bg-muted/60 border border-border/60 shadow-inner group-hover:border-emerald-500/30 transition-colors">
                   <img
@@ -1094,17 +1108,6 @@
                       {currentWinner.org}
                     </p>
                   </div>
-                </div>
-
-                <!-- Winner Achievement Details -->
-                <div class="space-y-2 p-3.5 rounded-xl bg-muted/30 border border-border/40">
-                  <div class="flex items-center gap-2 text-xs font-bold text-foreground">
-                    <Trophy class="size-3.5 text-amber-500 shrink-0" />
-                    <span class="line-clamp-1">{currentWinner.awardType}</span>
-                  </div>
-                  <p class="text-xs text-muted-foreground font-medium leading-relaxed line-clamp-2">
-                    {currentWinner.desc}
-                  </p>
                 </div>
               </div>
             {/if}
@@ -1172,3 +1175,24 @@
     </div>
   </section>
 </div>
+
+<style>
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+  }
+
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+</style>
