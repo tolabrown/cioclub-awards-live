@@ -303,6 +303,215 @@
     }
   ];
 
+  // ============================================
+  // 2026 CONFERENCE SPEAKERS (KEYNOTE & PANELS)
+  // ============================================
+
+  const keynoteSpeakers = [
+    {
+      id: 1,
+      title: "Opening Ministerial Keynote",
+      role: "Ministerial Keynote Address",
+      organization: "Federal Ministry of Communications, Innovation & Digital Economy",
+      topic: "Pan-African Digital Sovereignty: Policy, Infrastructure & The Future Economy",
+      category: "Government & Policy",
+      badge: "Opening Keynote",
+      placeholderIcon: Mic,
+      gradient: "from-amber-500/20 via-primary/10 to-transparent",
+      badgeColor: "bg-amber-500 text-slate-950",
+    },
+    {
+      id: 2,
+      title: "Banking & FinTech Keynote",
+      role: "Financial Services Keynote Address",
+      organization: "Leading Tier-1 Banking Institution & Financial Switch",
+      topic: "The Future of Open Banking, AI-Driven Risk & Cross-Border Payments in Africa",
+      category: "Fintech & Banking",
+      badge: "Industry Keynote",
+      placeholderIcon: Building2,
+      gradient: "from-blue-500/20 via-primary/10 to-transparent",
+      badgeColor: "bg-blue-500 text-white",
+    },
+    {
+      id: 3,
+      title: "Telecommunications & Cloud Keynote",
+      role: "Chief Executive Keynote Address",
+      organization: "Pan-African Telecommunications & Infrastructure Giant",
+      topic: "Hyper-Connectivity: Expanding 5G, Terrestrial Fiber & Cloud Edge Across Africa",
+      category: "Telecom & Cloud",
+      badge: "Tech Visionary",
+      placeholderIcon: Globe,
+      gradient: "from-emerald-500/20 via-primary/10 to-transparent",
+      badgeColor: "bg-emerald-500 text-slate-950",
+    },
+    {
+      id: 4,
+      title: "Enterprise AI & Cloud Keynote",
+      role: "Global Technology Keynote Address",
+      organization: "Multinational Enterprise Cloud & AI Provider",
+      topic: "Scalable Enterprise AI: From Predictive Insights to Autonomous Operations",
+      category: "Artificial Intelligence",
+      badge: "Innovation Keynote",
+      placeholderIcon: Sparkles,
+      gradient: "from-purple-500/20 via-primary/10 to-transparent",
+      badgeColor: "bg-purple-500 text-white",
+    },
+    {
+      id: 5,
+      title: "CIO Club Pan-African Keynote",
+      role: "Convener & Board Keynote Address",
+      organization: "The CIO Club Africa & Edniesal Consulting",
+      topic: "Leading The Next Africa: Transforming C-Suite IT Leadership & Corporate Governance",
+      category: "Executive Leadership",
+      badge: "Closing Keynote",
+      placeholderIcon: Trophy,
+      gradient: "from-amber-500/25 via-primary/15 to-transparent",
+      badgeColor: "bg-amber-500 text-slate-950",
+    }
+  ];
+
+  const panelSessions = [
+    {
+      id: "panel-1",
+      track: "Panel Session 01",
+      title: "Fintech Evolution & High-Velocity Payment Infrastructure",
+      desc: "Exploring real-time switches, digital currency settlement, fraud mitigation, and next-generation consumer banking.",
+      icon: Handshake,
+      moderator: "To Be Announced",
+      panelists: ["Fintech CTO", "Digital Bank Head", "Payment Switch CEO", "Regulatory Leader"],
+      badge: "Fintech Track",
+      color: "border-blue-500/40 bg-blue-500/5"
+    },
+    {
+      id: "panel-2",
+      track: "Panel Session 02",
+      title: "Cyber Resilience & Zero-Trust Architecture for Enterprise",
+      desc: "Mitigating sophisticated threats, safeguarding critical sovereign infrastructure, and enforcing proactive cyber defense.",
+      icon: Shield,
+      moderator: "To Be Announced",
+      panelists: ["Chief Information Security Officer", "Cloud Security Lead", "Enterprise Risk Director", "Compliance Head"],
+      badge: "Cybersecurity Track",
+      color: "border-emerald-500/40 bg-emerald-500/5"
+    },
+    {
+      id: "panel-3",
+      track: "Panel Session 03",
+      title: "Data Sovereignty, AI Models & Hyperscale Infrastructure",
+      desc: "Harnessing localized data centres, African language LLMs, and enterprise AI orchestration for scalable ROI.",
+      icon: Sparkles,
+      moderator: "To Be Announced",
+      panelists: ["Chief Data Officer", "AI Research Lead", "Data Centre Executive", "Infrastructure Architect"],
+      badge: "AI & Data Track",
+      color: "border-purple-500/40 bg-purple-500/5"
+    },
+    {
+      id: "panel-4",
+      track: "Panel Session 04",
+      title: "Executive Tech Leadership: Boardroom Alignment & ROI",
+      desc: "Navigating IT budget optimization, C-Suite communication, executive talent retention, and agile digital strategy.",
+      icon: Users,
+      moderator: "To Be Announced",
+      panelists: ["Group CIO", "Managing Director", "Chief Transformation Officer", "Board Advisor"],
+      badge: "Leadership Track",
+      color: "border-amber-500/40 bg-amber-500/5"
+    }
+  ];
+
+  // ============================================
+  // OFFICIAL SPONSORS & PARTNERS (HORIZONTAL SHOWCASE)
+  // ============================================
+
+  const officialSponsors = [
+    {
+      name: "Interswitch",
+      tier: "Official Fintech Sponsor",
+      sector: "Digital Payments & Switching",
+      logo: "/partners/interswitch.png",
+      featured: true,
+      badge: "Official Fintech Partner"
+    },
+    {
+      name: "FirstBank",
+      tier: "Lead Financial Partner",
+      sector: "Banking & Financial Services",
+      logo: "/partners/firstbank.jpg",
+      featured: true,
+      badge: "Lead Financial Partner"
+    },
+    {
+      name: "MTN",
+      tier: "Headline Sponsor",
+      sector: "Telecommunications & 5G",
+      logo: "/partners/mtn.png",
+      featured: true,
+      badge: "Headline Sponsor"
+    },
+    {
+      name: "UniCloud Africa",
+      tier: "Official Cloud Partner",
+      sector: "Cloud Infrastructure",
+      logo: "/partners/unicloud_africa.webp",
+      featured: true,
+      badge: "Cloud Partner"
+    },
+    {
+      name: "FrieslandCampina",
+      tier: "Platinum Sponsor",
+      sector: "FMCG / Nutrition",
+      logo: "/partners/friesland_campina_nin.webp",
+      badge: "Platinum Partner"
+    },
+    {
+      name: "Nigerian Breweries PLC",
+      tier: "Gold Sponsor",
+      sector: "Manufacturing",
+      logo: "/partners/nigerian_breweries_plc.webp",
+      badge: "Gold Partner"
+    },
+    {
+      name: "Nestle Nigeria",
+      tier: "Corporate Partner",
+      sector: "Food & Beverage",
+      logo: "/partners/nestle_nigeria.webp",
+      badge: "Corporate Partner"
+    },
+    {
+      name: "NBC (Coca-Cola)",
+      tier: "Enterprise Partner",
+      sector: "Bottling & Distribution",
+      logo: "/partners/nbc.webp",
+      badge: "Enterprise Partner"
+    },
+    {
+      name: "Guinness Nigeria",
+      tier: "Strategic Partner",
+      sector: "Consumer Goods",
+      logo: "/partners/guinness_nigeria.webp",
+      badge: "Strategic Partner"
+    },
+    {
+      name: "Golden Penny Foods",
+      tier: "Corporate Sponsor",
+      sector: "Agro-Allied & FMCG",
+      logo: "/partners/goldenpenny_foods.webp",
+      badge: "Corporate Sponsor"
+    },
+    {
+      name: "PFS",
+      tier: "Fintech Partner",
+      sector: "Financial Solutions",
+      logo: "/partners/pfs.webp",
+      badge: "Fintech Partner"
+    },
+    {
+      name: "SBC (Seven-Up)",
+      tier: "Event Partner",
+      sector: "Manufacturing",
+      logo: "/partners/sbc.webp",
+      badge: "Event Partner"
+    }
+  ];
+
   // Slideshow States
   let speakerIndex = $state(0);
   let sponsorIndex = $state(0);
@@ -555,6 +764,178 @@
     </div>
   </section>
 
+  <!-- Conference Speakers Section -->
+  <section id="speakers" class="py-24 bg-gradient-to-b from-background via-muted/20 to-background border-t border-border/40 relative overflow-hidden">
+    <div class="absolute top-1/4 -left-40 size-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-1/4 -right-40 size-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="container mx-auto px-4 relative z-10 max-w-7xl">
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-20">
+        <Badge variant="outline" class="px-4 py-1.5 text-xs font-bold uppercase tracking-widest border-primary/30 text-primary bg-primary/5">
+          <Mic class="size-3.5 mr-2" />
+          Conference Speakers
+        </Badge>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight">
+          Distinguished Speakers & Thought Leaders
+        </h2>
+        <p class="text-lg text-muted-foreground font-medium">
+          Hear from visionary policymakers, C-Suite leaders, and tech pioneers shaping the next era of enterprise technology across Africa.
+        </p>
+      </div>
+
+      <!-- 1. Keynote Speakers -->
+      <div class="space-y-8 mb-24">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-border/60">
+          <div class="space-y-1">
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-amber-500">
+              <Sparkles class="size-4" />
+              Main Stage Headliners
+            </div>
+            <h3 class="text-2xl md:text-3xl font-extrabold text-foreground tracking-tight">
+              1. Keynote Speakers
+            </h3>
+          </div>
+          <p class="text-xs text-muted-foreground font-semibold uppercase tracking-wider">
+            5 Featured Keynote Addresses
+          </p>
+        </div>
+
+        <!-- 5 Keynote Speaker Boxes Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          {#each keynoteSpeakers as keynote}
+            <div class="group relative rounded-3xl border-2 border-border/70 bg-card p-6 flex flex-col justify-between shadow-lg hover:shadow-2xl hover:border-amber-500/50 transition-all duration-300 overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-b {keynote.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+              <div class="relative z-10 space-y-5">
+                <!-- Header Badge & Number -->
+                <div class="flex items-center justify-between">
+                  <Badge class="{keynote.badgeColor} font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-0.5 shadow-sm">
+                    {keynote.badge}
+                  </Badge>
+                  <span class="text-xs font-mono font-extrabold text-muted-foreground/60">
+                    0{keynote.id}
+                  </span>
+                </div>
+
+                <!-- Avatar / Placeholder Frame -->
+                <div class="relative aspect-square rounded-2xl bg-muted/60 border-2 border-dashed border-border/80 flex flex-col items-center justify-center text-center p-4 group-hover:border-amber-500/40 transition-colors">
+                  <div class="size-14 rounded-2xl bg-background/80 border border-border/60 flex items-center justify-center text-primary shadow-inner mb-2 group-hover:scale-110 transition-transform">
+                    <keynote.placeholderIcon class="size-7 text-amber-500" />
+                  </div>
+                  <Badge variant="outline" class="text-[9px] font-bold uppercase tracking-widest bg-background/60 border-primary/20 text-primary">
+                    To Be Announced
+                  </Badge>
+                </div>
+
+                <!-- Content Details -->
+                <div class="space-y-2">
+                  <h4 class="text-base font-extrabold text-foreground leading-snug group-hover:text-amber-500 transition-colors">
+                    {keynote.title}
+                  </h4>
+                  <p class="text-xs font-semibold text-primary line-clamp-1">
+                    {keynote.role}
+                  </p>
+                  <p class="text-[11px] text-muted-foreground font-medium line-clamp-2 leading-relaxed">
+                    {keynote.organization}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Topic Banner Footer -->
+              <div class="relative z-10 pt-4 mt-4 border-t border-border/40">
+                <p class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider mb-1 flex items-center gap-1">
+                  <Sparkles class="size-3 text-amber-500" /> Session Topic:
+                </p>
+                <p class="text-xs font-semibold text-foreground/90 line-clamp-2 leading-relaxed italic">
+                  "{keynote.topic}"
+                </p>
+              </div>
+            </div>
+          {/each}
+        </div>
+      </div>
+
+      <!-- 2. Panel Speakers & Discussions -->
+      <div class="space-y-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-border/60">
+          <div class="space-y-1">
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-blue-500">
+              <Users class="size-4" />
+              Executive Breakout Sessions
+            </div>
+            <h3 class="text-2xl md:text-3xl font-extrabold text-foreground tracking-tight">
+              2. Panel Speakers & Deep-Dive Tracks
+            </h3>
+          </div>
+          <p class="text-xs text-muted-foreground font-semibold uppercase tracking-wider">
+            Interactive Cross-Industry Discussions
+          </p>
+        </div>
+
+        <!-- Panel Sessions Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {#each panelSessions as panel}
+            <div class="rounded-3xl border-2 {panel.color} bg-card p-6 lg:p-8 flex flex-col justify-between shadow-lg hover:shadow-xl transition-all duration-300 space-y-6">
+              <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <div class="size-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center font-bold">
+                      <panel.icon class="size-6" />
+                    </div>
+                    <div>
+                      <span class="text-xs font-extrabold uppercase tracking-wider text-primary block">
+                        {panel.track}
+                      </span>
+                      <h4 class="text-xl font-extrabold text-foreground tracking-tight">
+                        {panel.title}
+                      </h4>
+                    </div>
+                  </div>
+                  <Badge variant="outline" class="font-bold text-[10px] uppercase tracking-wider shrink-0">
+                    {panel.badge}
+                  </Badge>
+                </div>
+
+                <p class="text-sm text-muted-foreground leading-relaxed font-medium">
+                  {panel.desc}
+                </p>
+
+                <!-- Panelists Placeholder Slots -->
+                <div class="pt-2 space-y-2.5">
+                  <p class="text-xs font-bold text-foreground uppercase tracking-wider flex items-center gap-1.5">
+                    <Users class="size-3.5 text-primary" /> Panel Composition (4 Panellists):
+                  </p>
+                  <div class="grid grid-cols-2 gap-2.5">
+                    {#each panel.panelists as p}
+                      <div class="p-2.5 rounded-xl bg-muted/40 border border-border/60 flex items-center gap-2.5">
+                        <div class="size-7 rounded-lg bg-background border border-border/60 flex items-center justify-center text-muted-foreground shrink-0 text-[10px] font-bold">
+                          TBA
+                        </div>
+                        <span class="text-xs font-semibold text-foreground/90 truncate">
+                          {p}
+                        </span>
+                      </div>
+                    {/each}
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-4 border-t border-border/40 flex items-center justify-between text-xs font-bold">
+                <span class="text-muted-foreground">
+                  Moderator: <span class="text-foreground">{panel.moderator}</span>
+                </span>
+                <span class="inline-flex items-center gap-1 text-primary">
+                  Main Stage / Breakout
+                </span>
+              </div>
+            </div>
+          {/each}
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Why Attend Section -->
   <section class="py-24 bg-muted/20 border-t border-border/40">
     <div class="container mx-auto px-4">
@@ -610,6 +991,64 @@
             </Button>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Official Sponsors Horizontal Slideshow Section -->
+  <section class="py-20 bg-muted/30 border-t border-border/40 relative overflow-hidden">
+    <div class="container mx-auto px-4 max-w-7xl mb-12">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-border/60">
+        <div class="space-y-2">
+          <Badge variant="outline" class="px-4 py-1.5 text-xs font-bold uppercase tracking-widest border-blue-500/40 text-blue-600 dark:text-blue-400 bg-blue-500/10">
+            <Handshake class="size-3.5 mr-2" />
+            Official Event Partners
+          </Badge>
+          <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
+            Our Esteemed Sponsors & Partners
+          </h2>
+          <p class="text-base text-muted-foreground font-medium max-w-2xl">
+            Supported by leading financial institutions, telecommunications pioneers, and technology innovators driving Africa's digital transformation.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3 shrink-0">
+          <Button href="/awards/sponsorship" variant="outline" size="sm" class="rounded-xl font-bold gap-2 text-xs">
+            <Building2 class="size-4 text-primary" />
+            Become a Sponsor
+            <ArrowUpRight class="size-3.5" />
+          </Button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Infinite Scrolling Horizontal Marquee Carousel -->
+    <div class="relative w-full overflow-hidden py-4 group">
+      <!-- Gradient Fade Edges -->
+      <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background via-background/60 to-transparent z-10 pointer-events-none"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background via-background/60 to-transparent z-10 pointer-events-none"></div>
+
+      <div class="animate-marquee flex gap-6 items-center">
+        {#each [...officialSponsors, ...officialSponsors] as sponsor, idx}
+          <div class="shrink-0 w-64 md:w-72 p-5 rounded-2xl bg-card border-2 border-border/70 hover:border-primary/50 shadow-md hover:shadow-xl transition-all duration-300 space-y-3 flex flex-col justify-between group/card">
+            <div class="h-20 bg-white dark:bg-white/95 rounded-xl p-3 flex items-center justify-center border border-border/40 shadow-inner">
+              <img
+                src={sponsor.logo}
+                alt={sponsor.name}
+                class="max-h-14 w-auto max-w-[85%] object-contain filter drop-shadow-sm group-hover/card:scale-105 transition-transform"
+                loading="lazy"
+              />
+            </div>
+            <div class="flex items-center justify-between pt-1 border-t border-border/40">
+              <span class="text-xs font-extrabold text-foreground truncate">
+                {sponsor.name}
+              </span>
+              <Badge variant="outline" class="text-[9px] font-bold uppercase tracking-wider shrink-0 bg-primary/5 text-primary border-primary/20">
+                {sponsor.tier}
+              </Badge>
+            </div>
+          </div>
+        {/each}
       </div>
     </div>
   </section>
@@ -1033,3 +1472,24 @@
     </div>
   </section>
 </div>
+
+<style>
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 35s linear infinite;
+  }
+
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+</style>
