@@ -418,97 +418,33 @@
   ];
 
   // ============================================
-  // OFFICIAL SPONSORS & PARTNERS (HORIZONTAL SHOWCASE)
+  // 2026 OFFICIAL SPONSORS (CONFIRMED)
   // ============================================
 
   const officialSponsors = [
+    {
+      name: "MTN",
+      tier: "Headline Sponsor",
+      sector: "Telecommunications & Connectivity",
+      logo: "/partners/mtn.png",
+      badge: "Headline Partner",
+      desc: "Leading telecommunications and digital infrastructure powering enterprise connectivity across Africa."
+    },
     {
       name: "Interswitch",
       tier: "Official Fintech Sponsor",
       sector: "Digital Payments & Switching",
       logo: "/partners/interswitch.png",
-      featured: true,
-      badge: "Official Fintech Partner"
+      badge: "Official Fintech Partner",
+      desc: "Africa's leading integrated digital payments and commerce company driving electronic transactions."
     },
     {
       name: "FirstBank",
       tier: "Lead Financial Partner",
       sector: "Banking & Financial Services",
       logo: "/partners/firstbank.jpg",
-      featured: true,
-      badge: "Lead Financial Partner"
-    },
-    {
-      name: "MTN",
-      tier: "Headline Sponsor",
-      sector: "Telecommunications & 5G",
-      logo: "/partners/mtn.png",
-      featured: true,
-      badge: "Headline Sponsor"
-    },
-    {
-      name: "UniCloud Africa",
-      tier: "Official Cloud Partner",
-      sector: "Cloud Infrastructure",
-      logo: "/partners/unicloud_africa.webp",
-      featured: true,
-      badge: "Cloud Partner"
-    },
-    {
-      name: "FrieslandCampina",
-      tier: "Platinum Sponsor",
-      sector: "FMCG / Nutrition",
-      logo: "/partners/friesland_campina_nin.webp",
-      badge: "Platinum Partner"
-    },
-    {
-      name: "Nigerian Breweries PLC",
-      tier: "Gold Sponsor",
-      sector: "Manufacturing",
-      logo: "/partners/nigerian_breweries_plc.webp",
-      badge: "Gold Partner"
-    },
-    {
-      name: "Nestle Nigeria",
-      tier: "Corporate Partner",
-      sector: "Food & Beverage",
-      logo: "/partners/nestle_nigeria.webp",
-      badge: "Corporate Partner"
-    },
-    {
-      name: "NBC (Coca-Cola)",
-      tier: "Enterprise Partner",
-      sector: "Bottling & Distribution",
-      logo: "/partners/nbc.webp",
-      badge: "Enterprise Partner"
-    },
-    {
-      name: "Guinness Nigeria",
-      tier: "Strategic Partner",
-      sector: "Consumer Goods",
-      logo: "/partners/guinness_nigeria.webp",
-      badge: "Strategic Partner"
-    },
-    {
-      name: "Golden Penny Foods",
-      tier: "Corporate Sponsor",
-      sector: "Agro-Allied & FMCG",
-      logo: "/partners/goldenpenny_foods.webp",
-      badge: "Corporate Sponsor"
-    },
-    {
-      name: "PFS",
-      tier: "Fintech Partner",
-      sector: "Financial Solutions",
-      logo: "/partners/pfs.webp",
-      badge: "Fintech Partner"
-    },
-    {
-      name: "SBC (Seven-Up)",
-      tier: "Event Partner",
-      sector: "Manufacturing",
-      logo: "/partners/sbc.webp",
-      badge: "Event Partner"
+      badge: "Lead Financial Partner",
+      desc: "Premier banking institution with over 130 years of resilience, innovation, and digital banking leadership."
     }
   ];
 
@@ -995,20 +931,20 @@
     </div>
   </section>
 
-  <!-- Official Sponsors Horizontal Slideshow Section -->
+  <!-- Official Sponsors Section -->
   <section class="py-20 bg-muted/30 border-t border-border/40 relative overflow-hidden">
     <div class="container mx-auto px-4 max-w-7xl mb-12">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-border/60">
         <div class="space-y-2">
           <Badge variant="outline" class="px-4 py-1.5 text-xs font-bold uppercase tracking-widest border-blue-500/40 text-blue-600 dark:text-blue-400 bg-blue-500/10">
             <Handshake class="size-3.5 mr-2" />
-            Official Event Partners
+            2026 Official Sponsors
           </Badge>
           <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
-            Our Esteemed Sponsors & Partners
+            Our Official Sponsors & Partners
           </h2>
           <p class="text-base text-muted-foreground font-medium max-w-2xl">
-            Supported by leading financial institutions, telecommunications pioneers, and technology innovators driving Africa's digital transformation.
+            Proudly supported by Africa's premier financial institutions, digital switching pioneers, and telecommunications leaders.
           </p>
         </div>
 
@@ -1020,32 +956,83 @@
           </Button>
         </div>
       </div>
+
+      <!-- 3 Confirmed Sponsors Featured Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-4">
+        {#each officialSponsors as sponsor}
+          <div class="rounded-3xl border-2 border-border/80 bg-card p-6 lg:p-8 flex flex-col justify-between shadow-xl hover:shadow-2xl hover:border-primary/50 transition-all duration-300 space-y-6 group">
+            <div class="space-y-5">
+              <!-- Tier Badge -->
+              <div class="flex items-center justify-between">
+                <Badge class="bg-primary/10 text-primary border border-primary/20 font-extrabold text-[10px] uppercase tracking-wider">
+                  {sponsor.tier}
+                </Badge>
+                <span class="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">
+                  2026 Partner
+                </span>
+              </div>
+
+              <!-- High-Contrast Logo Container -->
+              <div class="h-28 bg-white dark:bg-white/95 rounded-2xl p-4 flex items-center justify-center border border-border/40 shadow-inner group-hover:scale-[1.02] transition-transform duration-300">
+                <img
+                  src={sponsor.logo}
+                  alt={sponsor.name}
+                  class="max-h-20 w-auto max-w-[85%] object-contain filter drop-shadow-sm"
+                  loading="lazy"
+                />
+              </div>
+
+              <!-- Details -->
+              <div class="space-y-2">
+                <h3 class="text-xl font-extrabold text-foreground">
+                  {sponsor.name}
+                </h3>
+                <p class="text-xs font-semibold text-primary">
+                  {sponsor.sector}
+                </p>
+                <p class="text-xs text-muted-foreground font-medium leading-relaxed">
+                  {sponsor.desc}
+                </p>
+              </div>
+            </div>
+
+            <!-- Footer Badge -->
+            <div class="pt-4 border-t border-border/40 flex items-center justify-between text-[11px] font-bold">
+              <span class="text-muted-foreground">Official Status:</span>
+              <span class="text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
+                <Star class="size-3 fill-emerald-500 text-emerald-500" />
+                Confirmed Sponsor
+              </span>
+            </div>
+          </div>
+        {/each}
+      </div>
     </div>
 
     <!-- Infinite Scrolling Horizontal Marquee Carousel -->
-    <div class="relative w-full overflow-hidden py-4 group">
+    <div class="relative w-full overflow-hidden py-4 group border-t border-border/30 bg-muted/20">
       <!-- Gradient Fade Edges -->
       <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background via-background/60 to-transparent z-10 pointer-events-none"></div>
       <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background via-background/60 to-transparent z-10 pointer-events-none"></div>
 
-      <div class="animate-marquee flex gap-6 items-center">
-        {#each [...officialSponsors, ...officialSponsors] as sponsor, idx}
-          <div class="shrink-0 w-64 md:w-72 p-5 rounded-2xl bg-card border-2 border-border/70 hover:border-primary/50 shadow-md hover:shadow-xl transition-all duration-300 space-y-3 flex flex-col justify-between group/card">
-            <div class="h-20 bg-white dark:bg-white/95 rounded-xl p-3 flex items-center justify-center border border-border/40 shadow-inner">
+      <div class="animate-marquee flex gap-8 items-center">
+        {#each [...officialSponsors, ...officialSponsors, ...officialSponsors, ...officialSponsors] as sponsor, idx}
+          <div class="shrink-0 w-64 md:w-72 p-4 rounded-2xl bg-card border border-border/70 hover:border-primary/50 shadow-sm hover:shadow-md transition-all duration-300 flex items-center gap-4 group/card">
+            <div class="size-16 bg-white dark:bg-white/95 rounded-xl p-2 shrink-0 flex items-center justify-center border border-border/40 shadow-inner">
               <img
                 src={sponsor.logo}
                 alt={sponsor.name}
-                class="max-h-14 w-auto max-w-[85%] object-contain filter drop-shadow-sm group-hover/card:scale-105 transition-transform"
+                class="max-h-12 w-auto max-w-[85%] object-contain filter drop-shadow-sm group-hover/card:scale-105 transition-transform"
                 loading="lazy"
               />
             </div>
-            <div class="flex items-center justify-between pt-1 border-t border-border/40">
-              <span class="text-xs font-extrabold text-foreground truncate">
+            <div class="overflow-hidden space-y-0.5">
+              <span class="text-xs font-extrabold text-foreground truncate block">
                 {sponsor.name}
               </span>
-              <Badge variant="outline" class="text-[9px] font-bold uppercase tracking-wider shrink-0 bg-primary/5 text-primary border-primary/20">
+              <span class="text-[10px] font-bold text-primary truncate block">
                 {sponsor.tier}
-              </Badge>
+              </span>
             </div>
           </div>
         {/each}
