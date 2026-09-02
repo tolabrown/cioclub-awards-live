@@ -941,7 +941,7 @@
             2026 Official Sponsors
           </Badge>
           <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
-            Our Official Sponsors & Partners
+            Our Official Sponsors
           </h2>
           <p class="text-base text-muted-foreground font-medium max-w-2xl">
             Proudly supported by Africa's premier financial institutions, digital switching pioneers, and telecommunications leaders.
