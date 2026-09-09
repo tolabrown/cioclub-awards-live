@@ -1,6 +1,6 @@
 import Logo from "$lib/components/icons/logo.svelte";
 import type { iFetchMeta } from "$lib/interface";
-import { FileText, LayoutDashboard, User, Users, Home, Book, Music, Heart, Globe, Lightbulb, Cross, Mail, ShieldCheck, MailSearch, Award, Trophy, Handshake, Building2, Activity } from "@lucide/svelte";
+import { FileText, LayoutDashboard, User, Users, Home, Book, Music, Heart, Globe, Lightbulb, Cross, Mail, ShieldCheck, MailSearch, Award, Trophy, Handshake, Building2, Activity, HeartHandshake } from "@lucide/svelte";
 
 export enum Role {
   ADMIN = 'admin',
@@ -305,6 +305,13 @@ export const getNavigation = (reference: string) => {
         roles: adminRoles,
         icon: Handshake,
         isActive: isActive("/admin/sponsorship"),
+      },
+      {
+        title: "Volunteers",
+        url: "/admin/volunteers",
+        roles: adminRoles,
+        icon: HeartHandshake,
+        isActive: isActive("/admin/volunteers"),
       },
       {
         title: "Activity Log",

@@ -17,6 +17,7 @@
     MessageSquare,
     Users,
     CreditCard,
+    HeartHandshake,
   } from "@lucide/svelte";
 
   let { data } = $props();
@@ -69,6 +70,13 @@
             class="gap-2 font-bold shadow-sm shrink-0"
           >
             <CreditCard class="size-4" /> Payments
+          </Button>
+          <Button
+            variant="outline"
+            href="/admin/volunteers"
+            class="gap-2 font-bold shadow-sm shrink-0 bg-amber-500/10 border-amber-500/30 text-amber-600 dark:text-amber-400 hover:bg-amber-500/20"
+          >
+            <HeartHandshake class="size-4" /> Volunteers
           </Button>
           <Button
             href="/admin/settings"
