@@ -400,21 +400,8 @@
                       >
                     </div>
                   </NavigationMenuLink> -->
-                  <NavigationMenuLink
-                    href="/awards/nominate"
-                    class="flex flex-row items-center gap-4 p-2 rounded-xl hover:bg-primary/5 transition-all group text-left"
-                  >
-                    <div
-                      class="size-9 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform"
-                    >
-                      <UserPlus class="size-5" />
-                    </div>
-                    <div class="flex flex-col">
-                      <span class="text-sm font-bold text-foreground"
-                        >Nominate here</span
-                      >
-                    </div>
-                  </NavigationMenuLink>
+                  <!-- Nominate here link removed per request -->
+
                   <NavigationMenuLink
                     href="/awards/jury"
                     class="flex flex-row items-center gap-4 p-2 rounded-xl hover:bg-primary/5 transition-all group text-left"

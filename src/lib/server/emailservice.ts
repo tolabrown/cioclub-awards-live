@@ -261,4 +261,11 @@ export class EmailService {
 
     await this.send({ from: this.fromEmail, to, subject, html });
   }
+
+  /**
+   * Send a generic email with custom HTML body
+   */
+  static async sendGeneric(to: string, subject: string, html: string): Promise<void> {
+    await this.send({ from: this.fromEmail, to, subject, html });
+  }
 }

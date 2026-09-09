@@ -12,6 +12,7 @@
     Trophy,
     Award,
     Users,
+    Users2,
     Star,
     ChevronLeft,
     ChevronRight,
@@ -36,6 +37,9 @@
   import { onMount } from "svelte";
   import { cn } from "$lib/utils";
   import AwardsHero from "$lib/components/sections/awards-hero.svelte";
+  import VolunteerFormDialog from "$lib/components/awards/volunteer-form-dialog.svelte";
+
+  let volunteerDialogOpen = $state(false);
 
   let { data } = $props();
 
@@ -1139,6 +1143,96 @@
     </div>
   </section>
 
+  <!-- Volunteer CTA Section -->
+  <section class="py-20 bg-background border-t border-border/40 relative overflow-hidden">
+    <!-- Ambient background decoration -->
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,#d9770620_0%,transparent_70%)] pointer-events-none"></div>
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-5xl mx-auto">
+        <div class="rounded-3xl border-2 border-amber-500/40 bg-gradient-to-br from-amber-500/5 via-background to-background overflow-hidden shadow-xl hover:shadow-amber-500/10 transition-all duration-500">
+          <div class="grid lg:grid-cols-5 gap-0">
+            <!-- Left: Content -->
+            <div class="lg:col-span-3 p-10 lg:p-14 space-y-6">
+              <div class="flex flex-wrap items-center gap-3">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-widest">
+                  <Users2 class="size-3.5" />
+                  Volunteer Opportunity
+                </div>
+                <Badge variant="outline" class="text-[10px] font-bold uppercase tracking-widest border-primary/30 text-primary">
+                  7th Edition · 2026
+                </Badge>
+              </div>
+
+              <div class="space-y-3">
+                <h2 class="text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground leading-tight">
+                  Join Our <span class="text-amber-500">Volunteer Team</span>
+                </h2>
+                <p class="text-base text-muted-foreground leading-relaxed font-medium">
+                  A successful event of this scale is made possible by an exceptional team. Be part of the team behind Africa's premier tech leadership celebration.
+                </p>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3">
+                {#each [
+                  { icon: Users2, label: "Guest Reception" },
+                  { icon: Crown, label: "VIP Protocol" },
+                  { icon: Trophy, label: "Awards Ceremony" },
+                  { icon: Mic, label: "Media & Coverage" },
+                ] as role}
+                  <div class="flex items-center gap-2 text-sm font-semibold text-muted-foreground">
+                    <div class="size-7 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
+                      <role.icon class="size-3.5" />
+                    </div>
+                    {role.label}
+                  </div>
+                {/each}
+              </div>
+
+              <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-2">
+                <Button
+                  onclick={() => (volunteerDialogOpen = true)}
+                  size="lg"
+                  class="rounded-xl font-extrabold px-8 h-13 text-base gap-2 bg-amber-500 hover:bg-amber-600 text-slate-950 shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 transition-all duration-300 hover:scale-[1.02]"
+                >
+                  <Users2 class="size-5" />
+                  Apply to Volunteer
+                  <ArrowRight class="size-4" />
+                </Button>
+                <p class="text-xs text-muted-foreground font-medium">
+                  📅 Event: <span class="text-foreground font-semibold">Tue, 27 Oct 2026</span>
+                </p>
+              </div>
+            </div>
+
+            <!-- Right: Stats panel -->
+            <div class="lg:col-span-2 bg-gradient-to-br from-amber-500 to-amber-600 p-10 lg:p-14 flex flex-col justify-center space-y-8 text-slate-950">
+              <div class="space-y-2">
+                <p class="text-xs font-black uppercase tracking-[0.2em] opacity-70">Event Snapshot</p>
+                <p class="text-4xl font-extrabold tracking-tight">7th</p>
+                <p class="text-sm font-bold opacity-80">Edition of The CIO & C-Suite Awards Africa</p>
+              </div>
+              <div class="h-px bg-slate-950/20"></div>
+              <div class="space-y-4">
+                {#each [
+                  { label: "1,000+ Executives", icon: Users2 },
+                  { label: "13+ Countries", icon: Globe },
+                  { label: "Oct 27, 2026 · Lagos", icon: MapPin },
+                ] as item}
+                  <div class="flex items-center gap-3 text-sm font-bold">
+                    <div class="size-8 rounded-xl bg-slate-950/15 flex items-center justify-center shrink-0">
+                      <item.icon class="size-4" />
+                    </div>
+                    {item.label}
+                  </div>
+                {/each}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Final CTA Section -->
   <section class="py-24 bg-muted/30 border-t border-border/40">
     <div class="container mx-auto px-4">
@@ -1175,6 +1269,9 @@
     </div>
   </section>
 </div>
+
+<!-- Volunteer Application Dialog (Awards page only) -->
+<VolunteerFormDialog bind:open={volunteerDialogOpen} />
 
 <style>
   @keyframes marquee {

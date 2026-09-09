@@ -80,7 +80,7 @@
     { label: "Awards Hub", href: "/awards", icon: Trophy },
     { label: "Categories", href: "/awards/categories", icon: Zap },
     // { label: "Submit Entry", href: "/awards/entry", icon: FileEdit },
-    { label: "Nominate here", href: "/awards/nominate", icon: UserPlus },
+    // { label: "Nominate here", href: "/awards/nominate", icon: UserPlus }, // removed per request
     { label: "Awards Jury", href: "/awards/jury", icon: ShieldCheck },
     { label: "Project Team", href: "/awards/team", icon: Users },
     { label: "Past Winners", href: "/awards/winners", icon: Award },

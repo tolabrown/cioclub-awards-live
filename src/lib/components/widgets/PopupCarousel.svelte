@@ -17,10 +17,14 @@
     Trophy,
     Ticket,
     MapPin,
+    HeartHandshake,
   } from "@lucide/svelte";
+  import VolunteerFormDialog from "$lib/components/awards/volunteer-form-dialog.svelte";
   import { onMount } from "svelte";
   import { browser } from "$app/environment";
   import { page } from "$app/state";
+
+  let volunteerDialogOpen = $state(false);
 
   let {
     nominationPeriod = null,
@@ -193,22 +197,35 @@
             Join over 1,000 CIOs, C-Suite executives, and innovators for Africa's premier IT leadership celebration. Reserve your tickets for a day of Learning, Networking, and Recognition of Excellence.
           </p>
 
-          <div class="flex flex-col sm:flex-row gap-3 pt-2">
-            <Button
-              href="https://rsvp.app-wt.com.ng/the-cio-c-suite-awards-africa-2026"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex-1 font-extrabold group h-11 rounded-xl shadow-md"
-              onclick={dismiss}
-            >
-              <Ticket class="mr-2 size-4" />
-              Get your Ticket
-              <ArrowRight class="ml-2 size-4 transition-transform group-hover:translate-x-1" />
-            </Button>
+          <div class="flex flex-col gap-2.5 pt-2">
+            <div class="flex flex-col sm:flex-row gap-2.5">
+              <Button
+                href="https://rsvp.app-wt.com.ng/the-cio-c-suite-awards-africa-2026"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex-1 font-extrabold group h-11 rounded-xl shadow-md"
+                onclick={dismiss}
+              >
+                <Ticket class="mr-2 size-4" />
+                Get your Ticket
+                <ArrowRight class="ml-2 size-4 transition-transform group-hover:translate-x-1" />
+              </Button>
+              <Button
+                variant="outline"
+                class="flex-1 font-extrabold group h-11 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-950 border-amber-500 shadow-md"
+                onclick={() => {
+                  dismiss();
+                  volunteerDialogOpen = true;
+                }}
+              >
+                <HeartHandshake class="mr-2 size-4" />
+                Apply to Volunteer
+              </Button>
+            </div>
             <Button
               href="/awards"
               variant="outline"
-              class="flex-1 font-bold h-11 rounded-xl"
+              class="w-full font-bold h-10 rounded-xl"
               onclick={dismiss}
             >
               View Event Details
@@ -359,3 +376,5 @@
     {/if}
   </Dialog.Content>
 </Dialog.Root>
+
+<VolunteerFormDialog bind:open={volunteerDialogOpen} />
