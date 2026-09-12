@@ -10,7 +10,7 @@ interface EmailPayload {
 
 export class EmailService {
   private static webhookUrl = env.EMAIL_WEBHOOK;
-  private static fromEmail = Constants.SUPPORTEMAIL;
+  private static fromEmail = Constants.NOREPLY;
   private static brandName = Constants.BRANDNAME;
 
   private static async send(payload: EmailPayload): Promise<void> {

@@ -13,6 +13,7 @@
     Award,
     Users,
     Users2,
+    User,
     Star,
     ChevronLeft,
     ChevronRight,
@@ -308,69 +309,47 @@
   ];
 
   // ============================================
-  // 2026 CONFERENCE SPEAKERS (KEYNOTE & PANELS)
+  // 2026 CONFERENCE THEME & SESSIONS
   // ============================================
 
-  const keynoteSpeakers = [
+  const conferenceTheme = "Building Intelligent, Resilient and Trusted Enterprises for Africa’s Digital Future";
+
+  const conferenceSessions = [
     {
       id: 1,
-      title: "Opening Ministerial Keynote",
-      role: "Ministerial Keynote Address",
-      organization: "Federal Ministry of Communications, Innovation & Digital Economy",
-      topic: "Pan-African Digital Sovereignty: Policy, Infrastructure & The Future Economy",
-      category: "Government & Policy",
-      badge: "Opening Keynote",
-      placeholderIcon: Mic,
+      type: "KEYNOTE ADDRESS",
+      badge: "Keynote Address",
+      title: "Building Intelligent, Resilient and Trusted Enterprises for Africa’s Digital Future",
+      subtitle: "Main Stage Keynote Address",
+      description: "Setting the strategic agenda for enterprise technology leadership, digital sovereignty, cyber resilience, and trustworthy innovation across African markets.",
+      placeholderIcon: Crown,
       gradient: "from-amber-500/20 via-primary/10 to-transparent",
       badgeColor: "bg-amber-500 text-slate-950",
+      accentBorder: "border-amber-500/40",
     },
     {
       id: 2,
-      title: "Banking & FinTech Keynote",
-      role: "Financial Services Keynote Address",
-      organization: "Leading Tier-1 Banking Institution & Financial Switch",
-      topic: "The Future of Open Banking, AI-Driven Risk & Cross-Border Payments in Africa",
-      category: "Fintech & Banking",
-      badge: "Industry Keynote",
-      placeholderIcon: Building2,
+      type: "PANEL SESSION 1",
+      badge: "Panel Session 1",
+      title: "From AI Adoption to Enterprise Intelligence: Turning Technology Investment into Business Value",
+      subtitle: "Executive Panel Discussion",
+      description: "Moving beyond AI hype to extracting real business value, operational intelligence, automated governance, and measurable ROI from technology investments.",
+      placeholderIcon: Sparkles,
       gradient: "from-blue-500/20 via-primary/10 to-transparent",
       badgeColor: "bg-blue-500 text-white",
+      accentBorder: "border-blue-500/40",
     },
     {
       id: 3,
-      title: "Telecommunications & Cloud Keynote",
-      role: "Chief Executive Keynote Address",
-      organization: "Pan-African Telecommunications & Infrastructure Giant",
-      topic: "Hyper-Connectivity: Expanding 5G, Terrestrial Fiber & Cloud Edge Across Africa",
-      category: "Telecom & Cloud",
-      badge: "Tech Visionary",
-      placeholderIcon: Globe,
+      type: "PANEL SESSION 2",
+      badge: "Panel Session 2",
+      title: "Building the Digital Backbone: Infrastructure, Connectivity, Security and Trust for Africa’s Enterprises",
+      subtitle: "Infrastructure & Security Panel",
+      description: "Exploring pan-African cloud infrastructure, high-speed terrestrial connectivity, cybersecurity resilience, data sovereignty, and trust frameworks.",
+      placeholderIcon: Shield,
       gradient: "from-emerald-500/20 via-primary/10 to-transparent",
       badgeColor: "bg-emerald-500 text-slate-950",
-    },
-    {
-      id: 4,
-      title: "Enterprise AI & Cloud Keynote",
-      role: "Global Technology Keynote Address",
-      organization: "Multinational Enterprise Cloud & AI Provider",
-      topic: "Scalable Enterprise AI: From Predictive Insights to Autonomous Operations",
-      category: "Artificial Intelligence",
-      badge: "Innovation Keynote",
-      placeholderIcon: Sparkles,
-      gradient: "from-purple-500/20 via-primary/10 to-transparent",
-      badgeColor: "bg-purple-500 text-white",
-    },
-    {
-      id: 5,
-      title: "CIO Club Pan-African Keynote",
-      role: "Convener & Board Keynote Address",
-      organization: "The CIO Club Africa & Edniesal Consulting",
-      topic: "Leading The Next Africa: Transforming C-Suite IT Leadership & Corporate Governance",
-      category: "Executive Leadership",
-      badge: "Closing Keynote",
-      placeholderIcon: Trophy,
-      gradient: "from-amber-500/25 via-primary/15 to-transparent",
-      badgeColor: "bg-amber-500 text-slate-950",
+      accentBorder: "border-emerald-500/40",
     }
   ];
 
@@ -642,78 +621,219 @@
     </div>
   </section>
 
-  <!-- Keynote Speakers Section -->
-  <section id="speakers" class="py-24 bg-gradient-to-b from-background via-muted/20 to-background border-t border-border/40 relative overflow-hidden">
+  <!-- 2026 Conference Theme & Program Sessions -->
+  <section id="sessions" class="py-24 bg-gradient-to-b from-background via-muted/20 to-background border-t border-border/40 relative overflow-hidden">
     <div class="absolute top-1/4 -left-40 size-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute bottom-1/4 -right-40 size-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
     <div class="container mx-auto px-4 relative z-10 max-w-7xl">
       <!-- Section Header -->
-      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+      <div class="text-center max-w-4xl mx-auto space-y-4 mb-16">
         <Badge variant="outline" class="px-4 py-1.5 text-xs font-bold uppercase tracking-widest border-amber-500/40 text-amber-500 bg-amber-500/10">
           <Mic class="size-3.5 mr-2" />
-          Main Stage Headliners
+          2026 Conference Program
         </Badge>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight">
-          Keynote Speakers
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground">
+          Conference Theme & Sessions
         </h2>
-        <p class="text-lg text-muted-foreground font-medium">
-          5 featured keynote addresses from Africa's leading policymakers, C-Suite leaders, and tech pioneers.
-        </p>
+
+        <!-- Featured Theme Banner Card -->
+        <div class="mt-6 p-8 rounded-3xl bg-gradient-to-r from-amber-500/15 via-primary/10 to-amber-500/15 border-2 border-amber-500/30 text-center shadow-lg relative overflow-hidden">
+          <p class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 mb-2">
+            Official 2026 Conference Theme
+          </p>
+          <h3 class="text-2xl md:text-3xl font-black text-foreground leading-tight tracking-tight max-w-3xl mx-auto">
+            "{conferenceTheme}"
+          </h3>
+        </div>
       </div>
 
-      <!-- 5 Keynote Speaker Boxes Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-        {#each keynoteSpeakers as keynote}
-          <div class="group relative rounded-3xl border-2 border-border/70 bg-card p-6 flex flex-col justify-between shadow-lg hover:shadow-2xl hover:border-amber-500/50 transition-all duration-300 overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-b {keynote.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      <!-- 3 Key Sessions Grid (Keynote + Panel 1 + Panel 2) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {#each conferenceSessions as session}
+          <div class="group relative rounded-3xl border-2 border-border/70 bg-card p-8 flex flex-col justify-between shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b {session.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-            <div class="relative z-10 space-y-5">
-              <!-- Header Badge & Number -->
+            <div class="relative z-10 space-y-6">
+              <!-- Header Badge & Session Type -->
               <div class="flex items-center justify-between">
-                <Badge class="{keynote.badgeColor} font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-0.5 shadow-sm">
-                  {keynote.badge}
+                <Badge class="{session.badgeColor} font-extrabold text-xs uppercase tracking-wider px-3 py-1 shadow-xs">
+                  {session.badge}
                 </Badge>
                 <span class="text-xs font-mono font-extrabold text-muted-foreground/60">
-                  0{keynote.id}
+                  0{session.id}
                 </span>
               </div>
 
-              <!-- Avatar / Placeholder Frame -->
-              <div class="relative aspect-square rounded-2xl bg-muted/60 border-2 border-dashed border-border/80 flex flex-col items-center justify-center text-center p-4 group-hover:border-amber-500/40 transition-colors">
-                <div class="size-14 rounded-2xl bg-background/80 border border-border/60 flex items-center justify-center text-primary shadow-inner mb-2 group-hover:scale-110 transition-transform">
-                  <keynote.placeholderIcon class="size-7 text-amber-500" />
-                </div>
-                <Badge variant="outline" class="text-[9px] font-bold uppercase tracking-widest bg-background/60 border-primary/20 text-primary">
-                  To Be Announced
-                </Badge>
+              <!-- Session Icon Frame -->
+              <div class="size-16 rounded-2xl bg-muted/60 border-2 border-border/80 flex items-center justify-center text-primary shadow-inner group-hover:scale-110 transition-transform">
+                <session.placeholderIcon class="size-8 text-amber-500" />
               </div>
 
-              <!-- Content Details -->
-              <div class="space-y-2">
-                <h4 class="text-base font-extrabold text-foreground leading-snug group-hover:text-amber-500 transition-colors">
-                  {keynote.title}
-                </h4>
-                <p class="text-xs font-semibold text-primary line-clamp-1">
-                  {keynote.role}
+              <!-- Session Details -->
+              <div class="space-y-3">
+                <p class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-widest">
+                  {session.subtitle}
                 </p>
-                <p class="text-[11px] text-muted-foreground font-medium line-clamp-2 leading-relaxed">
-                  {keynote.organization}
+                <h4 class="text-xl font-extrabold text-foreground leading-snug group-hover:text-amber-500 transition-colors">
+                  {session.title}
+                </h4>
+                <p class="text-xs text-muted-foreground font-medium leading-relaxed pt-1">
+                  {session.description}
                 </p>
               </div>
             </div>
 
-            <!-- Topic Banner Footer -->
-            <div class="relative z-10 pt-4 mt-4 border-t border-border/40">
-              <p class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider mb-1 flex items-center gap-1">
-                <Sparkles class="size-3 text-amber-500" /> Session Topic:
-              </p>
-              <p class="text-xs font-semibold text-foreground/90 line-clamp-2 leading-relaxed italic">
-                "{keynote.topic}"
-              </p>
+            <!-- Footer Badge -->
+            <div class="relative z-10 pt-6 mt-6 border-t border-border/40 flex items-center justify-between">
+              <span class="text-[11px] font-bold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
+                <Sparkles class="size-3.5 text-amber-500" /> Main Stage Program
+              </span>
+              <Badge variant="outline" class="text-[10px] font-bold uppercase tracking-wider bg-background/60">
+                27 Oct 2026
+              </Badge>
             </div>
           </div>
         {/each}
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- Main Stage Headliners Section               -->
+  <!-- ============================================ -->
+  <section id="headliners" class="py-24 bg-muted/10 border-t border-border/40">
+    <div class="container mx-auto px-4 max-w-7xl">
+
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-20">
+        <Badge variant="outline" class="px-4 py-1.5 text-xs font-bold uppercase tracking-widest border-amber-500/40 text-amber-500 bg-amber-500/10">
+          <Mic class="size-3.5 mr-2" />
+          Main Stage
+        </Badge>
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground">
+          Main Stage Headliners
+        </h2>
+        <p class="text-lg text-muted-foreground font-medium">
+          Distinguished speakers driving the conversations shaping Africa's digital enterprise future.
+        </p>
+      </div>
+
+      <div class="space-y-20">
+
+        <!-- ── Bucket 1: Keynote Address (1 person) ────────────────── -->
+        <div class="space-y-8">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b-2 border-amber-500/30">
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <div class="size-10 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center">
+                  <Crown class="size-5" />
+                </div>
+                <Badge class="bg-amber-500 text-slate-950 font-extrabold text-xs uppercase tracking-wider px-3 py-1">
+                  Keynote Address
+                </Badge>
+              </div>
+              <h3 class="text-xl font-extrabold text-foreground leading-snug max-w-2xl">
+                Building Intelligent, Resilient and Trusted Enterprises for Africa's Digital Future
+              </h3>
+            </div>
+            <Badge variant="outline" class="shrink-0 text-xs font-bold uppercase tracking-wider border-amber-500/30 text-amber-600 dark:text-amber-400">
+              1 Speaker
+            </Badge>
+          </div>
+
+          <!-- 1 Keynote Speaker Card (centered, prominent) -->
+          <div class="flex justify-center">
+            <div class="w-full max-w-sm group relative rounded-3xl border-2 border-dashed border-amber-500/40 bg-gradient-to-b from-amber-500/8 to-transparent p-10 flex flex-col items-center text-center space-y-5 hover:border-amber-500/70 hover:shadow-2xl hover:shadow-amber-500/10 transition-all duration-300 cursor-default">
+              <!-- Avatar placeholder -->
+              <div class="size-28 rounded-full bg-amber-500/10 border-2 border-dashed border-amber-500/40 flex items-center justify-center group-hover:scale-105 transition-transform duration-300 shadow-inner">
+                <Crown class="size-12 text-amber-500/40" />
+              </div>
+              <div class="space-y-1.5">
+                <p class="text-lg font-extrabold text-foreground tracking-tight">To Be Announced</p>
+                <p class="text-sm text-muted-foreground font-semibold">Keynote Speaker</p>
+              </div>
+              <Badge variant="outline" class="text-[10px] font-bold uppercase tracking-wider border-amber-500/30 text-amber-600 dark:text-amber-400 bg-amber-500/5">
+                Main Stage · 27 Oct 2026
+              </Badge>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Bucket 2: Panel Session 1 (5 people) ───────────────── -->
+        <div class="space-y-8">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b-2 border-blue-500/30">
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <div class="size-10 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center">
+                  <Sparkles class="size-5" />
+                </div>
+                <Badge class="bg-blue-500 text-white font-extrabold text-xs uppercase tracking-wider px-3 py-1">
+                  Panel Session 1
+                </Badge>
+              </div>
+              <h3 class="text-xl font-extrabold text-foreground leading-snug max-w-2xl">
+                From AI Adoption to Enterprise Intelligence: Turning Technology Investment into Business Value
+              </h3>
+            </div>
+            <Badge variant="outline" class="shrink-0 text-xs font-bold uppercase tracking-wider border-blue-500/30 text-blue-600 dark:text-blue-400">
+              5 Panelists
+            </Badge>
+          </div>
+
+          <!-- 5 Panelist Cards -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
+            {#each Array(5) as _, i}
+              <div class="group relative rounded-2xl border-2 border-dashed border-blue-500/30 bg-gradient-to-b from-blue-500/5 to-transparent p-6 flex flex-col items-center text-center space-y-3 hover:border-blue-500/60 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 cursor-default">
+                <div class="size-16 rounded-full bg-blue-500/10 border-2 border-dashed border-blue-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <User class="size-7 text-blue-500/40" />
+                </div>
+                <div class="space-y-0.5">
+                  <p class="text-sm font-extrabold text-foreground">TBA</p>
+                  <p class="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">Panelist {i + 1}</p>
+                </div>
+              </div>
+            {/each}
+          </div>
+        </div>
+
+        <!-- ── Bucket 3: Panel Session 2 (5 people) ───────────────── -->
+        <div class="space-y-8">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b-2 border-emerald-500/30">
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <div class="size-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
+                  <Shield class="size-5" />
+                </div>
+                <Badge class="bg-emerald-500 text-slate-950 font-extrabold text-xs uppercase tracking-wider px-3 py-1">
+                  Panel Session 2
+                </Badge>
+              </div>
+              <h3 class="text-xl font-extrabold text-foreground leading-snug max-w-2xl">
+                Building the Digital Backbone: Infrastructure, Connectivity, Security and Trust for Africa's Enterprises
+              </h3>
+            </div>
+            <Badge variant="outline" class="shrink-0 text-xs font-bold uppercase tracking-wider border-emerald-500/30 text-emerald-600 dark:text-emerald-400">
+              5 Panelists
+            </Badge>
+          </div>
+
+          <!-- 5 Panelist Cards -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
+            {#each Array(5) as _, i}
+              <div class="group relative rounded-2xl border-2 border-dashed border-emerald-500/30 bg-gradient-to-b from-emerald-500/5 to-transparent p-6 flex flex-col items-center text-center space-y-3 hover:border-emerald-500/60 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 cursor-default">
+                <div class="size-16 rounded-full bg-emerald-500/10 border-2 border-dashed border-emerald-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <User class="size-7 text-emerald-500/40" />
+                </div>
+                <div class="space-y-0.5">
+                  <p class="text-sm font-extrabold text-foreground">TBA</p>
+                  <p class="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">Panelist {i + 1}</p>
+                </div>
+              </div>
+            {/each}
+          </div>
+        </div>
+
       </div>
     </div>
   </section>

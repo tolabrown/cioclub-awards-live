@@ -35,6 +35,7 @@ export enum Constants {
   GOOGLE = 'google',
   AFTERAUTH = '/dashboard',
   SUPPORTEMAIL = 'info@thecioclubafrica.com',
+  NOREPLY = 'noreply@thecioclubafrica.com',
   BRANDWEBSITE = 'https://www.thecioclubafrica.com',
   FACEBOOK = 'https://www.facebook.com/thecioclubafrica?mibextid=LQQJ4d',
   TWITTER = 'https://x.com/thcioclubafrica?s=21',
