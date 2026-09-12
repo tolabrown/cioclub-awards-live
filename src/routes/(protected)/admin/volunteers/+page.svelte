@@ -33,6 +33,11 @@
   let searchInput = $state(data.filters?.q || "");
   let statusFilter = $state(data.filters?.status || "all");
 
+  $effect(() => {
+    searchInput = data.filters?.q || "";
+    statusFilter = data.filters?.status || "all";
+  });
+
   function openDetail(app: any) {
     selectedApp = app;
     isDetailOpen = true;
