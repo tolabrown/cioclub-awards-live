@@ -14,18 +14,21 @@ export const POST: RequestHandler = async ({ request }) => {
       lastName,
       email,
       phone,
+      location,
       ageRange,
       helpAreas,
       helpAreasOther,
       aboutYourself,
       whyVolunteer,
       hasPreviousExperience,
+      hasProgramManagementExperience,
+      programManagementExperience,
       availableFullDay,
       availableBriefing,
     } = body;
 
     // Validate required fields
-    if (!firstName || !lastName || !email || !phone || !ageRange || !helpAreas?.length || !aboutYourself || !whyVolunteer) {
+    if (!firstName || !lastName || !email || !phone || !location || !ageRange || !helpAreas?.length || !aboutYourself || !whyVolunteer || hasProgramManagementExperience === undefined || hasProgramManagementExperience === null) {
       return json({ success: false, message: 'Please fill in all required fields.' }, { status: 400 });
     }
 
@@ -35,12 +38,15 @@ export const POST: RequestHandler = async ({ request }) => {
       lastName,
       email,
       phone,
+      location: location.trim(),
       ageRange,
       helpAreas: JSON.stringify(helpAreas),
       helpAreasOther: helpAreasOther || null,
       aboutYourself,
       whyVolunteer,
       hasPreviousExperience: !!hasPreviousExperience,
+      hasProgramManagementExperience: !!hasProgramManagementExperience,
+      programManagementExperience: hasProgramManagementExperience ? (programManagementExperience?.trim() || null) : null,
       availableFullDay: !!availableFullDay,
       availableBriefing: !!availableBriefing,
     }).returning();
@@ -82,11 +88,13 @@ export const POST: RequestHandler = async ({ request }) => {
             <tr><td style="padding: 8px 12px; background: #f3f4f6; font-weight: 700; width: 40%;">Name</td><td style="padding: 8px 12px; border-bottom: 1px solid #e5e7eb;">${firstName} ${lastName}</td></tr>
             <tr><td style="padding: 8px 12px; background: #f3f4f6; font-weight: 700;">Email</td><td style="padding: 8px 12px; border-bottom: 1px solid #e5e7eb;">${email}</td></tr>
             <tr><td style="padding: 8px 12px; background: #f3f4f6; font-weight: 700;">Phone</td><td style="padding: 8px 12px; border-bottom: 1px solid #e5e7eb;">${phone}</td></tr>
+            <tr><td style="padding: 8px 12px; background: #f3f4f6; font-weight: 700;">Location</td><td style="padding: 8px 12px; border-bottom: 1px solid #e5e7eb;">${location}</td></tr>
             <tr><td style="padding: 8px 12px; background: #f3f4f6; font-weight: 700;">Age Range</td><td style="padding: 8px 12px; border-bottom: 1px solid #e5e7eb;">${ageRange}</td></tr>
             <tr><td style="padding: 8px 12px; background: #f3f4f6; font-weight: 700;">Help Areas</td><td style="padding: 8px 12px; border-bottom: 1px solid #e5e7eb;">${Array.isArray(helpAreas) ? helpAreas.join(', ') : helpAreas}${helpAreasOther ? ` (Other: ${helpAreasOther})` : ''}</td></tr>
             <tr><td style="padding: 8px 12px; background: #f3f4f6; font-weight: 700;">About</td><td style="padding: 8px 12px; border-bottom: 1px solid #e5e7eb;">${aboutYourself}</td></tr>
             <tr><td style="padding: 8px 12px; background: #f3f4f6; font-weight: 700;">Why Volunteer</td><td style="padding: 8px 12px; border-bottom: 1px solid #e5e7eb;">${whyVolunteer}</td></tr>
             <tr><td style="padding: 8px 12px; background: #f3f4f6; font-weight: 700;">Previous Experience</td><td style="padding: 8px 12px; border-bottom: 1px solid #e5e7eb;">${hasPreviousExperience ? 'Yes' : 'No'}</td></tr>
+            <tr><td style="padding: 8px 12px; background: #f3f4f6; font-weight: 700;">Program Management Experience</td><td style="padding: 8px 12px; border-bottom: 1px solid #e5e7eb;">${hasProgramManagementExperience ? `Yes${programManagementExperience ? ` (${programManagementExperience})` : ''}` : 'No'}</td></tr>
             <tr><td style="padding: 8px 12px; background: #f3f4f6; font-weight: 700;">Available Full Day</td><td style="padding: 8px 12px; border-bottom: 1px solid #e5e7eb;">${availableFullDay ? 'Yes' : 'No'}</td></tr>
             <tr><td style="padding: 8px 12px; background: #f3f4f6; font-weight: 700;">Available for Briefing</td><td style="padding: 8px 12px;">${availableBriefing ? 'Yes' : 'No'}</td></tr>
           </table>

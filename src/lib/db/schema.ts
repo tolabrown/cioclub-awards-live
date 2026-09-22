@@ -280,12 +280,15 @@ export const volunteerApplication = pgTable("volunteer_application", {
   lastName: text("last_name").notNull(),
   email: text("email").notNull(),
   phone: text("phone").notNull(),
+  location: text("location"),
   ageRange: text("age_range").notNull(), // "18-24" | "25-34" | "35-44" | "45+"
   helpAreas: text("help_areas").notNull(), // JSON array of selected areas
   helpAreasOther: text("help_areas_other"), // If "Other" selected
   aboutYourself: text("about_yourself").notNull(),
   whyVolunteer: text("why_volunteer").notNull(),
   hasPreviousExperience: boolean("has_previous_experience").notNull().default(false),
+  hasProgramManagementExperience: boolean("has_program_management_experience").notNull().default(false),
+  programManagementExperience: text("program_management_experience"),
   availableFullDay: boolean("available_full_day").notNull().default(false),
   availableBriefing: boolean("available_briefing").notNull().default(false),
   status: text("status").default("pending"), // pending, reviewed, accepted, declined

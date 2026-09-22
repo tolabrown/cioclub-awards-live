@@ -37,12 +37,15 @@
   let lastName = $state("");
   let email = $state("");
   let phone = $state("");
+  let location = $state("");
   let ageRange = $state("");
   let helpAreas = $state<string[]>([]);
   let helpAreasOther = $state("");
   let aboutYourself = $state("");
   let whyVolunteer = $state("");
   let hasPreviousExperience = $state<boolean | null>(null);
+  let hasProgramManagementExperience = $state<boolean | null>(null);
+  let programManagementExperience = $state("");
   let availableFullDay = $state<boolean | null>(null);
   let availableBriefing = $state<boolean | null>(null);
 
@@ -75,7 +78,7 @@
   }
 
   function canProceedStep1() {
-    return firstName.trim() && lastName.trim() && email.trim() && phone.trim() && ageRange;
+    return firstName.trim() && lastName.trim() && email.trim() && phone.trim() && location.trim() && ageRange;
   }
 
   function canProceedStep2() {
@@ -87,7 +90,13 @@
   }
 
   function canProceedStep4() {
-    return hasPreviousExperience !== null && availableFullDay !== null && availableBriefing !== null;
+    return (
+      hasPreviousExperience !== null &&
+      hasProgramManagementExperience !== null &&
+      (!hasProgramManagementExperience || programManagementExperience.trim().length > 0) &&
+      availableFullDay !== null &&
+      availableBriefing !== null
+    );
   }
 
   async function handleSubmit() {
@@ -104,12 +113,15 @@
           lastName,
           email,
           phone,
+          location,
           ageRange,
           helpAreas,
           helpAreasOther: helpAreas.includes("Other") ? helpAreasOther : "",
           aboutYourself,
           whyVolunteer,
           hasPreviousExperience,
+          hasProgramManagementExperience,
+          programManagementExperience: hasProgramManagementExperience ? programManagementExperience : "",
           availableFullDay,
           availableBriefing,
         }),
@@ -133,12 +145,15 @@
     lastName = "";
     email = "";
     phone = "";
+    location = "";
     ageRange = "";
     helpAreas = [];
     helpAreasOther = "";
     aboutYourself = "";
     whyVolunteer = "";
     hasPreviousExperience = null;
+    hasProgramManagementExperience = null;
+    programManagementExperience = "";
     availableFullDay = null;
     availableBriefing = null;
     submitted = false;
@@ -272,6 +287,16 @@
               />
             </div>
 
+            <div class="space-y-2">
+              <Label for="location" class="font-bold text-xs uppercase tracking-wider">Location (City, State / Country) *</Label>
+              <Input
+                id="location"
+                bind:value={location}
+                placeholder="e.g. Lagos, Nigeria"
+                class="rounded-xl h-11"
+              />
+            </div>
+
             <div class="space-y-3">
               <Label class="font-bold text-xs uppercase tracking-wider">Age Range *</Label>
               <div class="grid grid-cols-4 gap-2">
@@ -386,6 +411,39 @@
                   </button>
                 {/each}
               </div>
+            </div>
+
+            <!-- Program management experience -->
+            <div class="space-y-3">
+              <Label class="font-bold text-xs uppercase tracking-wider">Do you have program management experience? *</Label>
+              <div class="grid grid-cols-2 gap-3">
+                {#each [{ val: true, label: "Yes" }, { val: false, label: "No" }] as opt}
+                  <button
+                    type="button"
+                    onclick={() => {
+                      hasProgramManagementExperience = opt.val;
+                      if (!opt.val) programManagementExperience = "";
+                    }}
+                    class="py-3 rounded-xl border-2 font-bold text-sm transition-all duration-200 cursor-pointer
+                      {hasProgramManagementExperience === opt.val
+                      ? 'border-primary bg-primary text-primary-foreground'
+                      : 'border-border hover:border-primary/40 hover:bg-primary/5'}"
+                  >
+                    {opt.label}
+                  </button>
+                {/each}
+              </div>
+              {#if hasProgramManagementExperience}
+                <div class="space-y-1.5 pt-1">
+                  <Label for="pmExp" class="font-bold text-xs text-muted-foreground">Describe your program management experience (roles, projects, or tools) *</Label>
+                  <Textarea
+                    id="pmExp"
+                    bind:value={programManagementExperience}
+                    placeholder="e.g. Coordinated event schedules, managed volunteer squads, experience with agile methodologies or Asana/Trello/Jira..."
+                    class="rounded-xl min-h-[85px] resize-none text-sm"
+                  />
+                </div>
+              {/if}
             </div>
 
             <!-- Full day availability -->

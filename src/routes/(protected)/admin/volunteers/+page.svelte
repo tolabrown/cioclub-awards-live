@@ -19,6 +19,7 @@
     Mail,
     Phone,
     Calendar,
+    MapPin,
     Check,
     X,
     UserCheck,
@@ -84,11 +85,14 @@
       "Last Name",
       "Email",
       "Phone",
+      "Location",
       "Age Range",
       "Help Areas",
       "Other Help Area",
       "Status",
       "Previous Experience",
+      "Program Management Experience",
+      "Program Management Details",
       "Full Day Available",
       "Briefing Available",
       "About Candidate",
@@ -101,11 +105,14 @@
       `"${app.lastName.replace(/"/g, '""')}"`,
       `"${app.email}"`,
       `"${app.phone}"`,
+      `"${(app.location || "").replace(/"/g, '""')}"`,
       `"${app.ageRange}"`,
       `"${parseHelpAreas(app.helpAreas).join(", ").replace(/"/g, '""')}"`,
       `"${(app.helpAreasOther || "").replace(/"/g, '""')}"`,
       `"${app.status || "pending"}"`,
       `"${app.hasPreviousExperience ? "Yes" : "No"}"`,
+      `"${app.hasProgramManagementExperience ? "Yes" : "No"}"`,
+      `"${(app.programManagementExperience || "").replace(/"/g, '""')}"`,
       `"${app.availableFullDay ? "Yes" : "No"}"`,
       `"${app.availableBriefing ? "Yes" : "No"}"`,
       `"${(app.aboutYourself || "").replace(/"/g, '""')}"`,
@@ -310,6 +317,12 @@
                     <Phone class="size-3 text-muted-foreground shrink-0" />
                     <span>{app.phone}</span>
                   </a>
+                  {#if app.location}
+                    <div class="flex items-center gap-1.5 text-muted-foreground">
+                      <MapPin class="size-3 text-muted-foreground shrink-0" />
+                      <span class="truncate max-w-[160px]">{app.location}</span>
+                    </div>
+                  {/if}
                 </div>
               </Table.Cell>
 
@@ -433,10 +446,28 @@
             <span class="text-sm font-bold text-foreground mt-0.5 block">{selectedApp.ageRange}</span>
           </div>
           <div>
+            <span class="text-xs font-bold text-muted-foreground uppercase tracking-wider block">Location</span>
+            <span class="text-sm font-bold text-foreground mt-0.5 block">{selectedApp.location || '—'}</span>
+          </div>
+          <div>
             <span class="text-xs font-bold text-muted-foreground uppercase tracking-wider block">Prior Volunteer Exp.</span>
             <span class="text-sm font-bold text-foreground mt-0.5 block">{selectedApp.hasPreviousExperience ? "Yes" : "No"}</span>
           </div>
+          <div>
+            <span class="text-xs font-bold text-muted-foreground uppercase tracking-wider block">Program Mgmt. Exp.</span>
+            <span class="text-sm font-bold text-foreground mt-0.5 block">{selectedApp.hasProgramManagementExperience ? "Yes" : "No"}</span>
+          </div>
         </div>
+
+        {#if selectedApp.hasProgramManagementExperience && selectedApp.programManagementExperience}
+          <!-- Program Management Details -->
+          <div class="space-y-2">
+            <span class="text-xs font-extrabold text-foreground uppercase tracking-wider block">Program Management Details</span>
+            <div class="p-4 rounded-xl bg-blue-500/5 border border-blue-500/20 text-foreground text-sm leading-relaxed whitespace-pre-wrap">
+              {selectedApp.programManagementExperience}
+            </div>
+          </div>
+        {/if}
 
         <!-- Help Areas -->
         <div class="space-y-2">

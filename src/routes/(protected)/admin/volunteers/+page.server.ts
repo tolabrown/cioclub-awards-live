@@ -1,6 +1,6 @@
 import { db } from "$lib/db";
 import { volunteerApplication } from "$lib/db/schema";
-import { desc, eq, count, sql, ilike, or } from "drizzle-orm";
+import { desc, eq, count, sql, ilike, or, and } from "drizzle-orm";
 import { error, fail } from "@sveltejs/kit";
 import type { PageServerLoad, Actions } from "./$types";
 import { logActivity } from "$lib/server/activity-log";
@@ -25,13 +25,14 @@ export const load: PageServerLoad = async ({ url }) => {
           ilike(volunteerApplication.firstName, `%${searchQuery}%`),
           ilike(volunteerApplication.lastName, `%${searchQuery}%`),
           ilike(volunteerApplication.email, `%${searchQuery}%`),
-          ilike(volunteerApplication.phone, `%${searchQuery}%`)
+          ilike(volunteerApplication.phone, `%${searchQuery}%`),
+          ilike(volunteerApplication.location, `%${searchQuery}%`)
         )
       );
     }
 
     const whereClause = whereConditions.length > 0
-      ? (whereConditions.length === 1 ? whereConditions[0] : sql`${whereConditions[0]} AND ${whereConditions[1]}`)
+      ? and(...whereConditions)
       : undefined;
 
     const applications = await db

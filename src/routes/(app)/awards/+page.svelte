@@ -36,11 +36,18 @@
     Crown,
   } from "@lucide/svelte";
   import { onMount } from "svelte";
+  import { page } from "$app/state";
   import { cn } from "$lib/utils";
   import AwardsHero from "$lib/components/sections/awards-hero.svelte";
   import VolunteerFormDialog from "$lib/components/awards/volunteer-form-dialog.svelte";
 
   let volunteerDialogOpen = $state(false);
+
+  $effect(() => {
+    if (page.url.searchParams.get("volunteer") === "true" || page.url.hash === "#volunteer") {
+      volunteerDialogOpen = true;
+    }
+  });
 
   let { data } = $props();
 
@@ -1308,7 +1315,7 @@
                 {/each}
               </div>
 
-              <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-2">
+              <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 pt-2">
                 <Button
                   onclick={() => (volunteerDialogOpen = true)}
                   size="lg"
@@ -1318,7 +1325,13 @@
                   Apply to Volunteer
                   <ArrowRight class="size-4" />
                 </Button>
-                <p class="text-xs text-muted-foreground font-medium">
+                <a
+                  href="/volunteer"
+                  class="inline-flex items-center gap-2 px-5 h-13 rounded-xl border-2 border-border/80 hover:border-amber-500/50 bg-background/80 hover:bg-muted text-foreground text-sm font-bold transition-all"
+                >
+                  Direct Portal Page
+                </a>
+                <p class="text-xs text-muted-foreground font-medium sm:ml-auto">
                   📅 Event: <span class="text-foreground font-semibold">Tue, 27 Oct 2026</span>
                 </p>
               </div>
