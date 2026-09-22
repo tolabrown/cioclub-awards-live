@@ -290,44 +290,6 @@
     </div>
   </section>
 
-  <!-- Volunteer Perks Grid -->
-  <section class="py-10 border-b border-border/40 bg-muted/10">
-    <div class="container mx-auto px-4 max-w-5xl">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="p-4 rounded-2xl bg-card border border-border/50 space-y-2">
-          <div class="size-10 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center">
-            <Crown class="size-5" />
-          </div>
-          <h3 class="font-bold text-sm text-foreground">Executive Networking</h3>
-          <p class="text-xs text-muted-foreground leading-relaxed">Connect with 500+ top CIOs, CTOs, and tech luminaries from across Africa.</p>
-        </div>
-
-        <div class="p-4 rounded-2xl bg-card border border-border/50 space-y-2">
-          <div class="size-10 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center">
-            <Award class="size-5" />
-          </div>
-          <h3 class="font-bold text-sm text-foreground">Official Certificate</h3>
-          <p class="text-xs text-muted-foreground leading-relaxed">Receive a formal certificate of service recognizing your leadership contribution.</p>
-        </div>
-
-        <div class="p-4 rounded-2xl bg-card border border-border/50 space-y-2">
-          <div class="size-10 rounded-xl bg-blue-500/10 text-blue-600 flex items-center justify-center">
-            <Briefcase class="size-5" />
-          </div>
-          <h3 class="font-bold text-sm text-foreground">Operations Experience</h3>
-          <p class="text-xs text-muted-foreground leading-relaxed">Gain hands-on experience in high-stakes protocol, stage, and event management.</p>
-        </div>
-
-        <div class="p-4 rounded-2xl bg-card border border-border/50 space-y-2">
-          <div class="size-10 rounded-xl bg-purple-500/10 text-purple-600 flex items-center justify-center">
-            <Heart class="size-5" />
-          </div>
-          <h3 class="font-bold text-sm text-foreground">Meals & Kit Provided</h3>
-          <p class="text-xs text-muted-foreground leading-relaxed">Full event hospitality, meals, refreshments, and volunteer kit included.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Application Form Section -->
   <section class="py-12 md:py-16">
