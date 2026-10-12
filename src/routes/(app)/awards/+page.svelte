@@ -360,6 +360,41 @@
     }
   ];
 
+  // 2026 MAIN STAGE PANELISTS
+  const panelSession1Speakers = [
+    {
+      name: "Dr. Stanley Jacob",
+      role: "President, FintechNGR",
+      org: "GCITO, Meristem Securities",
+      image: "/speakers/dr_stanley_jacob.jpeg",
+      isConfirmed: true
+    },
+    { name: "TBA", role: "Panelist", org: "", image: "", isConfirmed: false },
+    { name: "TBA", role: "Panelist", org: "", image: "", isConfirmed: false },
+    { name: "TBA", role: "Panelist", org: "", image: "", isConfirmed: false },
+    { name: "TBA", role: "Panelist", org: "", image: "", isConfirmed: false }
+  ];
+
+  const panelSession2Speakers = [
+    {
+      name: "Joseph Oloyede",
+      role: "Chief Business Officer",
+      org: "IT Horizons",
+      image: "/speakers/joseph_oloyede.jpg",
+      isConfirmed: true
+    },
+    {
+      name: "Blessing Ehize",
+      role: "Chief Technology Officer (CTO)",
+      org: "FCMB",
+      image: "/speakers/blessing_ehize.jpeg",
+      isConfirmed: true
+    },
+    { name: "TBA", role: "Panelist", org: "", image: "", isConfirmed: false },
+    { name: "TBA", role: "Panelist", org: "", image: "", isConfirmed: false },
+    { name: "TBA", role: "Panelist", org: "", image: "", isConfirmed: false }
+  ];
+
   // 2026 OFFICIAL SPONSORS (NO TAGS)
   const officialSponsors = [
     {
@@ -790,16 +825,50 @@
 
           <!-- 5 Panelist Cards -->
           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
-            {#each Array(5) as _, i}
-              <div class="group relative rounded-2xl border-2 border-dashed border-blue-500/30 bg-gradient-to-b from-blue-500/5 to-transparent p-6 flex flex-col items-center text-center space-y-3 hover:border-blue-500/60 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 cursor-default">
-                <div class="size-16 rounded-full bg-blue-500/10 border-2 border-dashed border-blue-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <User class="size-7 text-blue-500/40" />
+            {#each panelSession1Speakers as speaker, i}
+              {#if speaker.isConfirmed}
+                <div class="group relative rounded-2xl border-2 border-blue-500/40 dark:border-blue-500/40 bg-card p-5 flex flex-col items-center justify-between text-center space-y-3 hover:border-blue-500 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 min-h-[240px] overflow-hidden">
+                  <div class="absolute -inset-px bg-gradient-to-b from-blue-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-2xl"></div>
+
+                  <div class="relative size-20 rounded-full overflow-hidden border-2 border-blue-500/40 shadow-md group-hover:scale-105 group-hover:border-blue-500 transition-all duration-300 bg-muted">
+                    <img
+                      src={speaker.image}
+                      alt={speaker.name}
+                      class="w-full h-full object-cover object-top"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  <div class="space-y-1 w-full relative z-10">
+                    <p class="text-sm font-extrabold text-foreground tracking-tight leading-tight group-hover:text-blue-500 transition-colors">
+                      {speaker.name}
+                    </p>
+                    <p class="text-[11px] font-bold text-blue-600 dark:text-blue-400 leading-tight">
+                      {speaker.role}
+                    </p>
+                    {#if speaker.org}
+                      <p class="text-[10px] font-semibold text-muted-foreground leading-tight">
+                        {speaker.org}
+                      </p>
+                    {/if}
+                  </div>
+
+                  <Badge variant="outline" class="text-[9px] font-extrabold uppercase tracking-wider border-blue-500/30 text-blue-600 dark:text-blue-400 bg-blue-500/5 px-2.5 py-0.5">
+                    Panelist
+                  </Badge>
                 </div>
-                <div class="space-y-0.5">
-                  <p class="text-sm font-extrabold text-foreground">TBA</p>
-                  <p class="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">Panelist {i + 1}</p>
+              {:else}
+                <div class="group relative rounded-2xl border-2 border-dashed border-blue-500/30 bg-gradient-to-b from-blue-500/5 to-transparent p-5 flex flex-col items-center justify-between text-center space-y-3 hover:border-blue-500/60 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 cursor-default min-h-[240px]">
+                  <div class="size-20 rounded-full bg-blue-500/10 border-2 border-dashed border-blue-500/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                    <User class="size-8 text-blue-500/40" />
+                  </div>
+                  <div class="space-y-1 w-full">
+                    <p class="text-sm font-extrabold text-foreground">To Be Announced</p>
+                    <p class="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">Panelist {i + 1}</p>
+                  </div>
+                  <span class="text-[9px] text-muted-foreground/50 font-medium uppercase tracking-wider">Coming Soon</span>
                 </div>
-              </div>
+              {/if}
             {/each}
           </div>
         </div>
@@ -827,16 +896,50 @@
 
           <!-- 5 Panelist Cards -->
           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
-            {#each Array(5) as _, i}
-              <div class="group relative rounded-2xl border-2 border-dashed border-emerald-500/30 bg-gradient-to-b from-emerald-500/5 to-transparent p-6 flex flex-col items-center text-center space-y-3 hover:border-emerald-500/60 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 cursor-default">
-                <div class="size-16 rounded-full bg-emerald-500/10 border-2 border-dashed border-emerald-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <User class="size-7 text-emerald-500/40" />
+            {#each panelSession2Speakers as speaker, i}
+              {#if speaker.isConfirmed}
+                <div class="group relative rounded-2xl border-2 border-emerald-500/40 dark:border-emerald-500/40 bg-card p-5 flex flex-col items-center justify-between text-center space-y-3 hover:border-emerald-500 hover:shadow-xl hover:shadow-emerald-500/10 transition-all duration-300 min-h-[240px] overflow-hidden">
+                  <div class="absolute -inset-px bg-gradient-to-b from-emerald-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-2xl"></div>
+
+                  <div class="relative size-20 rounded-full overflow-hidden border-2 border-emerald-500/40 shadow-md group-hover:scale-105 group-hover:border-emerald-500 transition-all duration-300 bg-muted">
+                    <img
+                      src={speaker.image}
+                      alt={speaker.name}
+                      class="w-full h-full object-cover object-top"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  <div class="space-y-1 w-full relative z-10">
+                    <p class="text-sm font-extrabold text-foreground tracking-tight leading-tight group-hover:text-emerald-500 transition-colors">
+                      {speaker.name}
+                    </p>
+                    <p class="text-[11px] font-bold text-emerald-600 dark:text-emerald-400 leading-tight">
+                      {speaker.role}
+                    </p>
+                    {#if speaker.org}
+                      <p class="text-[10px] font-semibold text-muted-foreground leading-tight">
+                        {speaker.org}
+                      </p>
+                    {/if}
+                  </div>
+
+                  <Badge variant="outline" class="text-[9px] font-extrabold uppercase tracking-wider border-emerald-500/30 text-emerald-600 dark:text-emerald-400 bg-emerald-500/5 px-2.5 py-0.5">
+                    Panelist
+                  </Badge>
                 </div>
-                <div class="space-y-0.5">
-                  <p class="text-sm font-extrabold text-foreground">TBA</p>
-                  <p class="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">Panelist {i + 1}</p>
+              {:else}
+                <div class="group relative rounded-2xl border-2 border-dashed border-emerald-500/30 bg-gradient-to-b from-emerald-500/5 to-transparent p-5 flex flex-col items-center justify-center text-center space-y-3 hover:border-emerald-500/60 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 cursor-default min-h-[240px]">
+                  <div class="size-20 rounded-full bg-emerald-500/10 border-2 border-dashed border-emerald-500/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                    <User class="size-8 text-emerald-500/40" />
+                  </div>
+                  <div class="space-y-1 w-full">
+                    <p class="text-sm font-extrabold text-foreground">To Be Announced</p>
+                    <p class="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">Panelist {i + 1}</p>
+                  </div>
+                  <span class="text-[9px] text-muted-foreground/50 font-medium uppercase tracking-wider">Coming Soon</span>
                 </div>
-              </div>
+              {/if}
             {/each}
           </div>
         </div>
