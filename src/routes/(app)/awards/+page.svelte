@@ -819,9 +819,6 @@
                 Keeping Data Local, Competing Globally
               </h3>
             </div>
-            <Badge variant="outline" class="shrink-0 text-xs font-bold uppercase tracking-wider border-blue-500/30 text-blue-600 dark:text-blue-400">
-              5 Panelists
-            </Badge>
           </div>
 
           <!-- 5 Panelist Cards -->
@@ -890,9 +887,6 @@
                 Data Localization: Business, Innovation & Growth
               </h3>
             </div>
-            <Badge variant="outline" class="shrink-0 text-xs font-bold uppercase tracking-wider border-emerald-500/30 text-emerald-600 dark:text-emerald-400">
-              5 Panelists
-            </Badge>
           </div>
 
           <!-- 5 Panelist Cards -->
