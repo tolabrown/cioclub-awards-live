@@ -1,4 +1,4 @@
-﻿<script lang="ts">
+<script lang="ts">
   import { Button } from "$lib/components/ui/button";
   import { Badge } from "$lib/components/ui/badge";
   import {
@@ -694,11 +694,8 @@
 
         <!-- Featured Theme Banner Card -->
         <div class="mt-6 p-8 rounded-3xl bg-gradient-to-r from-amber-500/15 via-primary/10 to-amber-500/15 border-2 border-amber-500/30 text-center shadow-lg relative overflow-hidden">
-          <p class="text-xs font-extrabold uppercase tracking-widest text-amber-600 dark:text-amber-400 mb-2">
-            Official 2026 Conference Theme
-          </p>
           <h3 class="text-2xl md:text-3xl font-black text-foreground leading-tight tracking-tight max-w-3xl mx-auto">
-            "{conferenceTheme}"
+            {conferenceTheme}
           </h3>
         </div>
       </div>
@@ -739,15 +736,6 @@
               </div>
             </div>
 
-            <!-- Footer Badge -->
-            <div class="relative z-10 pt-6 mt-6 border-t border-border/40 flex items-center justify-between">
-              <span class="text-[11px] font-bold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
-                <Sparkles class="size-3.5 text-amber-500" /> Main Stage Program
-              </span>
-              <Badge variant="outline" class="text-[10px] font-bold uppercase tracking-wider bg-background/60">
-                27 Oct 2026
-              </Badge>
-            </div>
           </div>
         {/each}
       </div>
@@ -993,14 +981,7 @@
                 </p>
               </div>
             </div>
-            <div class="pt-4 border-t border-purple-500/15 flex flex-wrap items-center gap-3">
-              <Badge variant="outline" class="text-[10px] font-bold uppercase tracking-wider border-purple-500/30 text-purple-600 dark:text-purple-400 bg-purple-500/5">
-                Main Stage · 27 Oct 2026
-              </Badge>
-              <Badge variant="outline" class="text-[10px] font-bold uppercase tracking-wider border-amber-500/30 text-amber-600 dark:text-amber-400 bg-amber-500/5">
-                Senior Executives Only
-              </Badge>
-            </div>
+
           </div>
         </div>
 
