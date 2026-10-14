@@ -1,4 +1,4 @@
-<script lang="ts">
+﻿<script lang="ts">
   import { Button } from "$lib/components/ui/button";
   import { Badge } from "$lib/components/ui/badge";
   import {
@@ -319,14 +319,14 @@
   // 2026 CONFERENCE THEME & SESSIONS
   // ============================================
 
-  const conferenceTheme = "Building Intelligent, Resilient and Trusted Enterprises for Africa’s Digital Future";
+  const conferenceTheme = "Policy, Regulation & Data Sovereignty";
 
   const conferenceSessions = [
     {
       id: 1,
       type: "KEYNOTE ADDRESS",
       badge: "Keynote Address",
-      title: "Building Intelligent, Resilient and Trusted Enterprises for Africa’s Digital Future",
+      title: "Policy, Regulation & Data Sovereignty",
       subtitle: "Main Stage Keynote Address",
       description: "Setting the strategic agenda for enterprise technology leadership, digital sovereignty, cyber resilience, and trustworthy innovation across African markets.",
       placeholderIcon: Crown,
@@ -338,7 +338,7 @@
       id: 2,
       type: "PANEL SESSION 1",
       badge: "Panel Session 1",
-      title: "From AI Adoption to Enterprise Intelligence: Turning Technology Investment into Business Value",
+      title: "Keeping Data Local, Competing Globally",
       subtitle: "Executive Panel Discussion",
       description: "Moving beyond AI hype to extracting real business value, operational intelligence, automated governance, and measurable ROI from technology investments.",
       placeholderIcon: Sparkles,
@@ -350,7 +350,7 @@
       id: 3,
       type: "PANEL SESSION 2",
       badge: "Panel Session 2",
-      title: "Building the Digital Backbone: Infrastructure, Connectivity, Security and Trust for Africa’s Enterprises",
+      title: "Data Localization: Business, Innovation & Growth",
       subtitle: "Infrastructure & Security Panel",
       description: "Exploring pan-African cloud infrastructure, high-speed terrestrial connectivity, cybersecurity resilience, data sovereignty, and trust frameworks.",
       placeholderIcon: Shield,
@@ -369,13 +369,27 @@
       image: "/speakers/dr_stanley_jacob.jpeg",
       isConfirmed: true
     },
-    { name: "TBA", role: "Panelist", org: "", image: "", isConfirmed: false },
+    {
+      name: "Wumi Oghoetuoma",
+      role: "Managing Director",
+      org: "Crown Interactive",
+      image: "/speakers/wumi_oghoetuoma.png",
+      isConfirmed: true
+    },
     { name: "TBA", role: "Panelist", org: "", image: "", isConfirmed: false },
     { name: "TBA", role: "Panelist", org: "", image: "", isConfirmed: false },
     { name: "TBA", role: "Panelist", org: "", image: "", isConfirmed: false }
   ];
 
   const panelSession2Speakers = [
+    {
+      name: "Dr. Ifeyinwa Kojo",
+      role: "Country Manager",
+      org: "HPE (operated by Selectium)",
+      image: "/speakers/dr_ifeyinwa_kojo.jpg",
+      isConfirmed: true,
+      isModerator: true
+    },
     {
       name: "Joseph Oloyede",
       role: "Chief Business Officer",
@@ -390,7 +404,6 @@
       image: "/speakers/blessing_ehize.jpeg",
       isConfirmed: true
     },
-    { name: "TBA", role: "Panelist", org: "", image: "", isConfirmed: false },
     { name: "TBA", role: "Panelist", org: "", image: "", isConfirmed: false },
     { name: "TBA", role: "Panelist", org: "", image: "", isConfirmed: false }
   ];
@@ -676,7 +689,7 @@
           2026 Conference Program
         </Badge>
         <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-foreground">
-          Conference Theme & Sessions
+          LEADING THE NEXT AFRICA
         </h2>
 
         <!-- Featured Theme Banner Card -->
@@ -776,7 +789,7 @@
                 </Badge>
               </div>
               <h3 class="text-xl font-extrabold text-foreground leading-snug max-w-2xl">
-                Building Intelligent, Resilient and Trusted Enterprises for Africa's Digital Future
+                Policy, Regulation & Data Sovereignty
               </h3>
             </div>
             <Badge variant="outline" class="shrink-0 text-xs font-bold uppercase tracking-wider border-amber-500/30 text-amber-600 dark:text-amber-400">
@@ -815,7 +828,7 @@
                 </Badge>
               </div>
               <h3 class="text-xl font-extrabold text-foreground leading-snug max-w-2xl">
-                From AI Adoption to Enterprise Intelligence: Turning Technology Investment into Business Value
+                Keeping Data Local, Competing Globally
               </h3>
             </div>
             <Badge variant="outline" class="shrink-0 text-xs font-bold uppercase tracking-wider border-blue-500/30 text-blue-600 dark:text-blue-400">
@@ -886,7 +899,7 @@
                 </Badge>
               </div>
               <h3 class="text-xl font-extrabold text-foreground leading-snug max-w-2xl">
-                Building the Digital Backbone: Infrastructure, Connectivity, Security and Trust for Africa's Enterprises
+                Data Localization: Business, Innovation & Growth
               </h3>
             </div>
             <Badge variant="outline" class="shrink-0 text-xs font-bold uppercase tracking-wider border-emerald-500/30 text-emerald-600 dark:text-emerald-400">
@@ -924,8 +937,8 @@
                     {/if}
                   </div>
 
-                  <Badge variant="outline" class="text-[9px] font-extrabold uppercase tracking-wider border-emerald-500/30 text-emerald-600 dark:text-emerald-400 bg-emerald-500/5 px-2.5 py-0.5">
-                    Panelist
+                  <Badge variant="outline" class="text-[9px] font-extrabold uppercase tracking-wider {speaker.isModerator ? 'border-amber-500/40 text-amber-600 dark:text-amber-400 bg-amber-500/10' : 'border-emerald-500/30 text-emerald-600 dark:text-emerald-400 bg-emerald-500/5'} px-2.5 py-0.5">
+                    {speaker.isModerator ? 'Moderator' : 'Panelist'}
                   </Badge>
                 </div>
               {:else}
@@ -941,6 +954,53 @@
                 </div>
               {/if}
             {/each}
+          </div>
+        </div>
+
+        <!-- ── Bucket 4: Executive Roundtable ───────────────── -->
+        <div class="space-y-8">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b-2 border-purple-500/30">
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <div class="size-10 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center">
+                  <Users2 class="size-5" />
+                </div>
+                <Badge class="bg-purple-600 text-white font-extrabold text-xs uppercase tracking-wider px-3 py-1">
+                  Executive Roundtable
+                </Badge>
+              </div>
+              <h3 class="text-xl font-extrabold text-foreground leading-snug max-w-2xl">
+                From Dialogue to Impact: The CIO & C-Suite Club's Role
+              </h3>
+            </div>
+            <Badge variant="outline" class="shrink-0 text-xs font-bold uppercase tracking-wider border-purple-500/30 text-purple-600 dark:text-purple-400">
+              Invite Only
+            </Badge>
+          </div>
+
+          <!-- Roundtable Description Card -->
+          <div class="rounded-2xl border-2 border-purple-500/20 bg-gradient-to-br from-purple-500/8 via-card to-card p-8 space-y-5">
+            <div class="flex items-start gap-4">
+              <div class="size-14 shrink-0 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center">
+                <Users2 class="size-7 text-purple-500" />
+              </div>
+              <div class="space-y-2">
+                <p class="text-base font-bold text-foreground leading-snug">
+                  An intimate, high-trust dialogue among C-Suite executives and CIOs on translating boardroom conversations into measurable enterprise transformation.
+                </p>
+                <p class="text-sm text-muted-foreground font-medium leading-relaxed">
+                  This closed-door session convenes Africa's most senior technology and business leaders to share candid insights, debate strategic priorities, and align on the collective role of the CIO & C-Suite Club in accelerating Africa's digital agenda.
+                </p>
+              </div>
+            </div>
+            <div class="pt-4 border-t border-purple-500/15 flex flex-wrap items-center gap-3">
+              <Badge variant="outline" class="text-[10px] font-bold uppercase tracking-wider border-purple-500/30 text-purple-600 dark:text-purple-400 bg-purple-500/5">
+                Main Stage · 27 Oct 2026
+              </Badge>
+              <Badge variant="outline" class="text-[10px] font-bold uppercase tracking-wider border-amber-500/30 text-amber-600 dark:text-amber-400 bg-amber-500/5">
+                Senior Executives Only
+              </Badge>
+            </div>
           </div>
         </div>
 
