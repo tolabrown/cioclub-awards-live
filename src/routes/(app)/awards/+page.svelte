@@ -360,8 +360,33 @@
     }
   ];
 
-  // 2026 MAIN STAGE PANELISTS
+  // 2026 MAIN STAGE KEYNOTE SPEAKER
+  const keynoteSpeaker = {
+    name: "Dr. Rakiya Opemi Yusuf",
+    role: "Director of Payments System Supervision Department",
+    org: "Central Bank of Nigeria (CBN)",
+    image: "/speakers/dr_rakiya_opemi_yusuf.jpeg",
+    isConfirmed: true
+  };
+
+  // 2026 MAIN STAGE PANELISTS - PANEL SESSION 1
+  // Topic: Keeping Data Local, Competing Globally
   const panelSession1Speakers = [
+    {
+      name: "Lola Egboh",
+      role: "Senior Consultant",
+      org: "Ace Digital & Content Services",
+      image: "/speakers/lola_egboh.png",
+      isConfirmed: true,
+      isModerator: true
+    },
+    {
+      name: "Dr. Ayotunde Coker",
+      role: "Chief Executive Officer",
+      org: "Open Access Data Centres (OADC)",
+      image: "/speakers/dr_ayotunde_coker.jpg",
+      isConfirmed: true
+    },
     {
       name: "Dr. Stanley Jacob",
       role: "President, FintechNGR",
@@ -376,15 +401,28 @@
       image: "/speakers/wumi_oghoetuoma.png",
       isConfirmed: true
     },
-    { name: "TBA", role: "Panelist", org: "", image: "", isConfirmed: false },
-    { name: "TBA", role: "Panelist", org: "", image: "", isConfirmed: false },
-    { name: "TBA", role: "Panelist", org: "", image: "", isConfirmed: false }
+    {
+      name: "Wole Oyeniran",
+      role: "Partner & Leader, Enterprise Tech",
+      org: "Deloitte",
+      image: "",
+      isConfirmed: true
+    },
+    {
+      name: "Emmanuel Alao",
+      role: "Chief Operating Officer (COO)",
+      org: "FMDQ Group",
+      image: "",
+      isConfirmed: true
+    }
   ];
 
+  // 2026 MAIN STAGE PANELISTS - PANEL SESSION 2
+  // Topic: Data Localization: Business, Innovation & Growth
   const panelSession2Speakers = [
     {
       name: "Dr. Ifeyinwa Kojo",
-      role: "Country Manager",
+      role: "Country Lead",
       org: "HPE (operated by Selectium)",
       image: "/speakers/dr_ifeyinwa_kojo.jpg",
       isConfirmed: true,
@@ -392,8 +430,8 @@
     },
     {
       name: "Joseph Oloyede",
-      role: "Chief Business Officer",
-      org: "IT Horizons",
+      role: "Chief Business Officer (CBO)",
+      org: "IT Horizons (ITH)",
       image: "/speakers/joseph_oloyede.jpg",
       isConfirmed: true
     },
@@ -404,8 +442,62 @@
       image: "/speakers/blessing_ehize.jpeg",
       isConfirmed: true
     },
-    { name: "TBA", role: "Panelist", org: "", image: "", isConfirmed: false },
-    { name: "TBA", role: "Panelist", org: "", image: "", isConfirmed: false }
+    {
+      name: "Olugbenga Babatunde",
+      role: "Enterprise Technology Leader",
+      org: "Wema Bank",
+      image: "",
+      isConfirmed: true
+    },
+    {
+      name: "Representative",
+      role: "Executive Representative",
+      org: "Bluechip Technologies",
+      image: "/speakers/bluechip_technologies.png",
+      isConfirmed: true,
+      isLogo: true
+    }
+  ];
+
+  // 2026 EXECUTIVE ROUNDTABLE
+  // Topic: From Dialogue to Impact: The CIO & C-Suite Club's Role
+  const executiveRoundtableSpeakers = [
+    {
+      name: "Adesewa Jethro",
+      role: "Operations Manager",
+      org: "Edniesal Consulting",
+      image: "/speakers/adesewa_jethro.jpeg",
+      isConfirmed: true,
+      isModerator: true
+    },
+    {
+      name: "Fatumata Coker",
+      role: "Chairman, Board of Trustees",
+      org: "The CIO & C-Suite Club Africa (TCCCA)",
+      image: "/speakers/fatumata_coker.webp",
+      isConfirmed: true
+    },
+    {
+      name: "Oluwakayode Adigun",
+      role: "Chairman, TCCAA",
+      org: "Co-Founder & Group CEO, TechPartners Intl",
+      image: "/speakers/oluwakayode_adigun.jpg",
+      isConfirmed: true
+    },
+    {
+      name: "Dr. Mories Atoki",
+      role: "President",
+      org: "Enterprise Leadership Council (ELC)",
+      image: "/speakers/mories_atoki.jpg",
+      isConfirmed: true
+    },
+    {
+      name: "Olusegun E. Dada",
+      role: "Member, Board of Trustees",
+      org: "The CIO & C-Suite Club Africa (TCCCA)",
+      image: "/speakers/olusegun_dada.webp",
+      isConfirmed: true
+    }
   ];
 
   // 2026 OFFICIAL SPONSORS (NO TAGS)
@@ -787,19 +879,58 @@
 
           <!-- 1 Keynote Speaker Card (centered, prominent) -->
           <div class="flex justify-center">
-            <div class="w-full max-w-sm group relative rounded-3xl border-2 border-dashed border-amber-500/40 bg-gradient-to-b from-amber-500/8 to-transparent p-10 flex flex-col items-center text-center space-y-5 hover:border-amber-500/70 hover:shadow-2xl hover:shadow-amber-500/10 transition-all duration-300 cursor-default">
-              <!-- Avatar placeholder -->
-              <div class="size-28 rounded-full bg-amber-500/10 border-2 border-dashed border-amber-500/40 flex items-center justify-center group-hover:scale-105 transition-transform duration-300 shadow-inner">
-                <Crown class="size-12 text-amber-500/40" />
+            {#if keynoteSpeaker.isConfirmed}
+              <div class="w-full max-w-md group relative rounded-3xl border-2 border-amber-500/40 bg-card p-8 sm:p-10 flex flex-col items-center text-center space-y-5 hover:border-amber-500 hover:shadow-2xl hover:shadow-amber-500/15 transition-all duration-300 overflow-hidden">
+                <div class="absolute -inset-px bg-gradient-to-b from-amber-500/12 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-3xl"></div>
+
+                <!-- Avatar image with prominent gold border -->
+                <div class="relative size-32 sm:size-36 rounded-full overflow-hidden border-4 border-amber-500/60 shadow-xl group-hover:scale-105 group-hover:border-amber-500 group-hover:shadow-amber-500/25 transition-all duration-300 bg-muted">
+                  <img
+                    src={keynoteSpeaker.image}
+                    alt={keynoteSpeaker.name}
+                    class="w-full h-full object-cover object-top"
+                    loading="lazy"
+                  />
+                </div>
+
+                <div class="space-y-2 w-full relative z-10">
+                  <p class="text-xl sm:text-2xl font-extrabold text-foreground tracking-tight group-hover:text-amber-500 transition-colors">
+                    {keynoteSpeaker.name}
+                  </p>
+                  <p class="text-sm sm:text-base font-bold text-amber-600 dark:text-amber-400 leading-snug">
+                    {keynoteSpeaker.role}
+                  </p>
+                  {#if keynoteSpeaker.org}
+                    <p class="text-xs sm:text-sm font-semibold text-muted-foreground">
+                      {keynoteSpeaker.org}
+                    </p>
+                  {/if}
+                </div>
+
+                <div class="flex items-center gap-2 pt-2 relative z-10">
+                  <Badge class="bg-amber-500 text-slate-950 font-extrabold text-xs uppercase tracking-wider px-3.5 py-1 shadow-sm">
+                    Keynote Speaker
+                  </Badge>
+                  <Badge variant="outline" class="text-[10px] font-bold uppercase tracking-wider border-amber-500/30 text-amber-600 dark:text-amber-400 bg-amber-500/5">
+                    Main Stage · 27 Oct 2026
+                  </Badge>
+                </div>
               </div>
-              <div class="space-y-1.5">
-                <p class="text-lg font-extrabold text-foreground tracking-tight">To Be Announced</p>
-                <p class="text-sm text-muted-foreground font-semibold">Keynote Speaker</p>
+            {:else}
+              <div class="w-full max-w-sm group relative rounded-3xl border-2 border-dashed border-amber-500/40 bg-gradient-to-b from-amber-500/8 to-transparent p-10 flex flex-col items-center text-center space-y-5 hover:border-amber-500/70 hover:shadow-2xl hover:shadow-amber-500/10 transition-all duration-300 cursor-default">
+                <!-- Avatar placeholder -->
+                <div class="size-28 rounded-full bg-amber-500/10 border-2 border-dashed border-amber-500/40 flex items-center justify-center group-hover:scale-105 transition-transform duration-300 shadow-inner">
+                  <Crown class="size-12 text-amber-500/40" />
+                </div>
+                <div class="space-y-1.5">
+                  <p class="text-lg font-extrabold text-foreground tracking-tight">To Be Announced</p>
+                  <p class="text-sm text-muted-foreground font-semibold">Keynote Speaker</p>
+                </div>
+                <Badge variant="outline" class="text-[10px] font-bold uppercase tracking-wider border-amber-500/30 text-amber-600 dark:text-amber-400 bg-amber-500/5">
+                  Main Stage · 27 Oct 2026
+                </Badge>
               </div>
-              <Badge variant="outline" class="text-[10px] font-bold uppercase tracking-wider border-amber-500/30 text-amber-600 dark:text-amber-400 bg-amber-500/5">
-                Main Stage · 27 Oct 2026
-              </Badge>
-            </div>
+            {/if}
           </div>
         </div>
 
@@ -821,20 +952,26 @@
             </div>
           </div>
 
-          <!-- 5 Panelist Cards -->
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
+          <!-- Panel Session 1 Speaker Cards -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5">
             {#each panelSession1Speakers as speaker, i}
               {#if speaker.isConfirmed}
-                <div class="group relative rounded-2xl border-2 border-blue-500/40 dark:border-blue-500/40 bg-card p-5 flex flex-col items-center justify-between text-center space-y-3 hover:border-blue-500 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 min-h-[240px] overflow-hidden">
+                <div class="group relative rounded-2xl border-2 border-blue-500/40 dark:border-blue-500/40 bg-card p-5 flex flex-col items-center justify-between text-center space-y-3 hover:border-blue-500 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 min-h-[250px] overflow-hidden">
                   <div class="absolute -inset-px bg-gradient-to-b from-blue-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-2xl"></div>
 
-                  <div class="relative size-20 rounded-full overflow-hidden border-2 border-blue-500/40 shadow-md group-hover:scale-105 group-hover:border-blue-500 transition-all duration-300 bg-muted">
-                    <img
-                      src={speaker.image}
-                      alt={speaker.name}
-                      class="w-full h-full object-cover object-top"
-                      loading="lazy"
-                    />
+                  <div class="relative size-20 rounded-full overflow-hidden border-2 border-blue-500/40 shadow-md group-hover:scale-105 group-hover:border-blue-500 transition-all duration-300 bg-muted flex items-center justify-center">
+                    {#if speaker.image}
+                      <img
+                        src={speaker.image}
+                        alt={speaker.name}
+                        class="w-full h-full object-cover object-top"
+                        loading="lazy"
+                      />
+                    {:else}
+                      <div class="size-full bg-blue-500/10 flex items-center justify-center">
+                        <User class="size-8 text-blue-500/50" />
+                      </div>
+                    {/if}
                   </div>
 
                   <div class="space-y-1 w-full relative z-10">
@@ -851,12 +988,12 @@
                     {/if}
                   </div>
 
-                  <Badge variant="outline" class="text-[9px] font-extrabold uppercase tracking-wider border-blue-500/30 text-blue-600 dark:text-blue-400 bg-blue-500/5 px-2.5 py-0.5">
-                    Panelist
+                  <Badge variant="outline" class="text-[9px] font-extrabold uppercase tracking-wider {speaker.isModerator ? 'border-amber-500/40 text-amber-600 dark:text-amber-400 bg-amber-500/10' : 'border-blue-500/30 text-blue-600 dark:text-blue-400 bg-blue-500/5'} px-2.5 py-0.5">
+                    {speaker.isModerator ? 'Moderator' : 'Panelist'}
                   </Badge>
                 </div>
               {:else}
-                <div class="group relative rounded-2xl border-2 border-dashed border-blue-500/30 bg-gradient-to-b from-blue-500/5 to-transparent p-5 flex flex-col items-center justify-between text-center space-y-3 hover:border-blue-500/60 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 cursor-default min-h-[240px]">
+                <div class="group relative rounded-2xl border-2 border-dashed border-blue-500/30 bg-gradient-to-b from-blue-500/5 to-transparent p-5 flex flex-col items-center justify-between text-center space-y-3 hover:border-blue-500/60 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 cursor-default min-h-[250px]">
                   <div class="size-20 rounded-full bg-blue-500/10 border-2 border-dashed border-blue-500/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                     <User class="size-8 text-blue-500/40" />
                   </div>
@@ -893,16 +1030,31 @@
           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
             {#each panelSession2Speakers as speaker, i}
               {#if speaker.isConfirmed}
-                <div class="group relative rounded-2xl border-2 border-emerald-500/40 dark:border-emerald-500/40 bg-card p-5 flex flex-col items-center justify-between text-center space-y-3 hover:border-emerald-500 hover:shadow-xl hover:shadow-emerald-500/10 transition-all duration-300 min-h-[240px] overflow-hidden">
+                <div class="group relative rounded-2xl border-2 border-emerald-500/40 dark:border-emerald-500/40 bg-card p-5 flex flex-col items-center justify-between text-center space-y-3 hover:border-emerald-500 hover:shadow-xl hover:shadow-emerald-500/10 transition-all duration-300 min-h-[250px] overflow-hidden">
                   <div class="absolute -inset-px bg-gradient-to-b from-emerald-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-2xl"></div>
 
-                  <div class="relative size-20 rounded-full overflow-hidden border-2 border-emerald-500/40 shadow-md group-hover:scale-105 group-hover:border-emerald-500 transition-all duration-300 bg-muted">
-                    <img
-                      src={speaker.image}
-                      alt={speaker.name}
-                      class="w-full h-full object-cover object-top"
-                      loading="lazy"
-                    />
+                  <div class="relative size-20 rounded-full overflow-hidden border-2 border-emerald-500/40 shadow-md group-hover:scale-105 group-hover:border-emerald-500 transition-all duration-300 bg-muted flex items-center justify-center">
+                    {#if speaker.image}
+                      {#if speaker.isLogo}
+                        <img
+                          src={speaker.image}
+                          alt={speaker.name}
+                          class="w-full h-full object-contain p-2.5 bg-white dark:bg-slate-900"
+                          loading="lazy"
+                        />
+                      {:else}
+                        <img
+                          src={speaker.image}
+                          alt={speaker.name}
+                          class="w-full h-full object-cover object-top"
+                          loading="lazy"
+                        />
+                      {/if}
+                    {:else}
+                      <div class="size-full bg-emerald-500/10 flex items-center justify-center">
+                        <User class="size-8 text-emerald-500/50" />
+                      </div>
+                    {/if}
                   </div>
 
                   <div class="space-y-1 w-full relative z-10">
@@ -924,7 +1076,7 @@
                   </Badge>
                 </div>
               {:else}
-                <div class="group relative rounded-2xl border-2 border-dashed border-emerald-500/30 bg-gradient-to-b from-emerald-500/5 to-transparent p-5 flex flex-col items-center justify-center text-center space-y-3 hover:border-emerald-500/60 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 cursor-default min-h-[240px]">
+                <div class="group relative rounded-2xl border-2 border-dashed border-emerald-500/30 bg-gradient-to-b from-emerald-500/5 to-transparent p-5 flex flex-col items-center justify-center text-center space-y-3 hover:border-emerald-500/60 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 cursor-default min-h-[250px]">
                   <div class="size-20 rounded-full bg-emerald-500/10 border-2 border-dashed border-emerald-500/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                     <User class="size-8 text-emerald-500/40" />
                   </div>
@@ -975,7 +1127,61 @@
                 </p>
               </div>
             </div>
+          </div>
 
+          <!-- 5 Roundtable Participant Cards -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
+            {#each executiveRoundtableSpeakers as speaker, i}
+              {#if speaker.isConfirmed}
+                <div class="group relative rounded-2xl border-2 border-purple-500/40 dark:border-purple-500/40 bg-card p-5 flex flex-col items-center justify-between text-center space-y-3 hover:border-purple-500 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 min-h-[250px] overflow-hidden">
+                  <div class="absolute -inset-px bg-gradient-to-b from-purple-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-2xl"></div>
+
+                  <div class="relative size-20 rounded-full overflow-hidden border-2 border-purple-500/40 shadow-md group-hover:scale-105 group-hover:border-purple-500 transition-all duration-300 bg-muted flex items-center justify-center">
+                    {#if speaker.image}
+                      <img
+                        src={speaker.image}
+                        alt={speaker.name}
+                        class="w-full h-full object-cover object-top"
+                        loading="lazy"
+                      />
+                    {:else}
+                      <div class="size-full bg-purple-500/10 flex items-center justify-center">
+                        <User class="size-8 text-purple-500/50" />
+                      </div>
+                    {/if}
+                  </div>
+
+                  <div class="space-y-1 w-full relative z-10">
+                    <p class="text-sm font-extrabold text-foreground tracking-tight leading-tight group-hover:text-purple-500 transition-colors">
+                      {speaker.name}
+                    </p>
+                    <p class="text-[11px] font-bold text-purple-600 dark:text-purple-400 leading-tight">
+                      {speaker.role}
+                    </p>
+                    {#if speaker.org}
+                      <p class="text-[10px] font-semibold text-muted-foreground leading-tight">
+                        {speaker.org}
+                      </p>
+                    {/if}
+                  </div>
+
+                  <Badge variant="outline" class="text-[9px] font-extrabold uppercase tracking-wider {speaker.isModerator ? 'border-amber-500/40 text-amber-600 dark:text-amber-400 bg-amber-500/10' : 'border-purple-500/30 text-purple-600 dark:text-purple-400 bg-purple-500/5'} px-2.5 py-0.5">
+                    {speaker.isModerator ? 'Moderator' : 'Roundtable'}
+                  </Badge>
+                </div>
+              {:else}
+                <div class="group relative rounded-2xl border-2 border-dashed border-purple-500/30 bg-gradient-to-b from-purple-500/5 to-transparent p-5 flex flex-col items-center justify-center text-center space-y-3 hover:border-purple-500/60 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300 cursor-default min-h-[250px]">
+                  <div class="size-20 rounded-full bg-purple-500/10 border-2 border-dashed border-purple-500/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                    <User class="size-8 text-purple-500/40" />
+                  </div>
+                  <div class="space-y-1 w-full">
+                    <p class="text-sm font-extrabold text-foreground">To Be Announced</p>
+                    <p class="text-[10px] text-muted-foreground font-semibold uppercase tracking-wider">Speaker {i + 1}</p>
+                  </div>
+                  <span class="text-[9px] text-muted-foreground/50 font-medium uppercase tracking-wider">Coming Soon</span>
+                </div>
+              {/if}
+            {/each}
           </div>
         </div>
 
