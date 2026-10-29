@@ -74,7 +74,7 @@
             ></span>
           </h4>
           <ul class="space-y-4">
-            {#each [{ label: "About Us", href: "/about" }, { label: "Membership", href: "/membership" }, { label: "Events & Awards", href: "/events" }, { label: "Partnerships", href: "/partnerships" }, { label: "News & Insights", href: "/news" }] as link}
+            {#each [{ label: "About Us", href: "/about" }, { label: "Membership", href: "/membership" }, { label: "Events & Awards", href: "/events" }, { label: "Resources", href: "/resources" }, { label: "Partnerships", href: "/partnerships" }, { label: "News & Insights", href: "/news" }] as link}
               <li>
                 <a
                   href={link.href}

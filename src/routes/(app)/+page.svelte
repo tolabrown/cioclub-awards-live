@@ -262,14 +262,14 @@
     >
       <div class="space-y-4 max-w-xl">
         <p class="text-primary text-sm font-bold uppercase tracking-[0.2em]">
-          Latest Activities
+          Latest News
         </p>
         <h2 class="text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
           Stay ahead in the ecosystem
         </h2>
       </div>
       <Button variant="ghost" href="/news" class="font-bold text-primary group">
-        Explore All Insights
+        Explore All News
         <ChevronRight
           class="ml-2 size-5 group-hover:translate-x-1 transition-transform"
         />
