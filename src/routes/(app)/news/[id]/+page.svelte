@@ -57,9 +57,9 @@
 <div class="min-h-screen bg-background">
   <!-- Hero / Header -->
   <section class="relative h-[60vh] min-h-[400px] flex items-end">
-    {#if article.image?.url}
+    {#if article.image?.url || article.imageUrl}
       <img
-        src={article.image.url}
+        src={article.image?.url || article.imageUrl}
         alt=""
         class="absolute inset-0 w-full h-full object-cover"
       />

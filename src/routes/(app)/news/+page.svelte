@@ -126,9 +126,9 @@
             <div
               class="relative aspect-video lg:aspect-auto overflow-hidden bg-muted"
             >
-              {#if featuredArticle.image?.url}
+              {#if featuredArticle.image?.url || featuredArticle.imageUrl}
                 <img
-                  src={featuredArticle.image.url}
+                  src={featuredArticle.image?.url || featuredArticle.imageUrl}
                   alt={featuredArticle.title}
                   class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -237,9 +237,9 @@
             class="group bg-card rounded-xl overflow-hidden border border-border/50 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-500"
           >
             <div class="relative aspect-video overflow-hidden bg-muted">
-              {#if item.image?.url}
+              {#if item.image?.url || item.imageUrl}
                 <img
-                  src={item.image.url}
+                  src={item.image?.url || item.imageUrl}
                   alt={item.title}
                   class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />

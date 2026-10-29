@@ -53,6 +53,7 @@
   const mainNav = [
     { label: "Home", href: "/", icon: Home },
     { label: "Events", href: "/events", icon: Calendar },
+    { label: "Resources", href: "/resources", icon: Library },
     { label: "Team", href: "/team", icon: Users },
     { label: "Profile", href: "/dashboard", icon: User },
   ];
@@ -64,6 +65,7 @@
     { label: "Board of Trustees", href: "/about#board", icon: Shield },
     { label: "Partnerships", href: "/partnerships", icon: Handshake },
     { label: "News", href: "/news", icon: Newspaper },
+    { label: "Resources", href: "/resources", icon: Library },
     { label: "Contact", href: "/contact", icon: Mail },
     { label: "Staff Team", href: "/team", icon: Users },
     { label: "Gallery", href: "/gallery", icon: ImageIcon },

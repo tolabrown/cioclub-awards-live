@@ -45,6 +45,7 @@
     Newspaper,
     Info,
     Megaphone,
+    Library,
   } from "@lucide/svelte";
   import * as CookieConsent from "vanilla-cookieconsent";
   import { Role, Constants } from "$lib/constants";
@@ -211,6 +212,22 @@
                   </NavigationMenuLink>
 
                   <NavigationMenuLink
+                    href="/resources"
+                    class="flex flex-row items-center gap-4 p-2 rounded-xl hover:bg-primary/5 transition-all group text-left"
+                  >
+                    <div
+                      class="size-9 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform"
+                    >
+                      <Library class="size-5" />
+                    </div>
+                    <div class="flex flex-col">
+                      <span class="text-sm font-bold text-foreground"
+                        >Resources</span
+                      >
+                    </div>
+                  </NavigationMenuLink>
+
+                  <NavigationMenuLink
                     href="/team"
                     class="flex flex-row items-center gap-4 p-2 rounded-xl hover:bg-primary/5 transition-all group text-left"
                   >
@@ -280,6 +297,15 @@
                 class={isActive("/events")
                   ? "text-primary font-bold"
                   : "font-medium"}>Events</NavigationMenuLink
+              >
+            </NavigationMenuItem>
+
+            <NavigationMenuItem>
+              <NavigationMenuLink
+                href="/resources"
+                class={isActive("/resources")
+                  ? "text-primary font-bold"
+                  : "font-medium"}>Resources</NavigationMenuLink
               >
             </NavigationMenuItem>
 
