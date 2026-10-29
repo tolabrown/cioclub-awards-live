@@ -166,6 +166,81 @@
     </div>
   </section>
 
+  <!-- Featured Brochure Resource -->
+  <section class="py-12 bg-gradient-to-r from-amber-500/8 via-background to-amber-500/8 border-b border-amber-500/20">
+    <div class="container mx-auto px-4 max-w-7xl">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-widest">
+          <FileDown class="size-4" />
+          Featured Resource
+        </div>
+        <span class="text-xs text-muted-foreground font-medium">Pinned · 2026 Conference</span>
+      </div>
+
+      <div class="rounded-3xl border-2 border-amber-500/30 bg-card overflow-hidden shadow-xl hover:shadow-2xl hover:border-amber-500/50 transition-all duration-300 group">
+        <div class="grid lg:grid-cols-12 items-center">
+          <!-- Left: Brochure preview thumbnail -->
+          <div class="lg:col-span-4 relative min-h-[200px] lg:min-h-[260px] bg-gradient-to-br from-amber-500/20 via-primary/10 to-amber-500/5 flex items-center justify-center border-r border-border/50">
+            <div class="flex flex-col items-center justify-center gap-4 p-10 text-center">
+              <div class="size-20 rounded-2xl bg-amber-500/15 border-2 border-amber-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-inner">
+                <FileDown class="size-10 text-amber-500" />
+              </div>
+              <div class="space-y-1">
+                <p class="text-xs font-bold uppercase tracking-widest text-amber-600 dark:text-amber-400">PDF Document</p>
+                <p class="text-xs text-muted-foreground font-medium">2026 Edition</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Details -->
+          <div class="lg:col-span-8 p-8 lg:p-10 space-y-5">
+            <div class="flex flex-wrap items-center gap-3">
+              <Badge class="bg-amber-500 text-slate-950 font-bold px-3 py-1 text-[10px] uppercase tracking-wider">
+                Official Brochure
+              </Badge>
+              <Badge variant="outline" class="border-primary/30 text-primary font-bold text-[10px] uppercase tracking-wider">
+                CIO & C-Suite Awards Africa
+              </Badge>
+            </div>
+
+            <div class="space-y-2">
+              <h2 class="text-2xl lg:text-3xl font-extrabold text-foreground tracking-tight group-hover:text-amber-500 transition-colors">
+                CIO & C-Suite 2026 Conference Brochure
+              </h2>
+              <p class="text-base text-muted-foreground font-medium leading-relaxed">
+                The official brochure for the 7th edition of the CIO & C-Suite Conference & Awards Africa — featuring the event programme, confirmed speakers, sponsorship tiers, and key information about Africa's premier technology leadership platform.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-3 pt-2">
+              <Button
+                href="/brochure"
+                target="_blank"
+                rel="noopener noreferrer"
+                size="lg"
+                class="rounded-xl font-bold gap-2 shadow-lg shadow-amber-500/20 bg-amber-500 hover:bg-amber-600 text-slate-950"
+              >
+                <Eye class="size-4" />
+                View Brochure
+                <ChevronRight class="size-4" />
+              </Button>
+              <Button
+                href="https://files.catbox.moe/xj1iro.pdf"
+                download="CIO_C-Suite_2026_Conference_Brochure.pdf"
+                variant="outline"
+                size="lg"
+                class="rounded-xl font-bold gap-2"
+              >
+                <Download class="size-4" />
+                Download PDF
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Resources Grid -->
   <section class="py-24 bg-background min-h-[600px]">
     <div class="container mx-auto px-4">

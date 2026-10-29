@@ -21,33 +21,21 @@
     ArrowUpRight,
     Globe,
     Shield,
-    Lightbulb,
     Handshake,
-    HelpCircle,
     Calendar,
     MapPin,
-    Clock,
-    Ticket,
     Sparkles,
     Building2,
     GraduationCap,
     PartyPopper,
     Mic,
     Crown,
+    CheckCircle,
+    Images,
   } from "@lucide/svelte";
   import { onMount } from "svelte";
-  import { page } from "$app/state";
   import { cn } from "$lib/utils";
   import AwardsHero from "$lib/components/sections/awards-hero.svelte";
-  import VolunteerFormDialog from "$lib/components/awards/volunteer-form-dialog.svelte";
-
-  let volunteerDialogOpen = $state(false);
-
-  $effect(() => {
-    if (page.url.searchParams.get("volunteer") === "true" || page.url.hash === "#volunteer") {
-      volunteerDialogOpen = true;
-    }
-  });
 
   let { data } = $props();
 
@@ -55,7 +43,7 @@
     { value: "7th", label: "Edition", desc: "Years of Continental Impact", icon: Trophy, color: "text-amber-500", bg: "bg-amber-500/10" },
     { value: "1,000+", label: "Executives", desc: "CIOs, CTOs & Leaders", icon: Users, color: "text-blue-500", bg: "bg-blue-500/10" },
     { value: "13", label: "Countries", desc: "Pan-African Representation", icon: Globe, color: "text-emerald-500", bg: "bg-emerald-500/10" },
-    { value: "1", label: "Night of Recognition", desc: "Gala & Awards Celebration", icon: Star, color: "text-purple-500", bg: "bg-purple-500/10" },
+    { value: "Oct 27", label: "2026 Edition", desc: "Balmoral, Victoria Island", icon: CheckCircle, color: "text-purple-500", bg: "bg-purple-500/10" },
   ];
 
   const whyAttendItems = [
@@ -557,10 +545,10 @@
 </script>
 
 <svelte:head>
-  <title>The CIO & C-Suite Awards Africa 2026 | Awards Hub</title>
+  <title>The CIO & C-Suite Awards Africa | Awards Hub</title>
   <meta
     name="description"
-    content="Join over 1,000 CIOs, C-Suite executives, and innovators for the 7th edition of the CIO & C-Suite Awards Africa on October 27, 2026 at Balmoral Convention Center."
+    content="The CIO & C-Suite Awards Africa — Africa's premier platform celebrating visionary technology leadership. View past editions and stay tuned for upcoming events."
   />
 </svelte:head>
 
@@ -568,45 +556,43 @@
   <!-- Hero Section -->
   <AwardsHero items={data.content.hero} />
 
-  <!-- Subheadline & Quick Banner Section -->
-  <section class="py-12 bg-muted/30 border-b border-border/40">
+  <!-- 7th Edition Just Concluded Banner -->
+  <section class="py-14 bg-gradient-to-r from-amber-500/10 via-primary/5 to-amber-500/10 border-b border-amber-500/20">
     <div class="container mx-auto px-4 text-center max-w-4xl space-y-6">
-      <div class="inline-flex flex-wrap items-center justify-center gap-3 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest">
+      <div class="inline-flex flex-wrap items-center justify-center gap-3 px-5 py-2.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 text-xs font-bold uppercase tracking-widest">
+        <CheckCircle class="size-4" />
+        <span>7th Edition — Just Concluded</span>
+        <span class="text-emerald-500/40">•</span>
         <Calendar class="size-4" />
         <span>October 27, 2026</span>
-        <span class="text-primary/40">•</span>
-        <Clock class="size-4" />
-        <span>12:00 PM WAT</span>
-        <span class="text-primary/40">•</span>
+        <span class="text-emerald-500/40">•</span>
         <MapPin class="size-4" />
         <span>Balmoral Convention Center, Victoria Island, Lagos</span>
       </div>
 
       <h2 class="text-2xl md:text-4xl font-bold tracking-tight leading-snug">
-        Join over <span class="text-primary italic">1,000 CIOs, C-Suite executives</span>, and innovators as we celebrate the <span class="text-amber-500 underline decoration-amber-500/40 underline-offset-8">7th edition</span> of the CIO & C-Suite Awards Africa.
+        Thank you to over <span class="text-primary italic">1,000 CIOs, C-Suite executives</span> and innovators who made the <span class="text-amber-500 underline decoration-amber-500/40 underline-offset-8">7th edition</span> of the CIO & C-Suite Awards Africa unforgettable.
       </h2>
 
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
         <Button
-          href="https://rsvp.app-wt.com.ng/the-cio-c-suite-awards-africa-2026"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/awards/winners"
           size="lg"
           class="rounded-xl shadow-lg shadow-primary/20 font-bold px-8 h-12 gap-2 text-base"
         >
-          <Ticket class="size-5" />
-          Get your Ticket
+          <Trophy class="size-5" />
+          View 2026 Winners
           <ArrowRight class="size-4" />
         </Button>
 
         <Button
-          href="#schedule"
+          href="/gallery"
           variant="outline"
           size="lg"
           class="rounded-xl font-bold px-8 h-12 gap-2 text-base border-border hover:bg-muted"
         >
-          See Event Details
-          <ChevronRight class="size-4" />
+          <Images class="size-4" />
+          View Gallery
         </Button>
       </div>
     </div>
@@ -703,29 +689,29 @@
     </div>
   </section>
 
-  <!-- Event Schedule Section -->
-  <section id="schedule" class="py-24 bg-background border-t border-border/40">
+  <!-- 2026 Edition Recap Section -->
+  <section id="2026-recap" class="py-24 bg-background border-t border-border/40">
     <div class="container mx-auto px-4">
       <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
-        <Badge variant="outline" class="px-4 py-1.5 text-xs font-bold uppercase tracking-widest border-primary/30 text-primary">
-          <Calendar class="size-3.5 mr-2" />
-          Event Schedule
+        <Badge variant="outline" class="px-4 py-1.5 text-xs font-bold uppercase tracking-widest border-emerald-500/30 text-emerald-600 dark:text-emerald-400 bg-emerald-500/10">
+          <CheckCircle class="size-3.5 mr-2" />
+          Past Event — 7th Edition
         </Badge>
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight">
-          Leadership, Innovation & Celebration
+          2026 Edition Recap
         </h2>
         <p class="text-lg text-muted-foreground font-medium">
-          A packed itinerary designed for technical minds, industry leaders, and decision makers.
+          A landmark day of leadership, innovation, and celebration that brought Africa's brightest tech minds together.
         </p>
       </div>
 
       <div class="space-y-12 max-w-5xl mx-auto">
-        <!-- Main Event Card -->
-        <Card class="rounded-3xl border-2 border-amber-500/30 bg-card overflow-hidden shadow-xl hover:shadow-2xl transition-all">
-          <CardHeader class="bg-gradient-to-r from-amber-500/10 via-primary/5 to-transparent p-8 border-b border-border/60 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <!-- Past Event Card -->
+        <Card class="rounded-3xl border-2 border-emerald-500/30 bg-card overflow-hidden shadow-xl">
+          <CardHeader class="bg-gradient-to-r from-emerald-500/10 via-primary/5 to-transparent p-8 border-b border-border/60 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div class="space-y-1">
-              <Badge class="bg-amber-500 text-slate-950 font-bold px-3 py-1 text-xs uppercase tracking-wider rounded-md">
-                Main Event
+              <Badge class="bg-emerald-500 text-slate-950 font-bold px-3 py-1 text-xs uppercase tracking-wider rounded-md">
+                Concluded — Past Event
               </Badge>
               <h3 class="text-2xl md:text-3xl font-extrabold text-foreground tracking-tight pt-2">
                 October 27, 2026
@@ -734,24 +720,24 @@
                 Balmoral Convention Center, Victoria Island, Lagos
               </p>
             </div>
-            <div class="inline-flex items-center gap-2 text-sm font-bold text-amber-600 dark:text-amber-400 bg-background px-4 py-2 rounded-xl border border-amber-500/30">
+            <div class="inline-flex items-center gap-2 text-sm font-bold text-emerald-600 dark:text-emerald-400 bg-background px-4 py-2 rounded-xl border border-emerald-500/30">
               <Trophy class="size-4" />
               Conference, Exhibitions & Awards Night
             </div>
           </CardHeader>
           <CardContent class="p-8 space-y-8">
             <p class="text-base text-muted-foreground leading-relaxed font-medium">
-              A full day at the Balmoral Convention Center, Victoria Island, opening with a conference and breakout room sessions, running alongside exhibitions from leading technology brands, and closing with the awards night honoring the leaders driving digital transformation across Africa.
+              The 7th edition of the CIO & C-Suite Conference & Awards Africa was held at the Balmoral Convention Center, Victoria Island. It featured a full day of conference sessions, breakout rooms, technology exhibitions, and an awards night honouring Africa's top technology leaders.
             </p>
 
             <div class="grid md:grid-cols-2 gap-6 pt-4">
               {#each eventHighlights as item}
-                <div class={cn("p-6 rounded-2xl border transition-all space-y-3", item.highlight ? "border-amber-500/50 bg-amber-500/5 shadow-md" : "border-border/60 bg-muted/30")}>
+                <div class={cn("p-6 rounded-2xl border transition-all space-y-3", item.highlight ? "border-emerald-500/50 bg-emerald-500/5 shadow-md" : "border-border/60 bg-muted/30")}>
                   <div class="flex items-center justify-between">
                     <div class="size-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
                       <item.icon class="size-6" />
                     </div>
-                    <Badge variant={item.highlight ? "default" : "outline"} class={cn("font-bold text-[10px] uppercase tracking-wider", item.highlight && "bg-amber-500 text-slate-950 border-0")}>
+                    <Badge variant={item.highlight ? "default" : "outline"} class={cn("font-bold text-[10px] uppercase tracking-wider", item.highlight && "bg-emerald-500 text-slate-950 border-0")}>
                       {item.badge}
                     </Badge>
                   </div>
@@ -762,13 +748,25 @@
                 </div>
               {/each}
             </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 pt-4">
+              <Button href="/awards/winners" class="rounded-xl font-bold gap-2">
+                <Trophy class="size-4" />
+                View 2026 Winners
+                <ArrowRight class="size-4" />
+              </Button>
+              <Button href="/gallery" variant="outline" class="rounded-xl font-bold gap-2">
+                <Images class="size-4" />
+                View Gallery
+              </Button>
+            </div>
           </CardContent>
         </Card>
       </div>
     </div>
   </section>
 
-  <!-- 2026 Conference Theme & Program Sessions -->
+  <!-- 2026 Conference Theme & Program Sessions (Past) -->
   <section id="sessions" class="py-24 bg-gradient-to-b from-background via-muted/20 to-background border-t border-border/40 relative overflow-hidden">
     <div class="absolute top-1/4 -left-40 size-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute bottom-1/4 -right-40 size-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
@@ -1189,19 +1187,19 @@
     </div>
   </section>
 
-  <!-- Why Attend Section -->
+  <!-- Why The Event Matters (Past Edition Context) -->
   <section class="py-24 bg-muted/20 border-t border-border/40">
     <div class="container mx-auto px-4">
       <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
         <Badge variant="outline" class="px-4 py-1.5 text-xs font-bold uppercase tracking-widest border-primary/30 text-primary">
           <Sparkles class="size-3.5 mr-2" />
-          Event Benefits
+          Why It Matters
         </Badge>
         <h2 class="text-3xl md:text-5xl font-bold tracking-tight">
-          Why Attend?
+          About The Event
         </h2>
         <p class="text-lg text-muted-foreground font-medium">
-          Experience an unparalleled ecosystem of technology leadership, insights, and celebration.
+          The CIO & C-Suite Awards Africa continues to be the continent's premier platform for technology leadership recognition.
         </p>
       </div>
 
@@ -1221,25 +1219,24 @@
         {/each}
       </div>
 
-      <!-- Distinct CTA Standout Banner Underneath the 5 Points -->
+      <!-- Next Edition CTA -->
       <div class="mt-12 max-w-6xl mx-auto">
-        <div class="p-8 lg:p-10 rounded-3xl bg-gradient-to-r from-amber-500 via-amber-600 to-amber-500 text-slate-950 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+        <div class="p-8 lg:p-10 rounded-3xl bg-gradient-to-r from-primary via-primary/90 to-primary text-primary-foreground shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
           <div class="space-y-2 text-center md:text-left z-10">
-            <Badge class="bg-slate-950 text-amber-400 font-bold px-3 py-1 text-[10px] uppercase tracking-wider">
-              Limited Seats Available
+            <Badge class="bg-amber-500 text-slate-950 font-bold px-3 py-1 text-[10px] uppercase tracking-wider">
+              Stay Connected
             </Badge>
-            <h3 class="text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-950">
-              Reserve Your Place
+            <h3 class="text-3xl lg:text-4xl font-extrabold tracking-tight">
+              Don't Miss the Next Edition
             </h3>
-            <p class="text-base text-slate-900 font-medium max-w-xl">
-              Join 1,000+ technology decision-makers for Africa's most prestigious tech gathering.
+            <p class="text-base text-primary-foreground/80 font-medium max-w-xl">
+              Follow our channels and become a member to be the first notified about the 8th edition.
             </p>
           </div>
 
           <div class="z-10 shrink-0">
-            <Button href="https://rsvp.app-wt.com.ng/the-cio-c-suite-awards-africa-2026" target="_blank" rel="noopener noreferrer" size="lg" class="bg-slate-950 hover:bg-slate-900 text-white font-extrabold px-8 h-14 rounded-2xl gap-3 shadow-lg text-base">
-              <Ticket class="size-5" />
-              Get your Ticket
+            <Button href="/membership" variant="secondary" size="lg" class="font-extrabold px-8 h-14 rounded-2xl gap-3 shadow-lg text-base">
+              Become a Member
               <ArrowRight class="size-4" />
             </Button>
           </div>
@@ -1287,15 +1284,15 @@
     </div>
   </section>
 
-  <!-- Venue Section -->
+  <!-- Venue Section (Past Edition) -->
   <section class="py-24 bg-background border-t border-border/40">
     <div class="container mx-auto px-4 max-w-5xl">
       <Card class="rounded-3xl border-2 border-primary/20 bg-card overflow-hidden shadow-2xl">
         <div class="grid lg:grid-cols-12 items-center">
           <div class="lg:col-span-7 p-8 lg:p-12 space-y-6">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-bold uppercase tracking-widest">
               <MapPin class="size-4" />
-              Event Venue
+              2026 Venue
             </div>
             <div class="space-y-2">
               <h3 class="text-3xl lg:text-4xl font-extrabold text-foreground tracking-tight">
@@ -1306,12 +1303,12 @@
               </p>
             </div>
             <p class="text-base text-muted-foreground leading-relaxed font-medium">
-              A landmark venue for a landmark night. Full address and access details will be shared upon registration.
+              The 7th edition was held at this iconic landmark venue on October 27, 2026 — a night that celebrated Africa's finest technology leaders.
             </p>
             <div class="pt-2">
-              <Button href="https://rsvp.app-wt.com.ng/the-cio-c-suite-awards-africa-2026" target="_blank" rel="noopener noreferrer" size="lg" class="rounded-xl shadow-lg shadow-primary/20 font-bold px-8 h-12 gap-2">
-                <Ticket class="size-5" />
-                Get your Ticket
+              <Button href="/awards/winners" size="lg" class="rounded-xl shadow-lg shadow-primary/20 font-bold px-8 h-12 gap-2">
+                <Trophy class="size-5" />
+                View 2026 Winners
                 <ArrowRight class="size-4" />
               </Button>
             </div>
@@ -1326,7 +1323,7 @@
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end p-8">
               <div class="text-white space-y-1">
                 <p class="font-extrabold text-lg">Victoria Island, Lagos</p>
-                <p class="text-xs text-white/80 uppercase tracking-widest font-medium">October 27, 2026</p>
+                <p class="text-xs text-white/80 uppercase tracking-widest font-medium">October 27, 2026 — Concluded</p>
               </div>
             </div>
           </div>
@@ -1614,44 +1611,43 @@
     </div>
   </section>
 
-  <!-- Volunteer CTA Section -->
+  <!-- Next Edition Interest Section -->
   <section class="py-20 bg-background border-t border-border/40 relative overflow-hidden">
-    <!-- Ambient background decoration -->
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,#d9770620_0%,transparent_70%)] pointer-events-none"></div>
     <div class="container mx-auto px-4 relative z-10">
       <div class="max-w-5xl mx-auto">
-        <div class="rounded-3xl border-2 border-amber-500/40 bg-gradient-to-br from-amber-500/5 via-background to-background overflow-hidden shadow-xl hover:shadow-amber-500/10 transition-all duration-500">
+        <div class="rounded-3xl border-2 border-primary/30 bg-gradient-to-br from-primary/5 via-background to-background overflow-hidden shadow-xl transition-all duration-500">
           <div class="grid lg:grid-cols-5 gap-0">
             <!-- Left: Content -->
             <div class="lg:col-span-3 p-10 lg:p-14 space-y-6">
               <div class="flex flex-wrap items-center gap-3">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs font-bold uppercase tracking-widest">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/15 border border-primary/30 text-primary text-xs font-bold uppercase tracking-widest">
                   <Users2 class="size-3.5" />
-                  Volunteer Opportunity
+                  Stay in the Loop
                 </div>
                 <Badge variant="outline" class="text-[10px] font-bold uppercase tracking-widest border-primary/30 text-primary">
-                  7th Edition · 2026
+                  8th Edition · Coming
                 </Badge>
               </div>
 
               <div class="space-y-3">
                 <h2 class="text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground leading-tight">
-                  Join Our <span class="text-amber-500">Volunteer Team</span>
+                  Be First to Know About the <span class="text-primary">Next Edition</span>
                 </h2>
                 <p class="text-base text-muted-foreground leading-relaxed font-medium">
-                  A successful event of this scale is made possible by an exceptional team. Be part of the team behind Africa's premier tech leadership celebration.
+                  The 7th edition has concluded. Become a member to be the first notified when the 8th edition dates, themes, and nominations open.
                 </p>
               </div>
 
               <div class="grid grid-cols-2 gap-3">
                 {#each [
-                  { icon: Users2, label: "Guest Reception" },
-                  { icon: Crown, label: "VIP Protocol" },
-                  { icon: Trophy, label: "Awards Ceremony" },
-                  { icon: Mic, label: "Media & Coverage" },
+                  { icon: Users2, label: "Executive Network" },
+                  { icon: Crown, label: "Leadership Access" },
+                  { icon: Trophy, label: "Awards Recognition" },
+                  { icon: Mic, label: "Speaking Opportunities" },
                 ] as role}
                   <div class="flex items-center gap-2 text-sm font-semibold text-muted-foreground">
-                    <div class="size-7 rounded-lg bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
+                    <div class="size-7 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0">
                       <role.icon class="size-3.5" />
                     </div>
                     {role.label}
@@ -1661,34 +1657,28 @@
 
               <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 pt-2">
                 <Button
-                  onclick={() => (volunteerDialogOpen = true)}
+                  href="/membership"
                   size="lg"
-                  class="rounded-xl font-extrabold px-8 h-13 text-base gap-2 bg-amber-500 hover:bg-amber-600 text-slate-950 shadow-lg shadow-amber-500/30 hover:shadow-amber-500/50 transition-all duration-300 hover:scale-[1.02]"
+                  class="rounded-xl font-extrabold px-8 h-13 text-base gap-2 shadow-lg transition-all duration-300 hover:scale-[1.02]"
                 >
                   <Users2 class="size-5" />
-                  Apply to Volunteer
+                  Become a Member
                   <ArrowRight class="size-4" />
                 </Button>
-                <a
-                  href="/volunteer"
-                  class="inline-flex items-center gap-2 px-5 h-13 rounded-xl border-2 border-border/80 hover:border-amber-500/50 bg-background/80 hover:bg-muted text-foreground text-sm font-bold transition-all"
-                >
-                  Direct Portal Page
-                </a>
-                <p class="text-xs text-muted-foreground font-medium sm:ml-auto">
-                  📅 Event: <span class="text-foreground font-semibold">Tue, 27 Oct 2026</span>
-                </p>
+                <Button href="/contact" variant="outline" size="lg" class="rounded-xl font-bold px-8 h-13 text-base gap-2">
+                  Contact Us
+                </Button>
               </div>
             </div>
 
             <!-- Right: Stats panel -->
-            <div class="lg:col-span-2 bg-gradient-to-br from-amber-500 to-amber-600 p-10 lg:p-14 flex flex-col justify-center space-y-8 text-slate-950">
+            <div class="lg:col-span-2 bg-gradient-to-br from-primary to-primary/80 p-10 lg:p-14 flex flex-col justify-center space-y-8 text-primary-foreground">
               <div class="space-y-2">
-                <p class="text-xs font-black uppercase tracking-[0.2em] opacity-70">Event Snapshot</p>
+                <p class="text-xs font-black uppercase tracking-[0.2em] opacity-70">2026 Snapshot</p>
                 <p class="text-4xl font-extrabold tracking-tight">7th</p>
-                <p class="text-sm font-bold opacity-80">Edition of The CIO & C-Suite Awards Africa</p>
+                <p class="text-sm font-bold opacity-80">Edition — Successfully Concluded</p>
               </div>
-              <div class="h-px bg-slate-950/20"></div>
+              <div class="h-px bg-white/20"></div>
               <div class="space-y-4">
                 {#each [
                   { label: "1,000+ Executives", icon: Users2 },
@@ -1696,7 +1686,7 @@
                   { label: "Oct 27, 2026 · Lagos", icon: MapPin },
                 ] as item}
                   <div class="flex items-center gap-3 text-sm font-bold">
-                    <div class="size-8 rounded-xl bg-slate-950/15 flex items-center justify-center shrink-0">
+                    <div class="size-8 rounded-xl bg-white/15 flex items-center justify-center shrink-0">
                       <item.icon class="size-4" />
                     </div>
                     {item.label}
@@ -1719,26 +1709,32 @@
 
         <div class="relative z-10 max-w-3xl mx-auto space-y-6">
           <Badge class="bg-amber-500 text-slate-950 font-bold px-4 py-1 text-xs uppercase tracking-widest">
-            7th Edition • October 27, 2026
+            7th Edition — Concluded
           </Badge>
           <h2 class="text-3xl lg:text-5xl font-bold tracking-tight">
-            Be Part of Africa's Premier Tech Leadership Night
+            Thank You for Making the 7th Edition Unforgettable
           </h2>
           <p class="text-xl text-primary-foreground/90 font-medium leading-relaxed">
-            Join 1,000+ CIOs, C-Suite executives, and innovators for a night of recognition, networking, and celebration.
+            The CIO & C-Suite Awards Africa continues to honour Africa's brightest technology leaders. Become a member to stay connected and be first to know about the 8th edition.
           </p>
-          <div class="pt-6">
+          <div class="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
-              href="https://rsvp.app-wt.com.ng/the-cio-c-suite-awards-africa-2026"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/awards/winners"
               variant="secondary"
               size="lg"
               class="rounded-xl shadow-xl font-extrabold px-10 h-14 text-base gap-3"
             >
-              <Ticket class="size-5" />
-              Get your Ticket
+              <Trophy class="size-5" />
+              View 2026 Winners
               <ArrowRight class="size-5" />
+            </Button>
+            <Button
+              href="/membership"
+              variant="outline"
+              size="lg"
+              class="rounded-xl font-extrabold px-10 h-14 text-base gap-3 border-white/20 text-white hover:bg-white/10"
+            >
+              Become a Member
             </Button>
           </div>
         </div>
@@ -1746,9 +1742,6 @@
     </div>
   </section>
 </div>
-
-<!-- Volunteer Application Dialog (Awards page only) -->
-<VolunteerFormDialog bind:open={volunteerDialogOpen} />
 
 <style>
   @keyframes marquee {
