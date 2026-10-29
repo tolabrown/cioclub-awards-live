@@ -1,4 +1,4 @@
-import { error } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { getObjectStream } from '$lib/server/minio';
 import { db } from '$lib/db';
@@ -22,6 +22,11 @@ export const GET: RequestHandler = async ({ params }) => {
 
 	if (!fileRecord) {
 		throw error(404, 'File not found');
+	}
+
+	// If the file is hosted externally (e.g. Catbox), redirect directly to it
+	if (fileRecord.url && (fileRecord.url.startsWith('http://') || fileRecord.url.startsWith('https://')) && !fileRecord.url.includes('minio')) {
+		throw redirect(302, fileRecord.url);
 	}
 
 	try {
