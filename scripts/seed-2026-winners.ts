@@ -237,11 +237,11 @@ const winnersList: WinnerDef[] = [
     displayOrder: 26,
   },
   {
-    name: 'Peter Kakoma',
+    name: 'Dr. George Mensah',
     awardType: 'Fintech and Financial Services (OAC)',
     awardDescription: 'Winner - Fintech and Financial Services (Other African Countries)',
-    organization: 'Founder and Principal Technical Consultant, Kanzu Code Limited',
-    filePath: path.join(professionalDir, '( WINNER Fintech and Financial Services OAC )  Peter Kakoma, Founder and Principal Technical Consultant, Kanzu Code Limited.jpg'),
+    organization: 'Former Director, Technology Division, Consolidated Bank',
+    filePath: path.resolve('static/news/dr_george_mensah.jpeg'),
     displayOrder: 27,
   },
   {
