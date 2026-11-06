@@ -393,14 +393,21 @@
       name: "Wole Oyeniran",
       role: "Partner & Leader, Enterprise Tech",
       org: "Deloitte",
-      image: "",
+      image: "/speakers/wole_oyeniran.jpeg",
       isConfirmed: true
     },
     {
       name: "Emmanuel Alao",
       role: "Chief Operating Officer (COO)",
       org: "FMDQ Group",
-      image: "",
+      image: "/speakers/emmanuel_alao.jpeg",
+      isConfirmed: true
+    },
+    {
+      name: "Emeka E. Eboegbune",
+      role: "Divisional Head, IT and Operations",
+      org: "FSDH Merchant Bank",
+      image: "/speakers/emeka_eboegbune.jpeg",
       isConfirmed: true
     }
   ];
@@ -438,12 +445,32 @@
       isConfirmed: true
     },
     {
-      name: "Representative",
-      role: "Executive Representative",
+      name: "Tope Ajao",
+      role: "Chief Delivery Officer",
       org: "Bluechip Technologies",
-      image: "/speakers/bluechip_technologies.png",
-      isConfirmed: true,
-      isLogo: true
+      image: "/speakers/tope_ajao.jpeg",
+      isConfirmed: true
+    },
+    {
+      name: "Boluwaji Faniyi",
+      role: "Senior Manager, Architecture & Planning, IT",
+      org: "MTN Nigeria",
+      image: "/speakers/boluwaji_faniyi.jpeg",
+      isConfirmed: true
+    },
+    {
+      name: "Patrick Okebu",
+      role: "Chief Information Officer",
+      org: "Interswitch",
+      image: "/speakers/patrick_okebu.jpeg",
+      isConfirmed: true
+    },
+    {
+      name: "Peter Daniels",
+      role: "Chief Technology Officer",
+      org: "First Bank Nigeria",
+      image: "/speakers/peter_daniels.jpeg",
+      isConfirmed: true
     }
   ];
 
@@ -459,10 +486,10 @@
       isModerator: true
     },
     {
-      name: "Fatumata Coker",
-      role: "Chairman, Board of Trustees",
-      org: "The CIO & C-Suite Club Africa (TCCCA)",
-      image: "/speakers/fatumata_coker.webp",
+      name: "Enoch Agbona",
+      role: "Honorary Secretary",
+      org: "Enterprise Leadership Council (ELC)",
+      image: "/speakers/enoch_agbona.jpeg",
       isConfirmed: true
     },
     {
